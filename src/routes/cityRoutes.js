@@ -5,5 +5,6 @@ const router = Router();
 
 router.get('/', cityController.getCities);
 router.get('/:id/places', cityController.getCityPlaces);
+router.post('/', cityController.createCity);
 
 export default router;

@@ -26,7 +26,7 @@ export const deletePlace = async (id) => {
     await pool.query('DELETE FROM places WHERE id = ?', [id]);
 };
 
-export const getPlaceDetails = async (id) => {
+export const getPlaceDetails = async (id) => { //TODO asi dostat do těch několika requestů pro ty komentáře a ratingy, zkusit zoptimalizovat
     const [place] = await pool.query('SELECT * FROM places WHERE id = ?', [id]);
     const [ratings] = await pool.query('SELECT AVG(stars) as avgRating, COUNT(id) as ratingCount FROM ratings WHERE place_id = ?', [id]);
     const [comments] = await pool.query('SELECT * FROM comments WHERE place_id = ? ORDER BY created_at DESC', [id]);

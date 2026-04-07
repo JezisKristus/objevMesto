@@ -10,6 +10,15 @@ export const getCities = async (req, res) => {
     }
 };
 
+export const createCity = async (req, res) => {
+    try {
+        const id = await cityService.createCity(req.body);
+        res.status(201).json({ message: 'Place created', id });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to create place' });
+    }
+};
+
 export const getCityPlaces = async (req, res) => {
     try {
         const places = await placeService.getPlacesByCity(req.params.id);
