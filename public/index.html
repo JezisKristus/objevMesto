@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExploreCity</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#" onclick="renderCities()">ExploreCity <small class="text-muted fs-6">...prozkoumej svět</small></a>
+    </div>
+</nav>
+
+<main class="container my-5" id="app">
+</main>
+
+<div class="modal fade" id="addPlaceModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="addPlaceForm">
+                <div class="modal-header">
+                    <h5 class="modal-title">Přidat nové místo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="placeCityId">
+                    <div class="mb-3">
+                        <label class="form-label">Název</label>
+                        <input type="text" class="form-control" id="placeName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Typ</label>
+                        <select class="form-select" id="placeType" required>
+                            <option value="Restaurace">Restaurace</option>
+                            <option value="Památka">Památka</option>
+                            <option value="Zajímavost">Zajímavost</option>
+                            <option value="Ostatní">Ostatní</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Adresa</label>
+                        <input type="text" class="form-control" id="placeAddress" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Popis</label>
+                        <textarea class="form-control" id="placeDesc" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zrušit</button>
+                    <button type="submit" class="btn btn-primary">Uložit místo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
