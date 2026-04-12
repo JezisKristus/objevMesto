@@ -19,6 +19,15 @@ export const createPlace = async (req, res) => {
     }
 };
 
+export const getComments = async (req, res) => {
+    try {
+        const comments = await placeService.getPlaceComments(req.params.id);
+        res.json(comments);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch comments' });
+    }
+};
+
 export const updatePlace = async (req, res) => {
     try {
         await placeService.updatePlace(req.params.id, req.body);
