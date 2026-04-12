@@ -5,7 +5,7 @@ import placeRoutes from './routes/placeRoutes.js';
 const app = express();
 
 app.use(express.json());
-app.use('/public', express.static('public'));
+app.use(express.static('public'));
 
 app.use((req, res, next) => {
     console.log(req.method, req.url);

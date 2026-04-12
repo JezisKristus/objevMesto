@@ -1,7 +1,10 @@
 import { pool } from '../db.js';
 
 export const getPlacesByCity = async (cityId) => {
-    const [rows] = await pool.query('SELECT * FROM places WHERE city_id = ?', [cityId]);
+    const [rows] = await pool.query(
+        'SELECT * FROM places WHERE city_id = ? ORDER BY name ASC',
+        [cityId]
+    );
     return rows;
 };
 
@@ -27,15 +30,22 @@ export const deletePlace = async (id) => {
 };
 
 export const getPlaceDetails = async (id) => {
-    const [place] = await pool.query('SELECT * FROM places WHERE id = ?', [id]);
-    const [ratings] = await pool.query('SELECT AVG(stars) as avgRating, COUNT(id) as ratingCount FROM ratings WHERE place_id = ?', [id]);
+    const [place]   = await pool.query('SELECT * FROM places WHERE id = ?', [id]);
+    const [ratings] = await pool.query(
+        'SELECT AVG(stars) as avgRating, COUNT(id) as ratingCount FROM ratings WHERE place_id = ?',
+        [id]
+    );
 
     if (place.length === 0) return null;
+
     return { ...place[0], stats: ratings[0] };
 };
 
 export const getPlaceComments = async (id) => {
-    const [comments] = await pool.query('SELECT * FROM comments WHERE place_id = ? ORDER BY created_at DESC', [id]);
+    const [comments] = await pool.query(
+        'SELECT * FROM comments WHERE place_id = ? ORDER BY created_at DESC',
+        [id]
+    );
     return comments;
 };
 

@@ -5,53 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExploreCity</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#" onclick="renderCities()">ExploreCity <small class="text-muted fs-6">...prozkoumej svět</small></a>
+
+<nav class="navbar">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand" href="#" id="homeLink">
+            ExploreCity
+            <span class="tagline">...prozkoumej svět</span>
+        </a>
     </div>
 </nav>
 
-<main class="container my-5" id="app">
-</main>
+<div class="page-layout">
+    <div class="main-panel" id="mainPanel">
+        <div class="loading-msg">
+            <div class="spinner"></div>
+            <div>Načítám...</div>
+        </div>
+    </div>
 
-<div class="modal fade" id="addPlaceModal" tabindex="-1">
+    <div class="detail-panel" id="detailPanel">
+    </div>
+</div>
+
+<div class="modal fade" id="placeModal" tabindex="-1" aria-labelledby="placeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="addPlaceForm">
+            <form id="placeForm" novalidate>
                 <div class="modal-header">
-                    <h5 class="modal-title">Přidat nové místo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <span class="modal-title" id="placeModalLabel">Přidat nové místo</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zavřít"></button>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" id="placeId">
                     <input type="hidden" id="placeCityId">
+
                     <div class="mb-3">
-                        <label class="form-label">Název</label>
-                        <input type="text" class="form-control" id="placeName" required>
+                        <label class="form-label" for="placeName">Název</label>
+                        <input type="text" class="form-control" id="placeName" required minlength="2" maxlength="255" placeholder="Název místa">
+                        <div class="invalid-feedback">Vyplňte název místa (min. 2 znaky).</div>
                     </div>
+
                     <div class="mb-3">
-                        <label class="form-label">Typ</label>
+                        <label class="form-label" for="placeType">Typ místa</label>
                         <select class="form-select" id="placeType" required>
+                            <option value="">-- Vyberte typ --</option>
                             <option value="Restaurace">Restaurace</option>
                             <option value="Památka">Památka</option>
                             <option value="Zajímavost">Zajímavost</option>
                             <option value="Ostatní">Ostatní</option>
                         </select>
+                        <div class="invalid-feedback">Vyberte typ místa.</div>
                     </div>
+
                     <div class="mb-3">
-                        <label class="form-label">Adresa</label>
-                        <input type="text" class="form-control" id="placeAddress" required>
+                        <label class="form-label" for="placeAddress">Adresa</label>
+                        <input type="text" class="form-control" id="placeAddress" required maxlength="255" placeholder="Ulice, město">
+                        <div class="invalid-feedback">Vyplňte adresu.</div>
                     </div>
+
                     <div class="mb-3">
-                        <label class="form-label">Popis</label>
-                        <textarea class="form-control" id="placeDesc" rows="3" required></textarea>
+                        <label class="form-label" for="placeDesc">Popis</label>
+                        <textarea class="form-control" id="placeDesc" rows="3" required placeholder="Stručný popis místa..."></textarea>
+                        <div class="invalid-feedback">Vyplňte popis.</div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zrušit</button>
-                    <button type="submit" class="btn btn-primary">Uložit místo</button>
+                    <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Zrušit</button>
+                    <button type="submit" class="btn btn-primary" id="placeFormSubmit">Uložit místo</button>
                 </div>
             </form>
         </div>
@@ -59,6 +83,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="./js/app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
