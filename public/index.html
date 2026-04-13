@@ -31,6 +31,10 @@
     </div>
 </div>
 
+<template id="detailTemplate"> <!-- TODO asi to zkusit využít, vypadá to jako lepší řešení než innerHTML -->
+    
+</template>
+
 <div class="modal fade" id="placeModal" tabindex="-1" aria-labelledby="placeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -45,8 +49,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="placeName">Název</label>
-                        <input type="text" class="form-control" id="placeName" required minlength="2" maxlength="255"
-                               placeholder="Název místa">
+                        <input type="text" class="form-control" id="placeName" required minlength="2" maxlength="255" placeholder="Název místa">
                         <div class="invalid-feedback">Vyplňte název místa (min. 2 znaky).</div>
                     </div>
 
@@ -64,15 +67,13 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="placeAddress">Adresa</label>
-                        <input type="text" class="form-control" id="placeAddress" required maxlength="255"
-                               placeholder="Ulice, město">
+                        <input type="text" class="form-control" id="placeAddress" required maxlength="255" placeholder="Ulice, město">
                         <div class="invalid-feedback">Vyplňte adresu.</div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="placeDesc">Popis</label>
-                        <textarea class="form-control" id="placeDesc" rows="3" required
-                                  placeholder="Stručný popis místa..."></textarea>
+                        <textarea class="form-control" id="placeDesc" rows="3" required placeholder="Stručný popis místa..."></textarea>
                         <div class="invalid-feedback">Vyplňte popis.</div>
                     </div>
                 </div>
@@ -84,6 +85,7 @@
         </div>
     </div>
 </div>
+
 <div id="toastMsg" class="toast-msg"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="app.js"></script>

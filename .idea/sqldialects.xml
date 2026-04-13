@@ -3,6 +3,6 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/.idea/queries/Query.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/src/db_city_explorer.sql" dialect="MariaDB" />
-    <file url="file://$PROJECT_DIR$/src/services/placeService.js" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/services/cityService.js" dialect="GenericSQL" />
   </component>
 </project>
