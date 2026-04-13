@@ -1,35 +1,16 @@
-const API = '/api'; // asi by to tady nemuselo bejt, jestli budu měnit smazat i na back endu
+const API = '/api';
 
 let cachedCities = null;
 let activeCityId = null;
 let activeCityName = null;
 let activePlaceId = null;
 
-let mainPanel, detailPanel, placeForm, cityForm;
+let mainPanel, detailPanel, placeForm;
 
 function showToast(msg) {
     const toastEl = document.getElementById('toastMsg');
     toastEl.querySelector('.toast-body').textContent = msg;
-    const toast = new bootstrap.Toast(toastEl);
-    toast.show();
-}
-
-function loading(container) {
-    container.innerHTML = '';
-    const loadingMsg = document.createElement('div');
-    loadingMsg.className = 'text-center p-5';
-    const spinner = document.createElement('div');
-    spinner.className = 'spinner-border text-primary';
-    spinner.setAttribute('role', 'status');
-    const span = document.createElement('span');
-    span.className = 'visually-hidden';
-    span.textContent = 'Načítám...';
-    spinner.appendChild(span);
-    const text = document.createElement('div');
-    text.textContent = 'Načítám...';
-    loadingMsg.appendChild(spinner);
-    loadingMsg.appendChild(text);
-    container.appendChild(loadingMsg);
+    new bootstrap.Toast(toastEl, { delay: 2500 }).show();
 }
 
 function starsHTML(avg, count) {
@@ -43,19 +24,10 @@ function starsHTML(avg, count) {
     return html;
 }
 
-function placeholderImg(w, h) { // vygenerováno
-    return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="${w}" height="${h}" fill="#ddd"/>
-        <line x1="0" y1="0" x2="${w}" y2="${h}" stroke="#aaa" stroke-width="1.5"/>
-        <line x1="${w}" y1="0" x2="0" y2="${h}" stroke="#aaa" stroke-width="1.5"/>
-    </svg>`;
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     mainPanel = document.getElementById('mainPanel');
     detailPanel = document.getElementById('detailPanel');
     placeForm = document.getElementById('placeForm');
-    cityForm = document.getElementById('cityForm');
 
     document.getElementById('homeLink').addEventListener('click', (e) => {
         e.preventDefault();
@@ -79,9 +51,8 @@ function resetDetail() {
     activePlaceId = null;
     detailPanel.classList.remove('open');
     detailPanel.innerHTML = '';
-    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.city-card, .place-card').forEach(c => c.classList.remove('active'));
 }
-
 
 async function renderCities() {
     activeCityId = null;
@@ -89,47 +60,47 @@ async function renderCities() {
     resetDetail();
 
     if (!cachedCities) {
-        loading(mainPanel);
+        mainPanel.innerHTML = '<div class="loading-state"><div class="spinner-border spinner-border-sm text-secondary" role="status"></div><span>Načítám...</span></div>';
         try {
             const res = await fetch(`${API}/cities`);
             cachedCities = await res.json();
         } catch {
-            mainPanel.innerHTML = '<div class="text-center p-4 text-muted">Chyba při načítání měst.</div>';
+            mainPanel.innerHTML = '<div class="text-center text-muted py-4">Chyba při načítání měst.</div>';
             return;
         }
     }
 
     mainPanel.innerHTML = '';
     const title = document.createElement('h2');
-    title.className = 'mb-4';
+    title.className = 'h3 mb-4';
     title.textContent = 'Vyberte město';
     mainPanel.appendChild(title);
 
     const grid = document.createElement('div');
-    grid.className = 'city-grid';
+    grid.className = 'row g-4 mb-3';
 
-    //? Fragment je lepší když přidávám víc věcí najednou aby se to nemuselo přepočítávat pokaždý
     const fragment = document.createDocumentFragment();
     const template = document.getElementById('cityCardTemplate');
     cachedCities.forEach(city => {
         const card = document.importNode(template.content, true).firstElementChild;
         card.id = `cityCard-${city.id}`;
+        const col = document.createElement('div');
+        col.className = 'col-lg-2 col-md-3 col-sm-4 col-6';
         card.onclick = () => selectCity(city.id, city.name);
-        card.querySelector('.card-img-top').innerHTML = placeholderImg(200, 120);
-        card.querySelector('.card-title').textContent = city.name;
-        fragment.appendChild(card);
+        card.querySelector('.city-card__name').textContent = city.name;
+        col.appendChild(card);
+        fragment.appendChild(col);
     });
     grid.appendChild(fragment);
     mainPanel.appendChild(grid);
 }
-
 
 async function selectCity(cityId, cityName) {
     activeCityId = cityId;
     activeCityName = cityName;
     resetDetail();
 
-    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.city-card').forEach(c => c.classList.remove('active'));
     const card = document.getElementById(`cityCard-${cityId}`);
     if (card) card.classList.add('active');
 
@@ -138,20 +109,16 @@ async function selectCity(cityId, cityName) {
 
     const section = document.createElement('div');
     section.id = 'citySection';
-    section.className = 'card mt-4';
-    const body = document.createElement('div');
-    body.className = 'card-body';
-    body.innerHTML = `<div class="text-center p-5"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Načítám...</span></div></div>`;
-    section.appendChild(body);
+    section.className = 'card p-3 mb-3';
+    section.innerHTML = '<div class="loading-state"><div class="spinner-border spinner-border-sm text-secondary" role="status"></div><span>Načítám...</span></div>';
     mainPanel.appendChild(section);
-    
+
     try {
         const res = await fetch(`${API}/cities/${cityId}/places`);
         const places = await res.json();
-
-        renderCitySection(body, cityId, cityName, places);
+        renderCitySection(section, cityId, cityName, places);
     } catch {
-        body.innerHTML = '<div class="text-center p-4 text-muted">Chyba při načítání míst.</div>';
+        section.innerHTML = '<div class="text-center text-muted py-4">Chyba při načítání míst.</div>';
     }
 }
 
@@ -162,12 +129,13 @@ function renderCitySection(section, cityId, cityName, places) {
     header.className = 'd-flex justify-content-between align-items-center mb-3';
 
     const title = document.createElement('h3');
+    title.className = 'mb-0';
     title.textContent = cityName;
     header.appendChild(title);
 
     const addBtn = document.createElement('button');
-    addBtn.className = 'btn btn-primary btn-sm';
-    addBtn.textContent = '+ nové místo';
+    addBtn.className = 'btn btn-sm btn-outline-primary';
+    addBtn.innerHTML = '<i class="bi bi-plus-circle"></i> nové místo';
     addBtn.onclick = () => openAddPlaceModal(cityId);
     header.appendChild(addBtn);
 
@@ -175,40 +143,42 @@ function renderCitySection(section, cityId, cityName, places) {
 
     if (places.length === 0) {
         const empty = document.createElement('div');
-        empty.className = 'text-center p-4 text-muted';
+        empty.className = 'text-center text-muted py-4';
         empty.textContent = 'Zatím zde nejsou žádná místa.';
         section.appendChild(empty);
-    } else {
-        const grid = document.createElement('div');
-        grid.className = 'places-grid';
-
-        const fragment = document.createDocumentFragment();
-        const template = document.getElementById('placeCardTemplate');
-        places.forEach(p => {
-            const card = document.importNode(template.content, true).firstElementChild;
-            card.id = `placeCard-${p.id}`;
-            card.onclick = () => openPlaceDetail(p.id);
-            card.querySelector('.card-img-top').innerHTML = placeholderImg(155, 90);
-            card.querySelector('.card-title').textContent = p.name;
-            card.querySelector('.card-title').title = p.name;
-            card.querySelector('.card-text').textContent = p.type;
-            fragment.appendChild(card);
-        });
-        grid.appendChild(fragment);
-        section.appendChild(grid);
+        return;
     }
-}
 
+    const grid = document.createElement('div');
+    grid.className = 'row g-3 mb-3';
+
+    const fragment = document.createDocumentFragment();
+    const template = document.getElementById('placeCardTemplate');
+    places.forEach(p => {
+        const card = document.importNode(template.content, true).firstElementChild;
+        card.id = `placeCard-${p.id}`;
+        const col = document.createElement('div');
+        col.className = 'col-lg-3 col-md-4 col-sm-6';
+        card.onclick = () => openPlaceDetail(p.id);
+        card.querySelector('.place-card__name').textContent = p.name;
+        card.querySelector('.place-card__name').title = p.name;
+        card.querySelector('.place-card__type').textContent = p.type;
+        col.appendChild(card);
+        fragment.appendChild(col);
+    });
+    grid.appendChild(fragment);
+    section.appendChild(grid);
+}
 
 async function openPlaceDetail(placeId) {
     activePlaceId = placeId;
 
-    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.place-card').forEach(c => c.classList.remove('active'));
     const card = document.getElementById(`placeCard-${placeId}`);
     if (card) card.classList.add('active');
 
+    detailPanel.innerHTML = '<div class="loading-state" style="padding:1.5rem"><div class="spinner-border spinner-border-sm text-secondary" role="status"></div><span>Načítám...</span></div>';
     detailPanel.classList.add('open');
-    detailPanel.innerHTML = `<div class="text-center p-5"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Načítám...</span></div></div>`;
 
     try {
         const [placeRes, commentsRes] = await Promise.all([
@@ -217,10 +187,9 @@ async function openPlaceDetail(placeId) {
         ]);
         const place = await placeRes.json();
         const comments = await commentsRes.json();
-
         renderDetailPanel(place, comments);
     } catch {
-        detailPanel.innerHTML = '<div class="text-center p-4 text-muted">Chyba při načítání detailu.</div>';
+        detailPanel.innerHTML = '<div class="text-center text-muted py-4">Chyba při načítání detailu.</div>';
     }
 }
 
@@ -228,42 +197,34 @@ function renderDetailPanel(place, comments) {
     const template = document.getElementById('detailTemplate');
     const clone = document.importNode(template.content, true);
 
-    clone.querySelector('.card-title').textContent = place.name;
-    clone.querySelector('.btn-outline-secondary').onclick = openEditPlaceModal;
-    clone.querySelector('.btn-outline-danger').onclick = () => deletePlace(place.id);
-
-    clone.querySelector('.card-body > div').innerHTML = placeholderImg(380, 160);
-    const cardTexts = clone.querySelectorAll('.card-text');
-    cardTexts[0].querySelector('span').textContent = place.address;
-    cardTexts[1].textContent = place.description;
+    clone.querySelector('.detail-title').textContent = place.name;
+    clone.querySelector('.detail-type-badge').textContent = place.type;
+    clone.querySelector('.btn-edit').onclick = openEditPlaceModal;
+    clone.querySelector('.btn-delete').onclick = () => deletePlace(place.id);
+    clone.querySelector('.address-text').textContent = place.address;
+    clone.querySelector('.detail-desc').textContent = place.description;
 
     const avg = place.stats.avgRating;
     const count = place.stats.ratingCount;
     clone.querySelector('.rating-summary').innerHTML = starsHTML(avg, count);
 
-    const starButtons = clone.querySelectorAll('.btn-outline-warning');
-    starButtons.forEach((btn, index) => {
-        const stars = index + 1;
-        btn.onclick = () => submitRating(place.id, stars);
+    clone.querySelectorAll('.star-btn').forEach(btn => {
+        btn.onclick = () => submitRating(place.id, parseInt(btn.dataset.stars));
     });
 
     const commentsList = clone.querySelector('#commentsList');
     if (comments.length === 0) {
-        commentsList.innerHTML = '<div class="text-center p-4 text-muted" style="padding:0.8rem 0;">Zatím žádné komentáře.</div>';
+        commentsList.innerHTML = '<div class="text-center text-muted py-2">Zatím žádné komentáře.</div>';
     } else {
-        comments.forEach(c => {
-            const commentDiv = createCommentItem(c);
-            commentsList.appendChild(commentDiv);
-        });
+        comments.forEach(c => commentsList.appendChild(createCommentItem(c)));
     }
-    const commentForm = clone.querySelector('#commentForm');
-    commentForm.onsubmit = (e) => submitComment(e, place.id);
+
+    clone.querySelector('#commentForm').onsubmit = (e) => submitComment(e, place.id);
 
     detailPanel.innerHTML = '';
     detailPanel.appendChild(clone);
     detailPanel.dataset.place = JSON.stringify(place);
 }
-
 
 function openAddPlaceModal(cityId) {
     placeForm.reset();
@@ -278,7 +239,6 @@ function openAddPlaceModal(cityId) {
 function openEditPlaceModal() {
     const place = JSON.parse(detailPanel.dataset.place || 'null');
     if (!place) return;
-
     placeForm.reset();
     placeForm.classList.remove('was-validated');
     document.getElementById('placeId').value = place.id;
@@ -292,7 +252,6 @@ function openEditPlaceModal() {
     new bootstrap.Modal(document.getElementById('placeModal')).show();
 }
 
-//? Používám stejnou metodu i formulář pro edit i přidání, je to složitější ale přijde mi to lepší
 async function savePlaceFromForm() {
     const id = document.getElementById('placeId').value;
     const data = {
@@ -307,37 +266,29 @@ async function savePlaceFromForm() {
     const method = id ? 'PUT' : 'POST';
     const url = id ? `${API}/places/${id}` : `${API}/places`;
 
-    try {
-        //? Kvůli double ukldání potencionálně
-        const submitBtn = document.getElementById('placeFormSubmit');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Ukládám...';
+    const submitBtn = document.getElementById('placeFormSubmit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Ukládám...';
 
+    try {
         const res = await fetch(url, {
             method,
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
-
-        if (!res.ok) {
-            throw new Error(`Chyba: ${res.status} ${res.statusText}`);
-        }
+        if (!res.ok) throw new Error(`Chyba: ${res.status}`);
 
         showToast(id ? 'Místo bylo upraveno.' : 'Místo bylo přidáno.');
         bootstrap.Modal.getInstance(document.getElementById('placeModal')).hide();
         placeForm.classList.remove('was-validated');
 
-        //? Ne uplně optimální ale stabilní
         if (activeCityId) {
             await refreshCityPlaces(activeCityId);
             if (id) await openPlaceDetail(id);
         }
-
     } catch (error) {
-        showToast(error.message || 'Chyba při ukládání místa.');
+        showToast(error.message || 'Chyba při ukládání.');
     } finally {
-        // Zpátky tlačítko
-        const submitBtn = document.getElementById('placeFormSubmit');
         submitBtn.disabled = false;
         submitBtn.textContent = id ? 'Uložit změny' : 'Uložit místo';
     }
@@ -346,37 +297,24 @@ async function savePlaceFromForm() {
 async function refreshCityPlaces(cityId) {
     const section = document.getElementById('citySection');
     if (!section) return;
-    const body = section.querySelector('.card-body');
-    if (!body) return;
     try {
         const res = await fetch(`${API}/cities/${cityId}/places`);
         const places = await res.json();
-        renderCitySection(body, cityId, activeCityName, places);
-    } catch { /* ignore */
-    }
+        renderCitySection(section, cityId, activeCityName, places);
+    } catch { /* ignore */ }
 }
-
 
 async function deletePlace(placeId) {
     if (!confirm('Opravdu smazat toto místo? Budou smazány i všechny komentáře a hodnocení.')) return;
     try {
-        await fetch(`${API}/places/${placeId}`, {method: 'DELETE'});
+        await fetch(`${API}/places/${placeId}`, { method: 'DELETE' });
         showToast('Místo bylo smazáno.');
         resetDetail();
-        if (activeCityId) {
-            const res = await fetch(`${API}/cities/${activeCityId}/places`);
-            const places = await res.json();
-            const section = document.getElementById('citySection');
-            if (section) {
-                const body = section.querySelector('.card-body');
-                if (body) renderCitySection(body, activeCityId, activeCityName, places);
-            }
-        }
+        if (activeCityId) await refreshCityPlaces(activeCityId);
     } catch {
         showToast('Chyba při mazání místa.');
     }
 }
-
 
 async function submitComment(e, placeId) {
     e.preventDefault();
@@ -385,15 +323,13 @@ async function submitComment(e, placeId) {
         form.classList.add('was-validated');
         return;
     }
-
     const name = document.getElementById('commentName').value.trim();
     const text = document.getElementById('commentText').value.trim();
-
     try {
         await fetch(`${API}/places/${placeId}/comments`, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({author_name: name, text})
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ author_name: name, text })
         });
         form.reset();
         form.classList.remove('was-validated');
@@ -407,11 +343,11 @@ async function submitComment(e, placeId) {
 async function deleteComment(commentId) {
     if (!confirm('Smazat komentář?')) return;
     try {
-        await fetch(`${API}/places/comments/${commentId}`, {method: 'DELETE'});
+        await fetch(`${API}/places/comments/${commentId}`, { method: 'DELETE' });
         document.getElementById(`comment-${commentId}`)?.remove();
         const list = document.getElementById('commentsList');
-        if (list && list.querySelectorAll('.list-group-item').length === 0) {
-            list.innerHTML = '<div class="text-center p-4 text-muted" style="padding:0.8rem 0;">Zatím žádné komentáře.</div>';
+        if (list && list.querySelectorAll('.comment-item').length === 0) {
+            list.innerHTML = '<div class="text-center text-muted py-2">Zatím žádné komentáře.</div>';
         }
         showToast('Komentář byl smazán.');
     } catch {
@@ -420,33 +356,26 @@ async function deleteComment(commentId) {
 }
 
 async function refreshComments(placeId) {
+    const list = document.getElementById('commentsList');
+    if (!list) return;
     try {
         const res = await fetch(`${API}/places/${placeId}/comments`);
         const comments = await res.json();
-        const list = document.getElementById('commentsList');
-        if (!list) return;
-
+        list.innerHTML = '';
         if (comments.length === 0) {
-            list.innerHTML = '<div class="empty-state" style="padding:0.8rem 0;">Zatím žádné komentáře.</div>';
+            list.innerHTML = '<div class="text-center text-muted py-2">Zatím žádné komentáře.</div>';
             return;
         }
-
-        list.innerHTML = '';
-        comments.forEach(c => {
-            const commentDiv = createCommentItem(c);
-            list.appendChild(commentDiv);
-        });
-    } catch { /* ignore */
-    }
+        comments.forEach(c => list.appendChild(createCommentItem(c)));
+    } catch { /* ignore */ }
 }
 
-//* Celkově práce s hodnocením je neoptimální ale neměl jsem čas se tomu tolik věnovat
 async function submitRating(placeId, stars) {
     try {
         await fetch(`${API}/places/${placeId}/ratings`, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({stars})
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ stars })
         });
         showToast(`Hodnocení ${stars}★ bylo přidáno.`);
         const res = await fetch(`${API}/places/${placeId}`);
@@ -471,9 +400,9 @@ function createCommentItem(c) {
         day: '2-digit', month: '2-digit', year: 'numeric',
         hour: '2-digit', minute: '2-digit'
     });
-    div.querySelector('small.text-muted > span').textContent = c.author_name;
-    div.querySelector('p.mb-1').textContent = c.text;
-    div.querySelector('div.d-flex.align-items-center > small.text-muted').textContent = date;
-    div.querySelector('.btn-outline-danger').onclick = () => deleteComment(c.id);
+    div.querySelector('.author-name').textContent = c.author_name;
+    div.querySelector('.comment-text').textContent = c.text;
+    div.querySelector('.comment-date').textContent = date;
+    div.querySelector('.btn-delete-comment').onclick = () => deleteComment(c.id);
     return div;
 }

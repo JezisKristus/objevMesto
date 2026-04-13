@@ -10,167 +10,160 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid px-4">
-        <a class="navbar-brand" href="#" id="homeLink">
-            ExploreCity
-            <span class="text-muted">...prozkoumej svět</span>
-        </a>
+<nav class="site-nav navbar navbar-light bg-light border-bottom px-3">
+    <div class="container-fluid d-flex align-items-baseline gap-2">
+        <a class="nav-brand navbar-brand fw-bold" href="#" id="homeLink">ExploreCity</a>
+        <small class="text-muted">...prozkoumej svět</small>
     </div>
 </nav>
 
-<div class="container-fluid">
-    <div class="row g-0">
-        <div class="col-md-8" id="mainPanel">
-            <div class="text-center p-5">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Načítám...</span>
-                </div>
-                <div>Načítám...</div>
-            </div>
-        </div>
-
-        <div class="col-md-4 detail-panel" id="detailPanel">
+<div class="app-layout" id="appLayout">
+    <div class="main-col p-4" id="mainPanel">
+        <div class="loading-state">
+            <div class="spinner-border spinner-border-sm text-secondary" role="status"></div>
+            <span>Načítám...</span>
         </div>
     </div>
+    <aside class="detail-col bg-white p-4 border-start" id="detailPanel"></aside>
 </div>
-<!--* Našel jsem že dělat to pomocí template je lepší než innerHTML který se mi strašně nelíbilo -->
-<template id="detailTemplate">
-    <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="card-title"></h5>
-            <div>
-                <button class="btn btn-sm btn-outline-secondary" title="Upravit místo">
-                    <i class="bi bi-pencil"></i>
-                </button>
-                <button class="btn btn-sm btn-outline-danger" title="Smazat místo">
-                    <i class="bi bi-trash"></i>
-                </button>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="mb-3" style="height:160px; background:#f8f9fa;"></div>
-            <p class="card-text">
-                <i class="bi bi-geo-alt"></i> <span></span>
-            </p>
-            <p class="card-text"></p>
-            <hr>
-            <div class="rating-summary"></div>
-            <div class="mb-3">
-                <label class="form-label">Přidat hodnocení:</label>
-                <div class="d-flex gap-1">
-                    <button class="btn btn-sm btn-outline-warning">1★</button>
-                    <button class="btn btn-sm btn-outline-warning">2★</button>
-                    <button class="btn btn-sm btn-outline-warning">3★</button>
-                    <button class="btn btn-sm btn-outline-warning">4★</button>
-                    <button class="btn btn-sm btn-outline-warning">5★</button>
-                </div>
-            </div>
-            <div class="comments-section">
-                <h6>Komentáře</h6>
-                <div id="commentsList" class="list-group"></div>
-            </div>
-            <div class="new-comment-form mt-3">
-                <h6>Nový komentář</h6>
-                <form id="commentForm" novalidate>
-                    <div class="mb-3">
-                        <label class="form-label" for="commentName">Jméno</label>
-                        <input type="text" class="form-control" id="commentName" placeholder="Vaše jméno" required minlength="2" maxlength="255">
-                        <div class="invalid-feedback">Vyplňte jméno (min. 2 znaky).</div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="commentText">Text komentáře</label>
-                        <textarea class="form-control" id="commentText" rows="3" placeholder="Napište komentář..." required></textarea>
-                        <div class="invalid-feedback">Vyplňte text komentáře.</div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-sm">Odeslat</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</template>
 
+<!-- Templejty, imo lepší tady než v .js -->
 <template id="cityCardTemplate">
-    <div class="card">
-        <div class="card-img-top" style="height:120px; background:#f8f9fa;"></div>
-        <div class="card-body">
-            <h5 class="card-title"></h5>
+    <div class="card city-card h-100" role="button" tabindex="0">
+        <div class="card-img-top bg-light" style="height: 110px;">
+            <div class="placeholder-img"></div>
+        </div>
+        <div class="card-body py-2 px-3">
+            <h6 class="card-title city-card__name mb-0" style="font-size: 0.92rem;"></h6>
         </div>
     </div>
 </template>
 
 <template id="placeCardTemplate">
-    <div class="card">
-        <div class="card-img-top" style="height:90px; background:#f8f9fa;"></div>
-        <div class="card-body">
-            <h5 class="card-title"></h5>
-            <p class="card-text"></p>
+    <div class="card place-card h-100" role="button" tabindex="0">
+        <div class="card-img-top bg-light" style="height: 80px;">
+            <div class="placeholder-img"></div>
         </div>
+        <div class="card-body py-2 px-2">
+            <h6 class="card-title place-card__name mb-1" style="font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h6>
+            <small class="text-muted place-card__type" style="font-size: 0.72rem;"></small>
+        </div>
+    </div>
+</template>
+
+<template id="detailTemplate">
+    <div class="detail-inner">
+        <div class="detail-header mb-3">
+            <div class="detail-header__top d-flex justify-content-between align-items-start gap-2 mb-2">
+                <h2 class="detail-title m-0" style="font-size: 1.3rem;"></h2>
+                <div class="detail-actions d-flex gap-1">
+                    <button class="btn btn-sm btn-outline-secondary btn-edit" title="Upravit místo"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-outline-danger btn-delete" title="Smazat místo"><i class="bi bi-trash"></i></button>
+                </div>
+            </div>
+            <div><span class="badge bg-info detail-type-badge"></span></div>
+        </div>
+        <div class="detail-img-wrap mb-3 bg-light" style="height: 160px; border-radius: 0.375rem;">
+            <div class="placeholder-img"></div>
+        </div>
+        <div class="detail-meta mb-2">
+            <small class="text-muted detail-address"><i class="bi bi-geo-alt"></i> <span class="address-text"></span></small>
+        </div>
+        <p class="detail-desc mb-3" style="font-size: 0.875rem; line-height: 1.6;"></p>
+        <hr class="my-3">
+        <div class="rating-block mb-3">
+            <div class="rating-summary mb-2"></div>
+            <div class="rating-input">
+                <small class="text-muted rating-label me-2">Ohodnotit:</small>
+                <div class="star-btns">
+                    <button class="btn btn-sm btn-outline-warning star-btn" data-stars="1">1★</button>
+                    <button class="btn btn-sm btn-outline-warning star-btn" data-stars="2">2★</button>
+                    <button class="btn btn-sm btn-outline-warning star-btn" data-stars="3">3★</button>
+                    <button class="btn btn-sm btn-outline-warning star-btn" data-stars="4">4★</button>
+                    <button class="btn btn-sm btn-outline-warning star-btn" data-stars="5">5★</button>
+                </div>
+            </div>
+        </div>
+        <hr class="my-3">
+        <section class="comments-section mb-3">
+            <h6 class="section-title">Komentáře</h6>
+            <div id="commentsList"></div>
+        </section>
+        <section class="new-comment">
+            <h6 class="section-title">Nový komentář</h6>
+            <form id="commentForm" novalidate>
+                <div class="mb-2">
+                    <input type="text" class="form-control form-control-sm" id="commentName"
+                           placeholder="Jméno" required minlength="2" maxlength="255">
+                    <small class="invalid-feedback">Vyplňte jméno (min. 2 znaky).</small>
+                </div>
+                <div class="mb-2">
+                    <textarea class="form-control form-control-sm" id="commentText"
+                              rows="3" placeholder="Text komentáře..." required></textarea>
+                    <small class="invalid-feedback">Vyplňte text komentáře.</small>
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary">Odeslat</button>
+            </form>
+        </section>
     </div>
 </template>
 
 <template id="commentTemplate">
-    <div class="list-group-item">
-        <div class="d-flex justify-content-between align-items-start">
-            <div>
-                <small class="text-muted"><i class="bi bi-person"></i> <span></span></small>
-                <p class="mb-1"></p>
-            </div>
-            <div class="d-flex align-items-center gap-2">
-                <small class="text-muted"></small>
-                <button class="btn btn-sm btn-outline-danger" title="Smazat komentář"><i class="bi bi-trash"></i></button>
+    <div class="comment-item py-2">
+        <div class="comment-item__header d-flex justify-content-between align-items-center mb-1">
+            <small class="comment-author"><i class="bi bi-person"></i> <span class="author-name fw-bold"></span></small>
+            <div class="comment-item__right d-flex align-items-center gap-2">
+                <small class="text-muted comment-date"></small>
+                <button class="btn btn-sm btn-outline-danger btn-delete-comment" title="Smazat"><i class="bi bi-trash"></i></button>
             </div>
         </div>
+        <p class="comment-text mb-0" style="font-size: 0.84rem; line-height: 1.5;"></p>
     </div>
 </template>
 
 <div class="modal fade" id="placeModal" tabindex="-1" aria-labelledby="placeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form id="placeForm" novalidate>
                 <div class="modal-header">
-                    <span class="modal-title" id="placeModalLabel">Přidat nové místo</span>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zavřít"></button>
+                    <h5 class="modal-title" id="placeModalLabel">Přidat nové místo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="placeId">
                     <input type="hidden" id="placeCityId">
-
                     <div class="mb-3">
                         <label class="form-label" for="placeName">Název</label>
-                        <input type="text" class="form-control" id="placeName" required minlength="2" maxlength="255"
-                               placeholder="Název místa">
-                        <div class="invalid-feedback">Vyplňte název místa (min. 2 znaky).</div>
+                        <input type="text" class="form-control" id="placeName"
+                               required minlength="2" maxlength="255" placeholder="Název místa">
+                        <small class="invalid-feedback d-block">Vyplňte název (min. 2 znaky).</small>
                     </div>
-
                     <div class="mb-3">
                         <label class="form-label" for="placeType">Typ místa</label>
                         <select class="form-select" id="placeType" required>
-                            <option value="">-- Vyberte typ --</option>
+                            <option value="">— Vyberte typ —</option>
                             <option value="Restaurace">Restaurace</option>
                             <option value="Památka">Památka</option>
                             <option value="Zajímavost">Zajímavost</option>
                             <option value="Ostatní">Ostatní</option>
                         </select>
-                        <div class="invalid-feedback">Vyberte typ místa.</div>
+                        <small class="invalid-feedback d-block">Vyberte typ místa.</small>
                     </div>
-
                     <div class="mb-3">
                         <label class="form-label" for="placeAddress">Adresa</label>
-                        <input type="text" class="form-control" id="placeAddress" required maxlength="255"
-                               placeholder="Ulice, město">
-                        <div class="invalid-feedback">Vyplňte adresu.</div>
+                        <input type="text" class="form-control" id="placeAddress"
+                               required maxlength="255" placeholder="Ulice, město">
+                        <small class="invalid-feedback d-block">Vyplňte adresu.</small>
                     </div>
-
                     <div class="mb-3">
                         <label class="form-label" for="placeDesc">Popis</label>
-                        <textarea class="form-control" id="placeDesc" rows="3" required
-                                  placeholder="Stručný popis místa..."></textarea>
-                        <div class="invalid-feedback">Vyplňte popis.</div>
+                        <textarea class="form-control" id="placeDesc"
+                                  rows="3" required placeholder="Stručný popis..."></textarea>
+                        <small class="invalid-feedback d-block">Vyplňte popis.</small>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Zrušit</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zrušit</button>
                     <button type="submit" class="btn btn-primary" id="placeFormSubmit">Uložit místo</button>
                 </div>
             </form>
@@ -178,11 +171,16 @@
     </div>
 </div>
 
+<!-- Toust, nom -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="toastMsg" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-body"></div>
+    <div id="toastMsg" class="toast bg-dark text-white" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body"></div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="app.js"></script>
 </body>
