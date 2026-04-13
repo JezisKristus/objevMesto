@@ -85,7 +85,7 @@ async function renderCities() {
         const card = document.importNode(template.content, true).firstElementChild;
         card.id = `cityCard-${city.id}`;
         const col = document.createElement('div');
-        col.className = 'col-lg-2 col-md-3 col-sm-4 col-6';
+        col.className = 'col-lg-3 col-md-4 col-sm-6 col-12';
         card.onclick = () => selectCity(city.id, city.name);
         card.querySelector('.city-card__name').textContent = city.name;
         col.appendChild(card);
@@ -109,7 +109,7 @@ async function selectCity(cityId, cityName) {
 
     const section = document.createElement('div');
     section.id = 'citySection';
-    section.className = 'card p-3 mb-3';
+    section.className = 'card p-3 mb-3 g-4';
     section.innerHTML = '<div class="loading-state"><div class="spinner-border spinner-border-sm text-secondary" role="status"></div><span>Načítám...</span></div>';
     mainPanel.appendChild(section);
 

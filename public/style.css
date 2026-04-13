@@ -47,7 +47,6 @@ body {
     display: block;
 }
 
-/* ── Loading ── */
 .loading-state {
     display: flex;
     align-items: center;
@@ -59,13 +58,4 @@ body {
         flex-direction: column;
     }
 
-    .detail-col {
-        width: 100%;
-        min-width: unset;
-        border-left: none;
-        border-top: 1px solid #dee2e6;
-        min-height: unset;
-        max-height: unset;
-        position: static;
-    }
 }
