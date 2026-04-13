@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('./util/index.js'), require('./dom/event-handler.js'), require('./dom/selector-engine.js'), require('./base-component.js')) :
-  typeof define === 'function' && define.amd ? define(['./util/index', './dom/event-handler', './dom/selector-engine', './base-component'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Collapse = factory(global.Index, global.EventHandler, global.SelectorEngine, global.BaseComponent));
-})(this, (function (index_js, EventHandler, SelectorEngine, BaseComponent) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['./util/index', './dom/event-handler', './dom/selector-engine', './base-component'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Collapse = factory(global.Index, global.EventHandler, global.SelectorEngine, global.BaseComponent));
+})(this, (function (index_js, EventHandler, SelectorEngine, BaseComponent) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -78,9 +79,11 @@
     static get Default() {
       return Default;
     }
+
     static get DefaultType() {
       return DefaultType;
     }
+
     static get NAME() {
       return NAME;
     }
@@ -93,6 +96,7 @@
         this.show();
       }
     }
+
     show() {
       if (this._isTransitioning || this._isShown()) {
         return;
@@ -133,6 +137,7 @@
       this._queueCallback(complete, this._element, true);
       this._element.style[dimension] = `${this._element[scrollSize]}px`;
     }
+
     hide() {
       if (this._isTransitioning || !this._isShown()) {
         return;
@@ -162,6 +167,7 @@
       this._element.style[dimension] = '';
       this._queueCallback(complete, this._element, true);
     }
+
     _isShown(element = this._element) {
       return element.classList.contains(CLASS_NAME_SHOW);
     }
@@ -172,9 +178,11 @@
       config.parent = index_js.getElement(config.parent);
       return config;
     }
+
     _getDimension() {
       return this._element.classList.contains(CLASS_NAME_HORIZONTAL) ? WIDTH : HEIGHT;
     }
+
     _initializeChildren() {
       if (!this._config.parent) {
         return;
@@ -187,11 +195,13 @@
         }
       }
     }
+
     _getFirstLevelChildren(selector) {
       const children = SelectorEngine.find(CLASS_NAME_DEEPER_CHILDREN, this._config.parent);
       // remove children if greater depth
       return SelectorEngine.find(selector, this._config.parent).filter(element => !children.includes(element));
     }
+
     _addAriaAndCollapsedClass(triggerArray, isOpen) {
       if (!triggerArray.length) {
         return;

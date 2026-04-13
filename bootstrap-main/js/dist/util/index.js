@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.Index = {}));
-})(this, (function (exports) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.Index = {}));
+})(this, (function (exports) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -149,7 +150,8 @@
     }
     return findShadowRoot(element.parentNode);
   };
-  const noop = () => {};
+  const noop = () => {
+  };
 
   /**
    * Trick to restart an element's animation
@@ -214,8 +216,8 @@
     const emulatedDuration = getTransitionDurationFromElement(transitionElement) + durationPadding;
     let called = false;
     const handler = ({
-      target
-    }) => {
+                       target
+                     }) => {
       if (target !== transitionElement) {
         return;
       }
@@ -276,7 +278,7 @@
   exports.toType = toType;
   exports.triggerTransitionEnd = triggerTransitionEnd;
 
-  Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+  Object.defineProperty(exports, Symbol.toStringTag, {value: 'Module'});
 
 }));
 //# sourceMappingURL=index.js.map

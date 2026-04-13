@@ -30,6 +30,91 @@
     <div class="detail-panel" id="detailPanel">
     </div>
 </div>
+<!--* Našel jsem že dělat to pomocí template je lepší než innerHTML který se mi strašně nelíbilo -->
+<template id="detailTemplate">
+    <div class="detail-header">
+        <h3 class="detail-place-name"></h3>
+        <div class="detail-actions">
+            <button class="icon-btn" title="Upravit místo">
+                <i class="bi bi-pencil" style="font-size: 14px;"></i>
+            </button>
+            <button class="icon-btn delete" title="Smazat místo">
+                <i class="bi bi-trash" style="font-size: 14px;"></i>
+            </button>
+        </div>
+    </div>
+    <div class="detail-place-img"></div>
+    <div class="detail-address">
+        <i class="bi bi-geo-alt" style="font-size: 12px; margin-right:3px; opacity:0.6"></i>
+        <span></span>
+    </div>
+    <div class="detail-desc"></div>
+    <hr class="detail-divider">
+    <div class="rating-summary"></div>
+    <div class="star-picker">
+        <span class="star-picker-label">Přidat hodnocení:</span>
+        <button class="star-btn">1★</button>
+        <button class="star-btn">2★</button>
+        <button class="star-btn">3★</button>
+        <button class="star-btn">4★</button>
+        <button class="star-btn">5★</button>
+    </div>
+    <div class="comments-section">
+        <h6>Komentáře</h6>
+        <div id="commentsList"></div>
+    </div>
+    <div class="new-comment-form">
+        <h6>Nový komentář</h6>
+        <form id="commentForm" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="commentName">Jméno</label>
+                <input type="text" class="form-control" id="commentName" placeholder="Vaše jméno" required minlength="2"
+                       maxlength="255">
+                <div class="invalid-feedback">Vyplňte jméno (min. 2 znaky).</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="commentText">Text komentáře</label>
+                <textarea class="form-control" id="commentText" rows="3" placeholder="Napište komentář..."
+                          required></textarea>
+                <div class="invalid-feedback">Vyplňte text komentáře.</div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Odeslat</button>
+        </form>
+    </div>
+</template>
+
+<template id="cityCardTemplate">
+    <div class="city-card">
+        <div class="city-card-img"></div>
+        <div class="city-card-name"></div>
+    </div>
+</template>
+
+<template id="placeCardTemplate">
+    <div class="place-card">
+        <div class="place-card-img"></div>
+        <div class="place-card-body">
+            <div class="place-card-name"></div>
+            <div class="place-card-type"></div>
+        </div>
+    </div>
+</template>
+
+<template id="commentTemplate">
+    <div class="comment-item">
+        <div class="comment-meta">
+            <span class="comment-author">
+                <i class="bi bi-person" style="font-size: 13px;"></i>
+                <span></span>
+            </span>
+            <span class="comment-date"></span>
+            <button class="btn-delete-comment" title="Smazat komentář">
+                <i class="bi bi-trash" style="font-size: 13px;"></i>
+            </button>
+        </div>
+        <div class="comment-text"></div>
+    </div>
+</template>
 
 <div class="modal fade" id="placeModal" tabindex="-1" aria-labelledby="placeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -45,7 +130,8 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="placeName">Název</label>
-                        <input type="text" class="form-control" id="placeName" required minlength="2" maxlength="255" placeholder="Název místa">
+                        <input type="text" class="form-control" id="placeName" required minlength="2" maxlength="255"
+                               placeholder="Název místa">
                         <div class="invalid-feedback">Vyplňte název místa (min. 2 znaky).</div>
                     </div>
 
@@ -63,13 +149,15 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="placeAddress">Adresa</label>
-                        <input type="text" class="form-control" id="placeAddress" required maxlength="255" placeholder="Ulice, město">
+                        <input type="text" class="form-control" id="placeAddress" required maxlength="255"
+                               placeholder="Ulice, město">
                         <div class="invalid-feedback">Vyplňte adresu.</div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="placeDesc">Popis</label>
-                        <textarea class="form-control" id="placeDesc" rows="3" required placeholder="Stručný popis místa..."></textarea>
+                        <textarea class="form-control" id="placeDesc" rows="3" required
+                                  placeholder="Stručný popis místa..."></textarea>
                         <div class="invalid-feedback">Vyplňte popis.</div>
                     </div>
                 </div>
@@ -82,6 +170,7 @@
     </div>
 </div>
 
+<div id="toastMsg" class="toast-msg"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="app.js"></script>
 </body>

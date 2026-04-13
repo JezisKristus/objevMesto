@@ -11,7 +11,8 @@ toc: true
 
 ## How it works
 
-The accordion uses [collapse]({{< docsref "/components/collapse" >}}) internally to make it collapsible. To render an accordion that's expanded, add the `.open` class on the `.accordion`.
+The accordion uses [collapse]({{< docsref "/components/collapse" >}}) internally to make it collapsible. To render an
+accordion that's expanded, add the `.open` class on the `.accordion`.
 
 {{< callout info >}}
 {{< partial "callouts/info-prefersreducedmotion.md" >}}
@@ -64,7 +65,8 @@ Click the accordions below to expand/collapse the accordion content.
 
 ### Flush
 
-Add `.accordion-flush` to remove some borders and rounded corners to render accordions edge-to-edge with their parent container.
+Add `.accordion-flush` to remove some borders and rounded corners to render accordions edge-to-edge with their parent
+container.
 
 {{< example class="bg-body-secondary" >}}
 <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -103,7 +105,8 @@ Add `.accordion-flush` to remove some borders and rounded corners to render acco
 
 ### Always open
 
-Omit the `data-bs-parent` attribute on each `.accordion-collapse` to make accordion items stay open when another item is opened.
+Omit the `data-bs-parent` attribute on each `.accordion-collapse` to make accordion items stay open when another item is
+opened.
 
 {{< example >}}
 <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -148,7 +151,8 @@ Omit the `data-bs-parent` attribute on each `.accordion-collapse` to make accord
 
 ## Accessibility
 
-Please read the [collapse accessibility section]({{< docsref "/components/collapse#accessibility" >}}) for more information.
+Please read the [collapse accessibility section]({{< docsref "/components/collapse#accessibility" >}}) for more
+information.
 
 ## CSS
 
@@ -156,7 +160,9 @@ Please read the [collapse accessibility section]({{< docsref "/components/collap
 
 {{< added-in "5.2.0" >}}
 
-As part of Bootstrap's evolving CSS variables approach, accordions now use local CSS variables on `.accordion` for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too.
+As part of Bootstrap's evolving CSS variables approach, accordions now use local CSS variables on `.accordion` for
+enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still
+supported, too.
 
 {{< scss-docs name="accordion-css-vars" file="scss/_accordion.scss" >}}
 

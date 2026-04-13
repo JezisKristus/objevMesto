@@ -1,5 +1,5 @@
 import TemplateFactory from '../../../src/util/template-factory.js'
-import { clearFixture, getFixture } from '../../helpers/fixture.js'
+import {clearFixture, getFixture} from '../../helpers/fixture.js'
 
 describe('TemplateFactory', () => {
   let fixtureEl
@@ -53,7 +53,7 @@ describe('TemplateFactory', () => {
           sanitize: true,
           html: true,
           template: '<div id="foo"></div>',
-          content: { '#foo': '<a href="javascript:alert(7)">Click me</a>' }
+          content: {'#foo': '<a href="javascript:alert(7)">Click me</a>'}
         })
         expect(factory.toHtml().innerHTML).not.toContain('href="javascript:alert(7)')
       })
@@ -63,7 +63,7 @@ describe('TemplateFactory', () => {
           sanitize: false,
           html: true,
           template: '<div id="foo"></div>',
-          content: { '#foo': '<a href="javascript:alert(7)">Click me</a>' }
+          content: {'#foo': '<a href="javascript:alert(7)">Click me</a>'}
         })
         expect(factory.toHtml().innerHTML).toContain('href="javascript:alert(7)')
       })
@@ -73,7 +73,7 @@ describe('TemplateFactory', () => {
           sanitize: true,
           html: false,
           template: '<div id="foo"></div>',
-          content: { '#foo': '<a href="javascript:alert(7)">Click me</a>' }
+          content: {'#foo': '<a href="javascript:alert(7)">Click me</a>'}
         })
         const spy = spyOn(factory, '_maybeSanitize').and.callThrough()
 
@@ -137,7 +137,7 @@ describe('TemplateFactory', () => {
         sanitize: true,
         html: true,
         template: '<div id="foo"></div>',
-        content: { '#bar': 'test' }
+        content: {'#bar': 'test'}
       })
 
       expect(factory.toHtml().outerHTML).toEqual('<div id="foo"></div>')
@@ -148,7 +148,7 @@ describe('TemplateFactory', () => {
         sanitize: true,
         html: true,
         template: '<div><div id="foo"></div></div>',
-        content: { '#foo': null }
+        content: {'#foo': null}
       })
 
       expect(factory.toHtml().outerHTML).toEqual('<div></div>')
@@ -159,7 +159,7 @@ describe('TemplateFactory', () => {
         sanitize: true,
         html: true,
         template: '<div><div id="foo"></div></div>',
-        content: { '#foo': () => null }
+        content: {'#foo': () => null}
       })
 
       expect(factory.toHtml().outerHTML).toEqual('<div></div>')
@@ -172,7 +172,7 @@ describe('TemplateFactory', () => {
       const factory = new TemplateFactory({
         html: false,
         template: '<div><div id="foo"></div></div>',
-        content: { '#foo': contentElement }
+        content: {'#foo': contentElement}
       })
 
       const fooEl = factory.toHtml().querySelector('#foo')
@@ -188,7 +188,7 @@ describe('TemplateFactory', () => {
       const factory = new TemplateFactory({
         html: true,
         template: '<div><div id="foo"></div></div>',
-        content: { '#foo': contentElement }
+        content: {'#foo': contentElement}
       })
 
       const fooEl = factory.toHtml().querySelector('#foo')

@@ -5,11 +5,18 @@ description: Make any HTML element or Bootstrap component clickable by "stretchi
 group: helpers
 ---
 
-Add `.stretched-link` to a link to make its [containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block) clickable via a `::after` pseudo element. In most cases, this means that an element with `position: relative;` that contains a link with the `.stretched-link` class is clickable. Please note given [how CSS `position` works](https://www.w3.org/TR/CSS21/visuren.html#propdef-position), `.stretched-link` cannot be mixed with most table elements.
+Add `.stretched-link` to a link to make
+its [containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block) clickable via a `::after`
+pseudo element. In most cases, this means that an element with `position: relative;` that contains a link with the
+`.stretched-link` class is clickable. Please note given [how CSS
+`position` works](https://www.w3.org/TR/CSS21/visuren.html#propdef-position), `.stretched-link` cannot be mixed with
+most table elements.
 
-Cards have `position: relative` by default in Bootstrap, so in this case you can safely add the `.stretched-link` class to a link in the card without any other HTML changes.
+Cards have `position: relative` by default in Bootstrap, so in this case you can safely add the `.stretched-link` class
+to a link in the card without any other HTML changes.
 
-Multiple links and tap targets are not recommended with stretched links. However, some `position` and `z-index` styles can help should this be required.
+Multiple links and tap targets are not recommended with stretched links. However, some `position` and `z-index` styles
+can help should this be required.
 
 {{< example >}}
 <div class="card" style="width: 18rem;">
@@ -22,7 +29,8 @@ Multiple links and tap targets are not recommended with stretched links. However
 </div>
 {{< /example >}}
 
-Most custom components do not have `position: relative` by default, so we need to add the `.position-relative` here to prevent the link from stretching outside the parent element.
+Most custom components do not have `position: relative` by default, so we need to add the `.position-relative` here to
+prevent the link from stretching outside the parent element.
 
 {{< example >}}
 <div class="d-flex position-relative">
@@ -50,7 +58,9 @@ Most custom components do not have `position: relative` by default, so we need t
 
 ## Identifying the containing block
 
-If the stretched link doesn't seem to work, the [containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#Identifying_the_containing_block) will probably be the cause. The following CSS properties will make an element the containing block:
+If the stretched link doesn't seem to work,
+the [containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#Identifying_the_containing_block)
+will probably be the cause. The following CSS properties will make an element the containing block:
 
 - A `position` value other than `static`
 - A `transform` or `perspective` value other than `none`

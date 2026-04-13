@@ -155,6 +155,7 @@
     @include border-top-radius(var(--bs-border-radius));
     border-top-width: 1px;
   }
+
   &:last-child a {
     @include border-bottom-radius(var(--bs-border-radius));
   }

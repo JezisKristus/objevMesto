@@ -3,9 +3,9 @@
 {{- $socialImagePath := printf "/docs/%s/assets" .Site.Params.docs_version -}}
 
 {{- if .Page.Params.thumbnail -}}
-  {{- $socialImagePath = path.Join $socialImagePath "img/" .Page.Params.thumbnail -}}
+{{- $socialImagePath = path.Join $socialImagePath "img/" .Page.Params.thumbnail -}}
 {{- else -}}
-  {{- $socialImagePath = path.Join $socialImagePath "brand/bootstrap-social.png" -}}
+{{- $socialImagePath = path.Join $socialImagePath "brand/bootstrap-social.png" -}}
 {{- end -}}
 
 <meta name="twitter:card" content="summary_large_image">

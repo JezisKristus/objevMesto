@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('../dom/selector-engine.js'), require('../dom/manipulator.js'), require('./index.js')) :
-  typeof define === 'function' && define.amd ? define(['../dom/selector-engine', '../dom/manipulator', './index'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Scrollbar = factory(global.SelectorEngine, global.Manipulator, global.Index));
-})(this, (function (SelectorEngine, Manipulator, index_js) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['../dom/selector-engine', '../dom/manipulator', './index'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Scrollbar = factory(global.SelectorEngine, global.Manipulator, global.Index));
+})(this, (function (SelectorEngine, Manipulator, index_js) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -40,6 +41,7 @@
       const documentWidth = document.documentElement.clientWidth;
       return Math.abs(window.innerWidth - documentWidth);
     }
+
     hide() {
       const width = this.getWidth();
       this._disableOverFlow();
@@ -49,12 +51,14 @@
       this._setElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
       this._setElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN, calculatedValue => calculatedValue - width);
     }
+
     reset() {
       this._resetElementAttributes(this._element, 'overflow');
       this._resetElementAttributes(this._element, PROPERTY_PADDING);
       this._resetElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING);
       this._resetElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN);
     }
+
     isOverflowing() {
       return this.getWidth() > 0;
     }
@@ -64,6 +68,7 @@
       this._saveInitialAttribute(this._element, 'overflow');
       this._element.style.overflow = 'hidden';
     }
+
     _setElementAttributes(selector, styleProperty, callback) {
       const scrollbarWidth = this.getWidth();
       const manipulationCallBack = element => {
@@ -76,12 +81,14 @@
       };
       this._applyManipulationCallback(selector, manipulationCallBack);
     }
+
     _saveInitialAttribute(element, styleProperty) {
       const actualValue = element.style.getPropertyValue(styleProperty);
       if (actualValue) {
         Manipulator.setDataAttribute(element, styleProperty, actualValue);
       }
     }
+
     _resetElementAttributes(selector, styleProperty) {
       const manipulationCallBack = element => {
         const value = Manipulator.getDataAttribute(element, styleProperty);
@@ -95,6 +102,7 @@
       };
       this._applyManipulationCallback(selector, manipulationCallBack);
     }
+
     _applyManipulationCallback(selector, callBack) {
       if (index_js.isElement(selector)) {
         callBack(selector);

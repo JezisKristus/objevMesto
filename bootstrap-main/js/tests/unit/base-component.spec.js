@@ -1,7 +1,7 @@
 import BaseComponent from '../../src/base-component.js'
 import EventHandler from '../../src/dom/event-handler.js'
-import { noop } from '../../src/util/index.js'
-import { clearFixture, getFixture } from '../helpers/fixture.js'
+import {noop} from '../../src/util/index.js'
+import {clearFixture, getFixture} from '../helpers/fixture.js'
 
 class DummyClass extends BaseComponent {
   constructor(element) {

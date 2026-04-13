@@ -1,5 +1,5 @@
 import Data from '../../../src/dom/data.js'
-import { clearFixture, getFixture } from '../../helpers/fixture.js'
+import {clearFixture, getFixture} from '../../helpers/fixture.js'
 
 describe('Data', () => {
   const TEST_KEY = 'bs.test'
@@ -26,7 +26,7 @@ describe('Data', () => {
   })
 
   it('should return null for unknown elements', () => {
-    const data = { ...TEST_DATA }
+    const data = {...TEST_DATA}
 
     Data.set(div, TEST_KEY, data)
 
@@ -36,7 +36,7 @@ describe('Data', () => {
   })
 
   it('should return null for unknown keys', () => {
-    const data = { ...TEST_DATA }
+    const data = {...TEST_DATA}
 
     Data.set(div, TEST_KEY, data)
 
@@ -46,7 +46,7 @@ describe('Data', () => {
   })
 
   it('should store data for an element with a given key and return it', () => {
-    const data = { ...TEST_DATA }
+    const data = {...TEST_DATA}
 
     Data.set(div, TEST_KEY, data)
 
@@ -54,8 +54,8 @@ describe('Data', () => {
   })
 
   it('should overwrite data if something is already stored', () => {
-    const data = { ...TEST_DATA }
-    const copy = { ...data }
+    const data = {...TEST_DATA}
+    const copy = {...data}
 
     Data.set(div, TEST_KEY, data)
     Data.set(div, TEST_KEY, copy)
@@ -72,7 +72,7 @@ describe('Data', () => {
   })
 
   it('should remove nothing for an unknown key', () => {
-    const data = { ...TEST_DATA }
+    const data = {...TEST_DATA}
 
     Data.set(div, TEST_KEY, data)
     Data.remove(div, UNKNOWN_KEY)
@@ -81,7 +81,7 @@ describe('Data', () => {
   })
 
   it('should remove data for a given key', () => {
-    const data = { ...TEST_DATA }
+    const data = {...TEST_DATA}
 
     Data.set(div, TEST_KEY, data)
     Data.remove(div, TEST_KEY)
@@ -92,8 +92,8 @@ describe('Data', () => {
   it('should console.error a message if called with multiple keys', () => {
     console.error = jasmine.createSpy('console.error')
 
-    const data = { ...TEST_DATA }
-    const copy = { ...data }
+    const data = {...TEST_DATA}
+    const copy = {...data}
 
     Data.set(div, TEST_KEY, data)
     Data.set(div, UNKNOWN_KEY, copy)

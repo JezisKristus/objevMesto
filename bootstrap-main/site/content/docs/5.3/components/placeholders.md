@@ -9,11 +9,14 @@ added: "5.1"
 
 ## About
 
-Placeholders can be used to enhance the experience of your application. They're built only with HTML and CSS, meaning you don't need any JavaScript to create them. You will, however, need some custom JavaScript to toggle their visibility. Their appearance, color, and sizing can be easily customized with our utility classes.
+Placeholders can be used to enhance the experience of your application. They're built only with HTML and CSS, meaning
+you don't need any JavaScript to create them. You will, however, need some custom JavaScript to toggle their visibility.
+Their appearance, color, and sizing can be easily customized with our utility classes.
 
 ## Example
 
-In the example below, we take a typical card component and recreate it with placeholders applied to create a "loading card". Size and proportions are the same between the two.
+In the example below, we take a typical card component and recreate it with placeholders applied to create a "loading
+card". Size and proportions are the same between the two.
 
 <div class="bd-example bd-example-placeholder-cards d-flex justify-content-around">
 <div class="card">
@@ -74,9 +77,12 @@ In the example below, we take a typical card component and recreate it with plac
 
 ## How it works
 
-Create placeholders with the `.placeholder` class and a grid column class (e.g., `.col-6`) to set the `width`. They can replace the text inside an element or be added as a modifier class to an existing component.
+Create placeholders with the `.placeholder` class and a grid column class (e.g., `.col-6`) to set the `width`. They can
+replace the text inside an element or be added as a modifier class to an existing component.
 
-We apply additional styling to `.btn`s via `::before` to ensure the `height` is respected. You may extend this pattern for other situations as needed, or add a `&nbsp;` within the element to reflect the height when actual text is rendered in its place.
+We apply additional styling to `.btn`s via `::before` to ensure the `height` is respected. You may extend this pattern
+for other situations as needed, or add a `&nbsp;` within the element to reflect the height when actual text is rendered
+in its place.
 
 {{< example >}}
 <p aria-hidden="true">
@@ -87,7 +93,10 @@ We apply additional styling to `.btn`s via `::before` to ensure the `height` is 
 {{< /example >}}
 
 {{< callout info >}}
-The use of `aria-hidden="true"` only indicates that the element should be hidden to screen readers. The *loading* behavior of the placeholder depends on how authors will actually use the placeholder styles, how they plan to update things, etc. Some JavaScript code may be needed to *swap* the state of the placeholder and inform AT users of the update.
+The use of `aria-hidden="true"` only indicates that the element should be hidden to screen readers. The *loading*
+behavior of the placeholder depends on how authors will actually use the placeholder styles, how they plan to update
+things, etc. Some JavaScript code may be needed to *swap* the state of the placeholder and inform AT users of the
+update.
 {{< /callout >}}
 
 ### Width
@@ -115,7 +124,8 @@ By default, the `placeholder` uses `currentColor`. This can be overridden with a
 
 ### Sizing
 
-The size of `.placeholder`s are based on the typographic style of the parent element. Customize them with sizing modifiers: `.placeholder-lg`, `.placeholder-sm`, or `.placeholder-xs`.
+The size of `.placeholder`s are based on the typographic style of the parent element. Customize them with sizing
+modifiers: `.placeholder-lg`, `.placeholder-sm`, or `.placeholder-xs`.
 
 {{< example >}}
 <span class="placeholder col-12 placeholder-lg"></span>
@@ -126,7 +136,8 @@ The size of `.placeholder`s are based on the typographic style of the parent ele
 
 ### Animation
 
-Animate placeholders with `.placeholder-glow` or `.placeholder-wave` to better convey the perception of something being *actively* loaded.
+Animate placeholders with `.placeholder-glow` or `.placeholder-wave` to better convey the perception of something being
+*actively* loaded.
 
 {{< example >}}
 <p class="placeholder-glow">

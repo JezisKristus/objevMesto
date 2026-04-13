@@ -8,7 +8,8 @@ toc: true
 
 ## Fixed top
 
-Position an element at the top of the viewport, from edge to edge. Be sure you understand the ramifications of fixed position in your project; you may need to add additional CSS.
+Position an element at the top of the viewport, from edge to edge. Be sure you understand the ramifications of fixed
+position in your project; you may need to add additional CSS.
 
 ```html
 <div class="fixed-top">...</div>
@@ -16,7 +17,8 @@ Position an element at the top of the viewport, from edge to edge. Be sure you u
 
 ## Fixed bottom
 
-Position an element at the bottom of the viewport, from edge to edge. Be sure you understand the ramifications of fixed position in your project; you may need to add additional CSS.
+Position an element at the bottom of the viewport, from edge to edge. Be sure you understand the ramifications of fixed
+position in your project; you may need to add additional CSS.
 
 ```html
 <div class="fixed-bottom">...</div>

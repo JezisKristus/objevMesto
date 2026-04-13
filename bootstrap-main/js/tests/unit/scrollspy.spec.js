@@ -1,6 +1,6 @@
 import EventHandler from '../../src/dom/event-handler.js'
 import ScrollSpy from '../../src/scrollspy.js'
-import { clearFixture, createEvent, getFixture, jQueryMock } from '../helpers/fixture.js'
+import {clearFixture, createEvent, getFixture, jQueryMock} from '../helpers/fixture.js'
 
 describe('ScrollSpy', () => {
   let fixtureEl
@@ -42,7 +42,7 @@ describe('ScrollSpy', () => {
     ].join('')
   }
 
-  const testElementIsActiveAfterScroll = ({ elementSelector, targetSelector, contentEl, scrollSpy, cb }) => {
+  const testElementIsActiveAfterScroll = ({elementSelector, targetSelector, contentEl, scrollSpy, cb}) => {
     const element = fixtureEl.querySelector(elementSelector)
     const target = fixtureEl.querySelector(targetSelector)
     // add top padding to fix Chrome on Android failures
@@ -655,7 +655,7 @@ describe('ScrollSpy', () => {
       jQueryMock.fn.scrollspy = ScrollSpy.jQueryInterface
       jQueryMock.elements = [div]
 
-      jQueryMock.fn.scrollspy.call(jQueryMock, { target: '#navBar' })
+      jQueryMock.fn.scrollspy.call(jQueryMock, {target: '#navBar'})
 
       expect(ScrollSpy.getInstance(div)).not.toBeNull()
     })
@@ -668,9 +668,9 @@ describe('ScrollSpy', () => {
       jQueryMock.fn.scrollspy = ScrollSpy.jQueryInterface
       jQueryMock.elements = [div]
 
-      jQueryMock.fn.scrollspy.call(jQueryMock, { rootMargin: '100px' })
+      jQueryMock.fn.scrollspy.call(jQueryMock, {rootMargin: '100px'})
       const spy = spyOn(ScrollSpy.prototype, 'constructor')
-      expect(spy).not.toHaveBeenCalledWith(div, { rootMargin: '100px' })
+      expect(spy).not.toHaveBeenCalledWith(div, {rootMargin: '100px'})
 
       const scrollspy = ScrollSpy.getInstance(div)
       expect(scrollspy).not.toBeNull()
@@ -756,7 +756,7 @@ describe('ScrollSpy', () => {
       fixtureEl.innerHTML = getDummyFixture()
 
       const div = fixtureEl.querySelector('.content')
-      const scrollSpy = new ScrollSpy(div, { target: fixtureEl.querySelector('#navBar') })
+      const scrollSpy = new ScrollSpy(div, {target: fixtureEl.querySelector('#navBar')})
 
       expect(ScrollSpy.getInstance(div)).toEqual(scrollSpy)
       expect(ScrollSpy.getInstance(div)).toBeInstanceOf(ScrollSpy)
@@ -931,7 +931,7 @@ describe('ScrollSpy', () => {
 
       setTimeout(() => {
         if (div.scrollTo) {
-          expect(clickSpy).toHaveBeenCalledWith({ top: observable.offsetTop - div.offsetTop, behavior: 'smooth' })
+          expect(clickSpy).toHaveBeenCalledWith({top: observable.offsetTop - div.offsetTop, behavior: 'smooth'})
         } else {
           expect(clickSpy).toHaveBeenCalledWith(observable.offsetTop - div.offsetTop)
         }

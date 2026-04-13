@@ -1,4 +1,4 @@
-import { pool } from '../db.js';
+import {pool} from '../db.js';
 
 export const getPlacesByCity = async (cityId) => {
     const [rows] = await pool.query(
@@ -9,7 +9,7 @@ export const getPlacesByCity = async (cityId) => {
 };
 
 export const createPlace = async (placeData) => {
-    const { city_id, type, name, description, address, image_url } = placeData;
+    const {city_id, type, name, description, address, image_url} = placeData;
     const [result] = await pool.query(
         'INSERT INTO places (city_id, type, name, description, address, image_url) VALUES (?, ?, ?, ?, ?, ?)',
         [city_id, type, name, description, address, image_url]
@@ -18,7 +18,7 @@ export const createPlace = async (placeData) => {
 };
 
 export const updatePlace = async (id, placeData) => {
-    const { type, name, description, address, image_url } = placeData;
+    const {type, name, description, address, image_url} = placeData;
     await pool.query(
         'UPDATE places SET type = ?, name = ?, description = ?, address = ?, image_url = ? WHERE id = ?',
         [type, name, description, address, image_url, id]
@@ -30,7 +30,7 @@ export const deletePlace = async (id) => {
 };
 
 export const getPlaceDetails = async (id) => {
-    const [place]   = await pool.query('SELECT * FROM places WHERE id = ?', [id]);
+    const [place] = await pool.query('SELECT * FROM places WHERE id = ?', [id]);
     const [ratings] = await pool.query(
         'SELECT AVG(stars) as avgRating, COUNT(id) as ratingCount FROM ratings WHERE place_id = ?',
         [id]
@@ -38,7 +38,7 @@ export const getPlaceDetails = async (id) => {
 
     if (place.length === 0) return null;
 
-    return { ...place[0], stats: ratings[0] };
+    return {...place[0], stats: ratings[0]};
 };
 
 export const getPlaceComments = async (id) => {

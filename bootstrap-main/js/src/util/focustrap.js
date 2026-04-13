@@ -86,7 +86,7 @@ class FocusTrap extends Config {
 
   // Private
   _handleFocusin(event) {
-    const { trapElement } = this._config
+    const {trapElement} = this._config
 
     if (event.target === document || event.target === trapElement || trapElement.contains(event.target)) {
       return

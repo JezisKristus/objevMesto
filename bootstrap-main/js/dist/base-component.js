@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('./dom/data.js'), require('./util/index.js'), require('./dom/event-handler.js'), require('./util/config.js')) :
-  typeof define === 'function' && define.amd ? define(['./dom/data', './util/index', './dom/event-handler', './util/config'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.BaseComponent = factory(global.Data, global.Index, global.EventHandler, global.Config));
-})(this, (function (Data, index_js, EventHandler, Config) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['./dom/data', './util/index', './dom/event-handler', './util/config'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.BaseComponent = factory(global.Data, global.Index, global.EventHandler, global.Config));
+})(this, (function (Data, index_js, EventHandler, Config) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -46,9 +47,11 @@
         this[propertyName] = null;
       }
     }
+
     _queueCallback(callback, element, isAnimated = true) {
       index_js.executeAfterTransition(callback, element, isAnimated);
     }
+
     _getConfig(config) {
       config = this._mergeConfigObj(config, this._element);
       config = this._configAfterMerge(config);
@@ -60,18 +63,23 @@
     static getInstance(element) {
       return Data.get(index_js.getElement(element), this.DATA_KEY);
     }
+
     static getOrCreateInstance(element, config = {}) {
       return this.getInstance(element) || new this(element, typeof config === 'object' ? config : null);
     }
+
     static get VERSION() {
       return VERSION;
     }
+
     static get DATA_KEY() {
       return `bs.${this.NAME}`;
     }
+
     static get EVENT_KEY() {
       return `.${this.DATA_KEY}`;
     }
+
     static eventName(name) {
       return `${name}${this.EVENT_KEY}`;
     }

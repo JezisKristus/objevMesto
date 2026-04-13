@@ -9,8 +9,8 @@ import * as Popper from '@popperjs/core'
 import BaseComponent from './base-component.js'
 import EventHandler from './dom/event-handler.js'
 import Manipulator from './dom/manipulator.js'
-import { defineJQueryPlugin, execute, findShadowRoot, getElement, getUID, isRTL, noop } from './util/index.js'
-import { DefaultAllowlist } from './util/sanitizer.js'
+import {defineJQueryPlugin, execute, findShadowRoot, getElement, getUID, isRTL, noop} from './util/index.js'
+import {DefaultAllowlist} from './util/sanitizer.js'
 import TemplateFactory from './util/template-factory.js'
 
 /**
@@ -69,9 +69,9 @@ const Default = {
   sanitizeFn: null,
   selector: false,
   template: '<div class="tooltip" role="tooltip">' +
-            '<div class="tooltip-arrow"></div>' +
-            '<div class="tooltip-inner"></div>' +
-            '</div>',
+    '<div class="tooltip-arrow"></div>' +
+    '<div class="tooltip-inner"></div>' +
+    '</div>',
   title: '',
   trigger: 'hover focus'
 }
@@ -204,7 +204,7 @@ class Tooltip extends BaseComponent {
 
     this._element.setAttribute('aria-describedby', tip.getAttribute('id'))
 
-    const { container } = this._config
+    const {container} = this._config
 
     if (!this._element.ownerDocument.documentElement.contains(this.tip)) {
       container.append(tip)
@@ -376,7 +376,7 @@ class Tooltip extends BaseComponent {
   }
 
   _getOffset() {
-    const { offset } = this._config
+    const {offset} = this._config
 
     if (typeof offset === 'string') {
       return offset.split(',').map(value => Number.parseInt(value, 10))

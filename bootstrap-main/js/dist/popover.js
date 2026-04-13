@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('./util/index.js'), require('./tooltip.js')) :
-  typeof define === 'function' && define.amd ? define(['./util/index', './tooltip'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Popover = factory(global.Index, global.Tooltip));
-})(this, (function (index_js, Tooltip) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['./util/index', './tooltip'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Popover = factory(global.Index, global.Tooltip));
+})(this, (function (index_js, Tooltip) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -45,9 +46,11 @@
     static get Default() {
       return Default;
     }
+
     static get DefaultType() {
       return DefaultType;
     }
+
     static get NAME() {
       return NAME;
     }
@@ -64,6 +67,7 @@
         [SELECTOR_CONTENT]: this._getContent()
       };
     }
+
     _getContent() {
       return this._resolvePossibleFunction(this._config.content);
     }

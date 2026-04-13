@@ -9,12 +9,15 @@ toc: true
 
 ## Approach
 
-Reboot builds upon Normalize, providing many HTML elements with somewhat opinionated styles using only element selectors. Additional styling is done only with classes. For example, we reboot some `<table>` styles for a simpler baseline and later provide `.table`, `.table-bordered`, and more.
+Reboot builds upon Normalize, providing many HTML elements with somewhat opinionated styles using only element
+selectors. Additional styling is done only with classes. For example, we reboot some `<table>` styles for a simpler
+baseline and later provide `.table`, `.table-bordered`, and more.
 
 Here are our guidelines and reasons for choosing what to override in Reboot:
 
 - Update some browser default values to use `rem`s instead of `em`s for scalable component spacing.
-- Avoid `margin-top`. Vertical margins can collapse, yielding unexpected results. More importantly though, a single direction of `margin` is a simpler mental model.
+- Avoid `margin-top`. Vertical margins can collapse, yielding unexpected results. More importantly though, a single
+  direction of `margin` is a simpler mental model.
 - For easier scaling across device sizes, block elements should use `rem`s for `margin`s.
 - Keep declarations of `font`-related properties to a minimum, using `inherit` whenever possible.
 
@@ -22,7 +25,13 @@ Here are our guidelines and reasons for choosing what to override in Reboot:
 
 {{< added-in "5.2.0" >}}
 
-With v5.1.1, we standardized our required `@import`s across all our CSS bundles (including `bootstrap.css`, `bootstrap-reboot.css`, and `bootstrap-grid.css`) to include `_root.scss`. This adds `:root` level CSS variables to all bundles, regardless of how many of them are used in that bundle. Ultimately Bootstrap 5 will continue to see more [CSS variables]({{< docsref "/customize/css-variables" >}}) added over time, in order to provide more real-time customization without the need to always recompile Sass. Our approach is to take our source Sass variables and transform them into CSS variables. That way, even if you don't use CSS variables, you still have all the power of Sass. **This is still in-progress and will take time to fully implement.**
+With v5.1.1, we standardized our required `@import`s across all our CSS bundles (including `bootstrap.css`,
+`bootstrap-reboot.css`, and `bootstrap-grid.css`) to include `_root.scss`. This adds `:root` level CSS variables to all
+bundles, regardless of how many of them are used in that bundle. Ultimately Bootstrap 5 will continue to see
+more [CSS variables]({{< docsref "/customize/css-variables" >}}) added over time, in order to provide more real-time
+customization without the need to always recompile Sass. Our approach is to take our source Sass variables and transform
+them into CSS variables. That way, even if you don't use CSS variables, you still have all the power of Sass. **This is
+still in-progress and will take time to fully implement.**
 
 For example, consider these `:root` CSS variables for common `<body>` styles:
 
@@ -44,14 +53,22 @@ Which allows you to make real-time customizations however you like:
 
 The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
 
-- The `box-sizing` is globally set on every element—including `*::before` and `*::after`, to `border-box`. This ensures that the declared width of element is never exceeded due to padding or border.
-  - No base `font-size` is declared on the `<html>`, but `16px` is assumed (the browser default). `font-size: 1rem` is applied on the `<body>` for easy responsive type-scaling via media queries while respecting user preferences and ensuring a more accessible approach. This browser default can be overridden by modifying the `$font-size-root` variable.
-- The `<body>` also sets a global `font-family`, `font-weight`, `line-height`, and `color`. This is inherited later by some form elements to prevent font inconsistencies.
+- The `box-sizing` is globally set on every element—including `*::before` and `*::after`, to `border-box`. This ensures
+  that the declared width of element is never exceeded due to padding or border.
+  - No base `font-size` is declared on the `<html>`, but `16px` is assumed (the browser default). `font-size: 1rem` is
+    applied on the `<body>` for easy responsive type-scaling via media queries while respecting user preferences and
+    ensuring a more accessible approach. This browser default can be overridden by modifying the `$font-size-root`
+    variable.
+- The `<body>` also sets a global `font-family`, `font-weight`, `line-height`, and `color`. This is inherited later by
+  some form elements to prevent font inconsistencies.
 - For safety, the `<body>` has a declared `background-color`, defaulting to `#fff`.
 
 ## Native font stack
 
-Bootstrap utilizes a "native font stack" or "system font stack" for optimum text rendering on every device and OS. These system fonts have been designed specifically with today's devices in mind, with improved rendering on screens, variable font support, and more. Read more about [native font stacks in this *Smashing Magazine* article](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/).
+Bootstrap utilizes a "native font stack" or "system font stack" for optimum text rendering on every device and OS. These
+system fonts have been designed specifically with today's devices in mind, with improved rendering on screens, variable
+font support, and more. Read more about [native font stacks in this *Smashing
+Magazine* article](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/).
 
 ```scss
 $font-family-sans-serif:
@@ -76,13 +93,18 @@ $font-family-sans-serif:
   "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 ```
 
-Note that because the font stack includes emoji fonts, many common symbol/dingbat Unicode characters will be rendered as multicolored pictographs. Their appearance will vary, depending on the style used in the browser/platform's native emoji font, and they won't be affected by any CSS `color` styles.
+Note that because the font stack includes emoji fonts, many common symbol/dingbat Unicode characters will be rendered as
+multicolored pictographs. Their appearance will vary, depending on the style used in the browser/platform's native emoji
+font, and they won't be affected by any CSS `color` styles.
 
-This `font-family` is applied to the `<body>` and automatically inherited globally throughout Bootstrap. To switch the global `font-family`, update `$font-family-base` and recompile Bootstrap.
+This `font-family` is applied to the `<body>` and automatically inherited globally throughout Bootstrap. To switch the
+global `font-family`, update `$font-family-base` and recompile Bootstrap.
 
 ## Headings
 
-All heading elements—`<h1>`—`<h6>` have their `margin-top` removed, `margin-bottom: .5rem` set, and `line-height` tightened. While headings inherit their `color` by default, you can also override it via optional CSS variable, `--bs-heading-color`.
+All heading elements—`<h1>`—`<h6>` have their `margin-top` removed, `margin-bottom: .5rem` set, and `line-height`
+tightened. While headings inherit their `color` by default, you can also override it via optional CSS variable,
+`--bs-heading-color`.
 
 {{< bs-table "table" >}}
 | Heading | Example |
@@ -105,20 +127,22 @@ All `<p>` elements have their `margin-top` removed and `margin-bottom: 1rem` set
 
 ## Links
 
-Links have a default `color` and underline applied. While links change on `:hover`, they don't change based on whether someone `:visited` the link. They also receive no special `:focus` styles.
+Links have a default `color` and underline applied. While links change on `:hover`, they don't change based on whether
+someone `:visited` the link. They also receive no special `:focus` styles.
 
 {{< example >}}
 <a href="#">This is an example link</a>
 {{< /example >}}
 
-As of v5.3.x, link `color` is set using `rgba()` and new `-rgb` CSS variables, allowing for easy customization of link color opacity. Change the link color opacity with the `--bs-link-opacity` CSS variable:
+As of v5.3.x, link `color` is set using `rgba()` and new `-rgb` CSS variables, allowing for easy customization of link
+color opacity. Change the link color opacity with the `--bs-link-opacity` CSS variable:
 
 {{< example >}}
 <a href="#" style="--bs-link-opacity: .5">This is an example link</a>
 {{< /example >}}
 
-
-Placeholder links—those without an `href`—are targeted with a more specific selector and have their `color` and `text-decoration` reset to their default values.
+Placeholder links—those without an `href`—are targeted with a more specific selector and have their `color` and
+`text-decoration` reset to their default values.
 
 {{< example >}}
 <a>This is a placeholder link</a>
@@ -126,7 +150,9 @@ Placeholder links—those without an `href`—are targeted with a more specific 
 
 ## Horizontal rules
 
-The `<hr>` element has been simplified. Similar to browser defaults, `<hr>`s are styled via `border-top`, have a default `opacity: .25`, and automatically inherit their `border-color` via `color`, including when `color` is set via the parent. They can be modified with text, border, and opacity utilities.
+The `<hr>` element has been simplified. Similar to browser defaults, `<hr>`s are styled via `border-top`, have a default
+`opacity: .25`, and automatically inherit their `border-color` via `color`, including when `color` is set via the
+parent. They can be modified with text, border, and opacity utilities.
 
 {{< example >}}
 <hr>
@@ -141,7 +167,8 @@ The `<hr>` element has been simplified. Similar to browser defaults, `<hr>`s are
 
 ## Lists
 
-All lists—`<ul>`, `<ol>`, and `<dl>`—have their `margin-top` removed and a `margin-bottom: 1rem`. Nested lists have no `margin-bottom`. We've also reset the `padding-left` on `<ul>` and `<ol>` elements.
+All lists—`<ul>`, `<ol>`, and `<dl>`—have their `margin-top` removed and a `margin-bottom: 1rem`. Nested lists have no
+`margin-bottom`. We've also reset the `padding-left` on `<ul>` and `<ol>` elements.
 
 <div class="bd-example">
 {{< markdown >}}
@@ -156,10 +183,12 @@ All lists—`<ul>`, `<ol>`, and `<dl>`—have their `margin-top` removed and a `
 2. With a few list items
 3. It has the same overall look
 4. As the previous unordered list
-{{< /markdown >}}
+   {{< /markdown >}}
+
 </div>
 
-For simpler styling, clear hierarchy, and better spacing, description lists have updated `margin`s. `<dd>`s reset `margin-left` to `0` and add `margin-bottom: .5rem`. `<dt>`s are **bolded**.
+For simpler styling, clear hierarchy, and better spacing, description lists have updated `margin`s. `<dd>`s reset
+`margin-left` to `0` and add `margin-bottom: .5rem`. `<dt>`s are **bolded**.
 
 <div class="bd-example">
   <dl>
@@ -183,7 +212,8 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 
 ## Code blocks
 
-Use `<pre>`s for multiple lines of code. Once again, be sure to escape any angle brackets in the code for proper rendering. The `<pre>` element is reset to remove its `margin-top` and use `rem` units for its `margin-bottom`.
+Use `<pre>`s for multiple lines of code. Once again, be sure to escape any angle brackets in the code for proper
+rendering. The `<pre>` element is reset to remove its `margin-top` and use `rem` units for its `margin-bottom`.
 
 {{< example >}}
 <pre><code>&lt;p&gt;Sample text here...&lt;/p&gt;
@@ -218,7 +248,8 @@ For indicating sample output from a program use the `<samp>` tag.
 
 ## Tables
 
-Tables are slightly adjusted to style `<caption>`s, collapse borders, and ensure consistent `text-align` throughout. Additional changes for borders, padding, and more come with [the `.table` class]({{< docsref "/content/tables" >}}).
+Tables are slightly adjusted to style `<caption>`s, collapse borders, and ensure consistent `text-align` throughout.
+Additional changes for borders, padding, and more come with [the `.table` class]({{< docsref "/content/tables" >}}).
 
 {{< example >}}
 <table>
@@ -260,10 +291,12 @@ Tables are slightly adjusted to style `<caption>`s, collapse borders, and ensure
 
 Various form elements have been rebooted for simpler base styles. Here are some of the most notable changes:
 
-- `<fieldset>`s have no borders, padding, or margin so they can be easily used as wrappers for individual inputs or groups of inputs.
+- `<fieldset>`s have no borders, padding, or margin so they can be easily used as wrappers for individual inputs or
+  groups of inputs.
 - `<legend>`s, like fieldsets, have also been restyled to be displayed as a heading of sorts.
 - `<label>`s are set to `display: inline-block` to allow `margin` to be applied.
-- `<input>`s, `<select>`s, `<textarea>`s, and `<button>`s are mostly addressed by Normalize, but Reboot removes their `margin` and sets `line-height: inherit`, too.
+- `<input>`s, `<select>`s, `<textarea>`s, and `<button>`s are mostly addressed by Normalize, but Reboot removes their
+  `margin` and sets `line-height: inherit`, too.
 - `<textarea>`s are modified to only be resizable vertically as horizontal resizing often "breaks" page layout.
 - `<button>`s and `<input>` button elements have `cursor: pointer` when `:not(:disabled)`.
 
@@ -397,7 +430,9 @@ These changes, and more, are demonstrated below.
 
 ### Pointers on buttons
 
-Reboot includes an enhancement for `role="button"` to change the default cursor to `pointer`. Add this attribute to elements to help indicate elements are interactive. This role isn't necessary for `<button>` elements, which get their own `cursor` change.
+Reboot includes an enhancement for `role="button"` to change the default cursor to `pointer`. Add this attribute to
+elements to help indicate elements are interactive. This role isn't necessary for `<button>` elements, which get their
+own `cursor` change.
 
 {{< example >}}
 <span role="button" tabindex="0">Non-button element button</span>
@@ -407,7 +442,9 @@ Reboot includes an enhancement for `role="button"` to change the default cursor 
 
 ### Address
 
-The `<address>` element is updated to reset the browser default `font-style` from `italic` to `normal`. `line-height` is also now inherited, and `margin-bottom: 1rem` has been added. `<address>`s are for presenting contact information for the nearest ancestor (or an entire body of work). Preserve formatting by ending lines with `<br>`.
+The `<address>` element is updated to reset the browser default `font-style` from `italic` to `normal`. `line-height` is
+also now inherited, and `margin-bottom: 1rem` has been added. `<address>`s are for presenting contact information for
+the nearest ancestor (or an entire body of work). Preserve formatting by ending lines with `<br>`.
 
 <div class="bd-example">
   <address>
@@ -425,7 +462,8 @@ The `<address>` element is updated to reset the browser default `font-style` fro
 
 ### Blockquote
 
-The default `margin` on blockquotes is `1em 40px`, so we reset that to `0 0 1rem` for something more consistent with other elements.
+The default `margin` on blockquotes is `1em 40px`, so we reset that to `0 0 1rem` for something more consistent with
+other elements.
 
 <div class="bd-example">
   <blockquote class="blockquote">
@@ -444,7 +482,8 @@ The `<abbr>` element receives basic styling to make it stand out amongst paragra
 
 ### Summary
 
-The default `cursor` on summary is `text`, so we reset that to `pointer` to convey that the element can be interacted with by clicking on it.
+The default `cursor` on summary is `text`, so we reset that to `pointer` to convey that the element can be interacted
+with by clicking on it.
 
 <div class="bd-example">
   <details>
@@ -460,14 +499,19 @@ The default `cursor` on summary is `text`, so we reset that to `pointer` to conv
 
 ## HTML5 `[hidden]` attribute
 
-HTML5 adds [a new global attribute named `[hidden]`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden), which is styled as `display: none` by default. Borrowing an idea from [PureCSS](https://purecss.io/), we improve upon this default by making `[hidden] { display: none !important; }` to help prevent its `display` from getting accidentally overridden.
+HTML5 adds [a new global attribute named
+`[hidden]`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden), which is styled as
+`display: none` by default. Borrowing an idea from [PureCSS](https://purecss.io/), we improve upon this default by
+making `[hidden] { display: none !important; }` to help prevent its `display` from getting accidentally overridden.
 
 ```html
 <input type="text" hidden>
 ```
 
 {{< callout info >}}
-Since `[hidden]` is not compatible with jQuery's `$(...).hide()` and `$(...).show()` methods, we don't specifically endorse `[hidden]` over other techniques for managing the `display` of elements.
+Since `[hidden]` is not compatible with jQuery's `$(...).hide()` and `$(...).show()` methods, we don't specifically
+endorse `[hidden]` over other techniques for managing the `display` of elements.
 {{< /callout >}}
 
-To merely toggle the visibility of an element, meaning its `display` is not modified and the element can still affect the flow of the document, use [the `.invisible` class]({{< docsref "/utilities/visibility" >}}) instead.
+To merely toggle the visibility of an element, meaning its `display` is not modified and the element can still affect
+the flow of the document, use [the `.invisible` class]({{< docsref "/utilities/visibility" >}}) instead.

@@ -19,10 +19,13 @@ Wrap a series of buttons with `.btn` in `.btn-group`.
 {{< /example >}}
 
 {{< callout info >}}
-Button groups require an appropriate `role` attribute and explicit label to ensure assistive technologies like screen readers identify buttons as grouped and announce them. Use `role="group"` for button groups or `role="toolbar"` for button toolbars. Then use `aria-label` or `aria-labelledby` to label them.
+Button groups require an appropriate `role` attribute and explicit label to ensure assistive technologies like screen
+readers identify buttons as grouped and announce them. Use `role="group"` for button groups or `role="toolbar"` for
+button toolbars. Then use `aria-label` or `aria-labelledby` to label them.
 {{< /callout >}}
 
-These classes can also be added to groups of links, as an alternative to the [`.nav` navigation components]({{< docsref "/components/navs-tabs" >}}).
+These classes can also be added to groups of links, as an alternative to the [`.nav` navigation components]({{<
+docsref "/components/navs-tabs" >}}).
 
 {{< example >}}
 <div class="btn-group">
@@ -54,7 +57,8 @@ These classes can also be added to groups of links, as an alternative to the [`.
 
 ## Checkbox and radio button groups
 
-Combine button-like checkbox and radio [toggle buttons]({{< docsref "/forms/checks-radios" >}}) into a seamless looking button group.
+Combine button-like checkbox and radio [toggle buttons]({{< docsref "/forms/checks-radios" >}}) into a seamless looking
+button group.
 
 {{< example >}}
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
@@ -84,7 +88,8 @@ Combine button-like checkbox and radio [toggle buttons]({{< docsref "/forms/chec
 
 ## Button toolbar
 
-Combine sets of button groups into button toolbars for more complex components. Use utility classes as needed to space out groups, buttons, and more.
+Combine sets of button groups into button toolbars for more complex components. Use utility classes as needed to space
+out groups, buttons, and more.
 
 {{< example >}}
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -105,7 +110,8 @@ Combine sets of button groups into button toolbars for more complex components. 
 </div>
 {{< /example >}}
 
-Feel free to mix input groups with button groups in your toolbars. Similar to the example above, you'll likely need some utilities though to space things properly.
+Feel free to mix input groups with button groups in your toolbars. Similar to the example above, you'll likely need some
+utilities though to space things properly.
 
 {{< example >}}
 <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
@@ -137,7 +143,8 @@ Feel free to mix input groups with button groups in your toolbars. Similar to th
 
 ## Sizing
 
-Instead of applying button sizing classes to every button in a group, just add `.btn-group-*` to each `.btn-group`, including each one when nesting multiple groups.
+Instead of applying button sizing classes to every button in a group, just add `.btn-group-*` to each `.btn-group`,
+including each one when nesting multiple groups.
 
 {{< example >}}
 <div class="btn-group btn-group-lg" role="group" aria-label="Large button group">
@@ -182,7 +189,8 @@ Place a `.btn-group` within another `.btn-group` when you want dropdown menus mi
 
 ## Vertical variation
 
-Make a set of buttons appear vertically stacked rather than horizontally. **Split button dropdowns are not supported here.**
+Make a set of buttons appear vertically stacked rather than horizontally. **Split button dropdowns are not supported
+here.**
 
 {{< example >}}
 <div class="btn-group-vertical" role="group" aria-label="Vertical button group">

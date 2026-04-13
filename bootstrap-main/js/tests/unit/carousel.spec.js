@@ -1,11 +1,11 @@
 import Carousel from '../../src/carousel.js'
 import EventHandler from '../../src/dom/event-handler.js'
-import { isRTL, noop } from '../../src/util/index.js'
+import {isRTL, noop} from '../../src/util/index.js'
 import Swipe from '../../src/util/swipe.js'
-import { clearFixture, createEvent, getFixture, jQueryMock } from '../helpers/fixture.js'
+import {clearFixture, createEvent, getFixture, jQueryMock} from '../helpers/fixture.js'
 
 describe('Carousel', () => {
-  const { Simulator, PointerEvent } = window
+  const {Simulator, PointerEvent} = window
   const originWinPointerEvent = PointerEvent
   const supportPointerEvent = Boolean(PointerEvent)
 
@@ -231,7 +231,7 @@ describe('Carousel', () => {
       const spyKeydown = spyOn(carousel, '_keydown').and.callThrough()
       const spySlide = spyOn(carousel, '_slide')
 
-      const keydown = createEvent('keydown', { bubbles: true, cancelable: true })
+      const keydown = createEvent('keydown', {bubbles: true, cancelable: true})
       keydown.key = 'ArrowRight'
       Object.defineProperty(keydown, 'target', {
         value: input,
@@ -289,7 +289,7 @@ describe('Carousel', () => {
         ].join('')
 
         const carouselEl = fixtureEl.querySelector('#myCarousel')
-        const carousel = new Carousel(carouselEl, { wrap: true })
+        const carousel = new Carousel(carouselEl, {wrap: true})
         const getActiveId = () => carouselEl.querySelector('.carousel-item.active').getAttribute('id')
 
         carouselEl.addEventListener('slid.bs.carousel', event => {
@@ -331,7 +331,7 @@ describe('Carousel', () => {
 
         const carouselEl = fixtureEl.querySelector('#myCarousel')
         const firstElement = fixtureEl.querySelector('#one')
-        const carousel = new Carousel(carouselEl, { wrap: false })
+        const carousel = new Carousel(carouselEl, {wrap: false})
 
         carouselEl.addEventListener('slid.bs.carousel', () => {
           reject(new Error('carousel slid when it should not have slid'))

@@ -8,10 +8,13 @@ toc: true
 
 ## Examples
 
-Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight **required** contextual classes (e.g., `.alert-success`). For inline dismissal, use the [alerts JavaScript plugin](#dismissing).
+Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the
+eight **required** contextual classes (e.g., `.alert-success`). For inline dismissal, use
+the [alerts JavaScript plugin](#dismissing).
 
 {{< callout info >}}
-**Heads up!** As of v5.3.0, the `alert-variant()` Sass mixin is deprecated. Alert variants now have their CSS variables overridden in [the Sass loop](#sass-loop).
+**Heads up!** As of v5.3.0, the `alert-variant()` Sass mixin is deprecated. Alert variants now have their CSS variables
+overridden in [the Sass loop](#sass-loop).
 {{< /callout >}}
 
 {{< example >}}
@@ -29,7 +32,8 @@ Alerts are available for any length of text, as well as an optional close button
 
 ### Live example
 
-Click the button below to show an alert (hidden with inline styles to start), then dismiss (and destroy) it with the built-in close button.
+Click the button below to show an alert (hidden with inline styles to start), then dismiss (and destroy) it with the
+built-in close button.
 
 {{< example stackblitz_add_js="true" >}}
 <div id="liveAlertPlaceholder"></div>
@@ -68,7 +72,8 @@ Alerts can also contain additional HTML elements like headings, paragraphs and d
 
 ### Icons
 
-Similarly, you can use [flexbox utilities]({{< docsref "/utilities/flex" >}}) and [Bootstrap Icons]({{< param icons >}}) to create alerts with icons. Depending on your icons and content, you may want to add more utilities or custom styles.
+Similarly, you can use [flexbox utilities]({{< docsref "/utilities/flex" >}}) and [Bootstrap Icons]({{< param icons >}})
+to create alerts with icons. Depending on your icons and content, you may want to add more utilities or custom styles.
 
 {{< example >}}
 <div class="alert alert-primary d-flex align-items-center" role="alert">
@@ -81,19 +86,20 @@ Similarly, you can use [flexbox utilities]({{< docsref "/utilities/flex" >}}) an
 </div>
 {{< /example >}}
 
-Need more than one icon for your alerts? Consider using more Bootstrap Icons and making a local SVG sprite like so to easily reference the same icons repeatedly.
+Need more than one icon for your alerts? Consider using more Bootstrap Icons and making a local SVG sprite like so to
+easily reference the same icons repeatedly.
 
 {{< example >}}
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  <symbol id="check-circle-fill" viewBox="0 0 16 16">
-    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-  </symbol>
-  <symbol id="info-fill" viewBox="0 0 16 16">
-    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-  </symbol>
-  <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
-    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-  </symbol>
+<symbol id="check-circle-fill" viewBox="0 0 16 16">
+<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+</symbol>
+<symbol id="info-fill" viewBox="0 0 16 16">
+<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+</symbol>
+<symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+</symbol>
 </svg>
 
 <div class="alert alert-primary d-flex align-items-center" role="alert">
@@ -127,8 +133,10 @@ Need more than one icon for your alerts? Consider using more Bootstrap Icons and
 Using the alert JavaScript plugin, it's possible to dismiss any alert inline. Here's how:
 
 - Be sure you've loaded the alert plugin, or the compiled Bootstrap JavaScript.
-- Add a [close button]({{< docsref "/components/close-button" >}}) and the `.alert-dismissible` class, which adds extra padding to the right of the alert and positions the close button.
-- On the close button, add the `data-bs-dismiss="alert"` attribute, which triggers the JavaScript functionality. Be sure to use the `<button>` element with it for proper behavior across all devices.
+- Add a [close button]({{< docsref "/components/close-button" >}}) and the `.alert-dismissible` class, which adds extra
+  padding to the right of the alert and positions the close button.
+- On the close button, add the `data-bs-dismiss="alert"` attribute, which triggers the JavaScript functionality. Be sure
+  to use the `<button>` element with it for proper behavior across all devices.
 - To animate alerts when dismissing them, be sure to add the `.fade` and `.show` classes.
 
 You can see this in action with a live demo:
@@ -141,7 +149,11 @@ You can see this in action with a live demo:
 {{< /example >}}
 
 {{< callout warning >}}
-When an alert is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the alert using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the page/document. For this reason, we recommend including additional JavaScript that listens for the `closed.bs.alert` event and programmatically sets `focus()` to the most appropriate location in the page. If you're planning to move focus to a non-interactive element that normally does not receive focus, make sure to add `tabindex="-1"` to the element.
+When an alert is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the
+alert using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the
+page/document. For this reason, we recommend including additional JavaScript that listens for the `closed.bs.alert`
+event and programmatically sets `focus()` to the most appropriate location in the page. If you're planning to move focus
+to a non-interactive element that normally does not receive focus, make sure to add `tabindex="-1"` to the element.
 {{< /callout >}}
 
 ## CSS
@@ -150,7 +162,8 @@ When an alert is dismissed, the element is completely removed from the page stru
 
 {{< added-in "5.2.0" >}}
 
-As part of Bootstrap's evolving CSS variables approach, alerts now use local CSS variables on `.alert` for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too.
+As part of Bootstrap's evolving CSS variables approach, alerts now use local CSS variables on `.alert` for enhanced
+real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too.
 
 {{< scss-docs name="alert-css-vars" file="scss/_alert.scss" >}}
 
@@ -184,7 +197,8 @@ const alerts = [...alertList].map(element => new bootstrap.Alert(element))
 ```
 
 {{< callout info >}}
-For the sole purpose of dismissing an alert, it isn't necessary to initialize the component manually via the JS API. By making use of `data-bs-dismiss="alert"`, the component will be initialized automatically and properly dismissed.
+For the sole purpose of dismissing an alert, it isn't necessary to initialize the component manually via the JS API. By
+making use of `data-bs-dismiss="alert"`, the component will be initialized automatically and properly dismissed.
 
 See the [triggers](#triggers) section for more details.
 {{< /callout >}}
@@ -203,15 +217,19 @@ You can create an alert instance with the alert constructor, for example:
 const bsAlert = new bootstrap.Alert('#myAlert')
 ```
 
-This makes an alert listen for click events on descendant elements which have the `data-bs-dismiss="alert"` attribute. (Not necessary when using the data-api’s auto-initialization.)
+This makes an alert listen for click events on descendant elements which have the `data-bs-dismiss="alert"` attribute. (
+Not necessary when using the data-api’s auto-initialization.)
 
 {{< bs-table >}}
 | Method | Description |
 | --- | --- |
-| `close` | Closes an alert by removing it from the DOM. If the `.fade` and `.show` classes are present on the element, the alert will fade out before it is removed. |
+| `close` | Closes an alert by removing it from the DOM. If the `.fade` and `.show` classes are present on the element,
+the alert will fade out before it is removed. |
 | `dispose` | Destroys an element's alert. (Removes stored data on the DOM element) |
-| `getInstance` | Static method which allows you to get the alert instance associated to a DOM element. For example: `bootstrap.Alert.getInstance(alert)`. |
-| `getOrCreateInstance` | Static method which returns an alert instance associated to a DOM element or create a new one in case it wasn't initialized. You can use it like this: `bootstrap.Alert.getOrCreateInstance(element)`. |
+| `getInstance` | Static method which allows you to get the alert instance associated to a DOM element. For example:
+`bootstrap.Alert.getInstance(alert)`. |
+| `getOrCreateInstance` | Static method which returns an alert instance associated to a DOM element or create a new one
+in case it wasn't initialized. You can use it like this: `bootstrap.Alert.getOrCreateInstance(element)`. |
 {{< /bs-table >}}
 
 Basic usage:

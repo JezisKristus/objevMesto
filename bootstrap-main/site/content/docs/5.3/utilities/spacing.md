@@ -8,7 +8,9 @@ toc: true
 
 ## Margin and padding
 
-Assign responsive-friendly `margin` or `padding` values to an element or a subset of its sides with shorthand classes. Includes support for individual properties, all properties, and vertical and horizontal properties. Classes are built from a default Sass map ranging from `.25rem` to `3rem`.
+Assign responsive-friendly `margin` or `padding` values to an element or a subset of its sides with shorthand classes.
+Includes support for individual properties, all properties, and vertical and horizontal properties. Classes are built
+from a default Sass map ranging from `.25rem` to `3rem`.
 
 {{< callout >}}
 **Using the CSS Grid layout module?** Consider using [the gap utility](#gap) instead.
@@ -16,9 +18,12 @@ Assign responsive-friendly `margin` or `padding` values to an element or a subse
 
 ### Notation
 
-Spacing utilities that apply to all breakpoints, from `xs` to `xxl`, have no breakpoint abbreviation in them. This is because those classes are applied from `min-width: 0` and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation.
+Spacing utilities that apply to all breakpoints, from `xs` to `xxl`, have no breakpoint abbreviation in them. This is
+because those classes are applied from `min-width: 0` and up, and thus are not bound by a media query. The remaining
+breakpoints, however, do include a breakpoint abbreviation.
 
-The classes are named using the format `{property}{sides}-{size}` for `xs` and `{property}{sides}-{breakpoint}-{size}` for `sm`, `md`, `lg`, `xl`, and `xxl`.
+The classes are named using the format `{property}{sides}-{size}` for `xs` and `{property}{sides}-{breakpoint}-{size}`
+for `sm`, `md`, `lg`, `xl`, and `xxl`.
 
 Where *property* is one of:
 
@@ -72,7 +77,8 @@ Here are some representative examples of these classes:
 
 ### Horizontal centering
 
-Additionally, Bootstrap also includes an `.mx-auto` class for horizontally centering fixed-width block level content—that is, content that has `display: block` and a `width` set—by setting the horizontal margins to `auto`.
+Additionally, Bootstrap also includes an `.mx-auto` class for horizontally centering fixed-width block level
+content—that is, content that has `display: block` and a `width` set—by setting the horizontal margins to `auto`.
 
 <div class="bd-example">
   <div class="mx-auto p-2" style="width: 200px; background-color: rgba(var(--bd-violet-rgb),.15); border: rgba(var(--bd-violet-rgb),.3) solid 1px;">
@@ -88,9 +94,11 @@ Additionally, Bootstrap also includes an `.mx-auto` class for horizontally cente
 
 ## Negative margin
 
-In CSS, `margin` properties can utilize negative values (`padding` cannot). These negative margins are **disabled by default**, but can be enabled in Sass by setting `$enable-negative-margins: true`.
+In CSS, `margin` properties can utilize negative values (`padding` cannot). These negative margins are **disabled by
+default**, but can be enabled in Sass by setting `$enable-negative-margins: true`.
 
-The syntax is nearly the same as the default, positive margin utilities, but with the addition of `n` before the requested size. Here's an example class that's the opposite of `.mt-1`:
+The syntax is nearly the same as the default, positive margin utilities, but with the addition of `n` before the
+requested size. Here's an example class that's the opposite of `.mt-1`:
 
 ```scss
 .mt-n1 {
@@ -100,7 +108,9 @@ The syntax is nearly the same as the default, positive margin utilities, but wit
 
 ## Gap
 
-When using `display: grid` or `display: flex`, you can make use of `gap` utilities on the parent element. This can save on having to add margin utilities to individual children of a grid or flex container. Gap utilities are responsive by default, and are generated via our utilities API, based on the `$spacers` Sass map.
+When using `display: grid` or `display: flex`, you can make use of `gap` utilities on the parent element. This can save
+on having to add margin utilities to individual children of a grid or flex container. Gap utilities are responsive by
+default, and are generated via our utilities API, based on the `$spacers` Sass map.
 
 {{< example class="bd-example-cssgrid" >}}
 <div class="grid gap-3">
@@ -111,7 +121,8 @@ When using `display: grid` or `display: flex`, you can make use of `gap` utiliti
 </div>
 {{< /example >}}
 
-Support includes responsive options for all of Bootstrap's grid breakpoints, as well as six sizes from the `$spacers` map (`0`–`5`). There is no `.gap-auto` utility class as it's effectively the same as `.gap-0`.
+Support includes responsive options for all of Bootstrap's grid breakpoints, as well as six sizes from the `$spacers`
+map (`0`–`5`). There is no `.gap-auto` utility class as it's effectively the same as `.gap-0`.
 
 ### row-gap
 
@@ -149,6 +160,7 @@ Spacing utilities are declared via Sass map and then generated with our utilitie
 
 ### Utilities API
 
-Spacing utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
+Spacing utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{<
+docsref "/utilities/api#using-the-api" >}})
 
 {{< scss-docs name="utils-spacing" file="scss/_utilities.scss" >}}

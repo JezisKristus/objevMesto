@@ -52,7 +52,8 @@ Where *position* is one of:
 
 In addition, you can also center the elements with the transform utility class `.translate-middle`.
 
-This class applies the transformations `translateX(-50%)` and `translateY(-50%)` to the element which, in combination with the edge positioning utilities, allows you to absolute center an element.
+This class applies the transformations `translateX(-50%)` and `translateY(-50%)` to the element which, in combination
+with the edge positioning utilities, allows you to absolute center an element.
 
 {{< example class="bd-example-position-utils" >}}
 <div class="position-relative">
@@ -68,7 +69,8 @@ This class applies the transformations `translateX(-50%)` and `translateY(-50%)`
 </div>
 {{< /example >}}
 
-By adding `.translate-middle-x` or `.translate-middle-y` classes, elements can be positioned only in horizontal or vertical direction.
+By adding `.translate-middle-x` or `.translate-middle-y` classes, elements can be positioned only in horizontal or
+vertical direction.
 
 {{< example class="bd-example-position-utils" >}}
 <div class="position-relative">
@@ -90,7 +92,8 @@ Here are some real life examples of these classes:
 
 {{< example class="bd-example-position-examples d-flex justify-content-around align-items-center" >}}
 <button type="button" class="btn btn-primary position-relative">
-  Mails <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">+99 <span class="visually-hidden">unread messages</span></span>
+Mails <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
++99 <span class="visually-hidden">unread messages</span></span>
 </button>
 
 <div class="position-relative py-2 px-4 text-bg-dark border border-dark rounded-pill">
@@ -102,7 +105,8 @@ Here are some real life examples of these classes:
 </button>
 {{< /example >}}
 
-You can use these classes with existing components to create new ones. Remember that you can extend its functionality by adding entries to the `$position-values` variable.
+You can use these classes with existing components to create new ones. Remember that you can extend its functionality by
+adding entries to the `$position-values` variable.
 
 {{< example class="bd-example-position-examples" >}}
 <div class="position-relative m-4">
@@ -125,6 +129,7 @@ Default position utility values are declared in a Sass map, then used to generat
 
 ### Utilities API
 
-Position utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
+Position utilities are declared in our utilities API in
+`scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
 
 {{< scss-docs name="utils-position" file="scss/_utilities.scss" >}}

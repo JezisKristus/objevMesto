@@ -5,7 +5,7 @@
  * --------------------------------------------------------------------------
  */
 
-import { isDisabled, isVisible, parseSelector } from '../util/index.js'
+import {isDisabled, isVisible, parseSelector} from '../util/index.js'
 
 const getSelector = element => {
   let selector = element.getAttribute('data-bs-target')

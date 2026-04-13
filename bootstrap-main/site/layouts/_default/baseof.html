@@ -1,21 +1,22 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-  <head>
-    {{ partial "header" . }}
-  </head>
-  {{ block "body_override" . }}<body>{{ end }}
-    {{ partial "skippy" . }}
-    {{ partial "icons" . }}
+<head>
+  {{ partial "header" . }}
+</head>
+{{ block "body_override" . }}
+<body>{{ end }}
+{{ partial "skippy" . }}
+{{ partial "icons" . }}
 
-    {{ partial "docs-navbar" . }}
+{{ partial "docs-navbar" . }}
 
-    {{ block "main" . }}
-    {{ end }}
+{{ block "main" . }}
+{{ end }}
 
-    {{ partial "footer" . }}
-    {{ partial "scripts" . }}
+{{ partial "footer" . }}
+{{ partial "scripts" . }}
 
-    {{ block "footer" . }}
-    {{ end }}
-  </body>
+{{ block "footer" . }}
+{{ end }}
+</body>
 </html>

@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('./util/index.js'), require('./dom/event-handler.js'), require('./dom/selector-engine.js'), require('./util/scrollbar.js'), require('./base-component.js'), require('./util/backdrop.js'), require('./util/focustrap.js'), require('./util/component-functions.js')) :
-  typeof define === 'function' && define.amd ? define(['./util/index', './dom/event-handler', './dom/selector-engine', './util/scrollbar', './base-component', './util/backdrop', './util/focustrap', './util/component-functions'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Modal = factory(global.Index, global.EventHandler, global.SelectorEngine, global.Scrollbar, global.BaseComponent, global.Backdrop, global.Focustrap, global.ComponentFunctions));
-})(this, (function (index_js, EventHandler, SelectorEngine, ScrollBarHelper, BaseComponent, Backdrop, FocusTrap, componentFunctions_js) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['./util/index', './dom/event-handler', './dom/selector-engine', './util/scrollbar', './base-component', './util/backdrop', './util/focustrap', './util/component-functions'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Modal = factory(global.Index, global.EventHandler, global.SelectorEngine, global.Scrollbar, global.BaseComponent, global.Backdrop, global.Focustrap, global.ComponentFunctions));
+})(this, (function (index_js, EventHandler, SelectorEngine, ScrollBarHelper, BaseComponent, Backdrop, FocusTrap, componentFunctions_js) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -74,9 +75,11 @@
     static get Default() {
       return Default;
     }
+
     static get DefaultType() {
       return DefaultType;
     }
+
     static get NAME() {
       return NAME;
     }
@@ -85,6 +88,7 @@
     toggle(relatedTarget) {
       return this._isShown ? this.hide() : this.show(relatedTarget);
     }
+
     show(relatedTarget) {
       if (this._isShown || this._isTransitioning) {
         return;
@@ -102,6 +106,7 @@
       this._adjustDialog();
       this._backdrop.show(() => this._showElement(relatedTarget));
     }
+
     hide() {
       if (!this._isShown || this._isTransitioning) {
         return;
@@ -116,6 +121,7 @@
       this._element.classList.remove(CLASS_NAME_SHOW);
       this._queueCallback(() => this._hideModal(), this._element, this._isAnimated());
     }
+
     dispose() {
       for (const htmlElement of [window, this._dialog]) {
         EventHandler.off(htmlElement, EVENT_KEY);
@@ -124,6 +130,7 @@
       this._focustrap.deactivate();
       super.dispose();
     }
+
     handleUpdate() {
       this._adjustDialog();
     }
@@ -136,11 +143,13 @@
         isAnimated: this._isAnimated()
       });
     }
+
     _initializeFocusTrap() {
       return new FocusTrap({
         trapElement: this._element
       });
     }
+
     _showElement(relatedTarget) {
       // try to append dynamic modal
       if (!document.body.contains(this._element)) {
@@ -168,6 +177,7 @@
       };
       this._queueCallback(transitionComplete, this._dialog, this._isAnimated());
     }
+
     _addEventListeners() {
       EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS, event => {
         if (event.key !== ESCAPE_KEY) {
@@ -200,6 +210,7 @@
         });
       });
     }
+
     _hideModal() {
       this._element.style.display = 'none';
       this._element.setAttribute('aria-hidden', true);
@@ -213,9 +224,11 @@
         EventHandler.trigger(this._element, EVENT_HIDDEN);
       });
     }
+
     _isAnimated() {
       return this._element.classList.contains(CLASS_NAME_FADE);
     }
+
     _triggerBackdropTransition() {
       const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED);
       if (hideEvent.defaultPrevented) {
@@ -257,6 +270,7 @@
         this._element.style[property] = `${scrollbarWidth}px`;
       }
     }
+
     _resetAdjustments() {
       this._element.style.paddingLeft = '';
       this._element.style.paddingRight = '';

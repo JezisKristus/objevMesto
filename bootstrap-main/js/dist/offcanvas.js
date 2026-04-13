@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('./util/index.js'), require('./util/scrollbar.js'), require('./dom/event-handler.js'), require('./base-component.js'), require('./dom/selector-engine.js'), require('./util/backdrop.js'), require('./util/focustrap.js'), require('./util/component-functions.js')) :
-  typeof define === 'function' && define.amd ? define(['./util/index', './util/scrollbar', './dom/event-handler', './base-component', './dom/selector-engine', './util/backdrop', './util/focustrap', './util/component-functions'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Offcanvas = factory(global.Index, global.Scrollbar, global.EventHandler, global.BaseComponent, global.SelectorEngine, global.Backdrop, global.Focustrap, global.ComponentFunctions));
-})(this, (function (index_js, ScrollBarHelper, EventHandler, BaseComponent, SelectorEngine, Backdrop, FocusTrap, componentFunctions_js) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['./util/index', './util/scrollbar', './dom/event-handler', './base-component', './dom/selector-engine', './util/backdrop', './util/focustrap', './util/component-functions'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Offcanvas = factory(global.Index, global.Scrollbar, global.EventHandler, global.BaseComponent, global.SelectorEngine, global.Backdrop, global.Focustrap, global.ComponentFunctions));
+})(this, (function (index_js, ScrollBarHelper, EventHandler, BaseComponent, SelectorEngine, Backdrop, FocusTrap, componentFunctions_js) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -68,9 +69,11 @@
     static get Default() {
       return Default;
     }
+
     static get DefaultType() {
       return DefaultType;
     }
+
     static get NAME() {
       return NAME;
     }
@@ -79,6 +82,7 @@
     toggle(relatedTarget) {
       return this._isShown ? this.hide() : this.show(relatedTarget);
     }
+
     show(relatedTarget) {
       if (this._isShown) {
         return;
@@ -109,6 +113,7 @@
       };
       this._queueCallback(completeCallBack, this._element, true);
     }
+
     hide() {
       if (!this._isShown) {
         return;
@@ -133,6 +138,7 @@
       };
       this._queueCallback(completeCallback, this._element, true);
     }
+
     dispose() {
       this._backdrop.dispose();
       this._focustrap.deactivate();
@@ -159,11 +165,13 @@
         clickCallback: isVisible ? clickCallback : null
       });
     }
+
     _initializeFocusTrap() {
       return new FocusTrap({
         trapElement: this._element
       });
     }
+
     _addEventListeners() {
       EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS, event => {
         if (event.key !== ESCAPE_KEY) {

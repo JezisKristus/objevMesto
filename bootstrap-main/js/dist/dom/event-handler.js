@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('../util/index.js')) :
-  typeof define === 'function' && define.amd ? define(['../util/index'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.EventHandler = factory(global.Index));
-})(this, (function (index_js) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['../util/index'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.EventHandler = factory(global.Index));
+})(this, (function (index_js) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -38,12 +39,14 @@
   function makeEventUid(element, uid) {
     return uid && `${uid}::${uidEvent++}` || element.uidEvent || uidEvent++;
   }
+
   function getElementEvents(element) {
     const uid = makeEventUid(element);
     element.uidEvent = uid;
     eventRegistry[uid] = eventRegistry[uid] || {};
     return eventRegistry[uid];
   }
+
   function bootstrapHandler(element, fn) {
     return function handler(event) {
       hydrateObj(event, {
@@ -55,6 +58,7 @@
       return fn.apply(element, [event]);
     };
   }
+
   function bootstrapDelegationHandler(element, selector, fn) {
     return function handler(event) {
       const domElements = element.querySelectorAll(selector);
@@ -76,9 +80,11 @@
       }
     };
   }
+
   function findHandler(events, callable, delegationSelector = null) {
     return Object.values(events).find(event => event.callable === callable && event.delegationSelector === delegationSelector);
   }
+
   function normalizeParameters(originalTypeEvent, handler, delegationFunction) {
     const isDelegated = typeof handler === 'string';
     // todo: tooltip passes `false` instead of selector, so we need to check
@@ -89,6 +95,7 @@
     }
     return [isDelegated, callable, typeEvent];
   }
+
   function addHandler(element, originalTypeEvent, handler, delegationFunction, oneOff) {
     if (typeof originalTypeEvent !== 'string' || !element) {
       return;
@@ -123,6 +130,7 @@
     handlers[uid] = fn;
     element.addEventListener(typeEvent, fn, isDelegated);
   }
+
   function removeHandler(element, events, typeEvent, handler, delegationSelector) {
     const fn = findHandler(events[typeEvent], handler, delegationSelector);
     if (!fn) {
@@ -131,6 +139,7 @@
     element.removeEventListener(typeEvent, fn, Boolean(delegationSelector));
     delete events[typeEvent][fn.uidEvent];
   }
+
   function removeNamespacedHandlers(element, events, typeEvent, namespace) {
     const storeElementEvent = events[typeEvent] || {};
     for (const [handlerKey, event] of Object.entries(storeElementEvent)) {
@@ -139,11 +148,13 @@
       }
     }
   }
+
   function getTypeEvent(event) {
     // allow to get the native events from namespaced events ('click.bs.button' --> 'click')
     event = event.replace(stripNameRegex, '');
     return customEvents[event] || event;
   }
+
   const EventHandler = {
     on(element, event, handler, delegationFunction) {
       addHandler(element, event, handler, delegationFunction, false);
@@ -215,6 +226,7 @@
       return evt;
     }
   };
+
   function hydrateObj(obj, meta = {}) {
     for (const [key, value] of Object.entries(meta)) {
       try {

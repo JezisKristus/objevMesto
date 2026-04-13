@@ -16,7 +16,7 @@ app.use('/api/cities', cityRoutes);
 app.use('/api/places', placeRoutes);
 
 app.use((req, res) => {
-    res.status(404).json({ error: 'NOT_FOUND' });
+    res.status(404).json({error: 'NOT_FOUND'});
 });
 
 app.listen(3000, () => {

@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Manipulator = factory());
-})(this, (function () { 'use strict';
+    typeof define === 'function' && define.amd ? define(factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Manipulator = factory());
+})(this, (function () {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -38,9 +39,11 @@
       return value;
     }
   }
+
   function normalizeDataKey(key) {
     return key.replace(/[A-Z]/g, chr => `-${chr.toLowerCase()}`);
   }
+
   const Manipulator = {
     setDataAttribute(element, key, value) {
       element.setAttribute(`data-bs-${normalizeDataKey(key)}`, value);

@@ -78,6 +78,7 @@
   > .btn-group {
     margin: .25rem .125rem;
   }
+
   > .btn-toolbar + .btn-toolbar {
     margin-top: .5rem;
   }
@@ -189,6 +190,7 @@
     }
   }
 }
+
 .bd-example-ratios-breakpoint {
   .ratio-4x3 {
     width: 16rem;
@@ -224,6 +226,7 @@
 .custom-tooltip {
   --bs-tooltip-bg: var(--bs-primary);
 }
+
 // scss-docs-end custom-tooltip
 
 // scss-docs-start custom-popovers
@@ -235,6 +238,7 @@
   --bs-popover-body-padding-x: 1rem;
   --bs-popover-body-padding-y: .5rem;
 }
+
 // scss-docs-end custom-popovers
 
 // Scrollspy demo on fixed height div
@@ -329,14 +333,17 @@
     top: 3rem;
     left: 3rem;
   }
+
   > :nth-child(3) {
     top: 4.5rem;
     left: 4.5rem;
   }
+
   > :nth-child(4) {
     top: 6rem;
     left: 6rem;
   }
+
   > :nth-child(5) {
     top: 7.5rem;
     left: 7.5rem;

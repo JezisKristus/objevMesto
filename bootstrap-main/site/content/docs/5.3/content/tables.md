@@ -8,7 +8,10 @@ toc: true
 
 ## Overview
 
-Due to the widespread use of `<table>` elements across third-party widgets like calendars and date pickers, Bootstrap's tables are **opt-in**. Add the base class `.table` to any `<table>`, then extend with our optional modifier classes or custom styles. All table styles are not inherited in Bootstrap, meaning any nested tables can be styled independent from the parent.
+Due to the widespread use of `<table>` elements across third-party widgets like calendars and date pickers, Bootstrap's
+tables are **opt-in**. Add the base class `.table` to any `<table>`, then extend with our optional modifier classes or
+custom styles. All table styles are not inherited in Bootstrap, meaning any nested tables can be styled independent from
+the parent.
 
 Using the most basic table markup, here's how `.table`-based tables look in Bootstrap.
 
@@ -19,7 +22,8 @@ Using the most basic table markup, here's how `.table`-based tables look in Boot
 Use contextual classes to color tables, table rows or individual cells.
 
 {{< callout info >}}
-**Heads up!** Because of the more complicated CSS used to generate our table variants, they most likely won't see color mode adaptive styling until v6.
+**Heads up!** Because of the more complicated CSS used to generate our table variants, they most likely won't see color
+mode adaptive styling until v6.
 {{< /callout >}}
 
 <div class="bd-example">
@@ -224,12 +228,21 @@ Highlight a table row or cell by adding a `.table-active` class.
 
 ## How do the variants and accented tables work?
 
-For the accented tables ([striped rows](#striped-rows), [striped columns](#striped-columns), [hoverable rows](#hoverable-rows), and [active tables](#active-tables)), we used some techniques to make these effects work for all our [table variants](#variants):
+For the accented
+tables ([striped rows](#striped-rows), [striped columns](#striped-columns), [hoverable rows](#hoverable-rows),
+and [active tables](#active-tables)), we used some techniques to make these effects work for all
+our [table variants](#variants):
 
-- We start by setting the background of a table cell with the `--bs-table-bg` custom property. All table variants then set that custom property to colorize the table cells. This way, we don't get into trouble if semi-transparent colors are used as table backgrounds.
-- Then we add an inset box shadow on the table cells with `box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);` to layer on top of any specified `background-color`. Because we use a huge spread and no blur, the color will be monotone. Since `--bs-table-accent-bg` is unset by default, we don't have a default box shadow.
-- When either `.table-striped`, `.table-striped-columns`, `.table-hover` or `.table-active` classes are added, the `--bs-table-accent-bg` is set to a semitransparent color to colorize the background.
-- For each table variant, we generate a `--bs-table-accent-bg` color with the highest contrast depending on that color. For example, the accent color for `.table-primary` is darker while `.table-dark` has a lighter accent color.
+- We start by setting the background of a table cell with the `--bs-table-bg` custom property. All table variants then
+  set that custom property to colorize the table cells. This way, we don't get into trouble if semi-transparent colors
+  are used as table backgrounds.
+- Then we add an inset box shadow on the table cells with `box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);` to
+  layer on top of any specified `background-color`. Because we use a huge spread and no blur, the color will be
+  monotone. Since `--bs-table-accent-bg` is unset by default, we don't have a default box shadow.
+- When either `.table-striped`, `.table-striped-columns`, `.table-hover` or `.table-active` classes are added, the
+  `--bs-table-accent-bg` is set to a semitransparent color to colorize the background.
+- For each table variant, we generate a `--bs-table-accent-bg` color with the highest contrast depending on that color.
+  For example, the accent color for `.table-primary` is darker while `.table-dark` has a lighter accent color.
 - Text and border colors are generated the same way, and their colors are inherited by default.
 
 Behind the scenes it looks like this:
@@ -266,7 +279,9 @@ Add `.table-sm` to make any `.table` more compact by cutting all cell `padding` 
 
 ## Table group dividers
 
-Add a thicker border, darker between table groups—`<thead>`, `<tbody>`, and `<tfoot>`—with `.table-group-divider`. Customize the color by changing the `border-top-color` (which we don't currently provide a utility class for at this time).
+Add a thicker border, darker between table groups—`<thead>`, `<tbody>`, and `<tfoot>`—with `.table-group-divider`.
+Customize the color by changing the `border-top-color` (which we don't currently provide a utility class for at this
+time).
 
 {{< example >}}
 <table class="table">
@@ -302,7 +317,9 @@ Add a thicker border, darker between table groups—`<thead>`, `<tbody>`, and `<
 
 ## Vertical alignment
 
-Table cells of `<thead>` are always vertical aligned to the bottom. Table cells in `<tbody>` inherit their alignment from `<table>` and are aligned to the top by default. Use the [vertical align]({{< docsref "/utilities/vertical-align" >}}) classes to re-align where needed.
+Table cells of `<thead>` are always vertical aligned to the bottom. Table cells in `<tbody>` inherit their alignment
+from `<table>` and are aligned to the top by default. Use the [vertical align]({{< docsref "
+/utilities/vertical-align" >}}) classes to re-align where needed.
 
 <div class="bd-example">
   <div class="table-responsive">
@@ -447,15 +464,20 @@ Border styles, active styles, and table variants are not inherited by nested tab
 
 ## How nesting works
 
-To prevent _any_ styles from leaking to nested tables, we use the child combinator (`>`) selector in our CSS. Since we need to target all the `td`s and `th`s in the `thead`, `tbody`, and `tfoot`, our selector would look pretty long without it. As such, we use the rather odd looking `.table > :not(caption) > * > *` selector to target all `td`s and `th`s of the `.table`, but none of any potential nested tables.
+To prevent _any_ styles from leaking to nested tables, we use the child combinator (`>`) selector in our CSS. Since we
+need to target all the `td`s and `th`s in the `thead`, `tbody`, and `tfoot`, our selector would look pretty long without
+it. As such, we use the rather odd looking `.table > :not(caption) > * > *` selector to target all `td`s and `th`s of
+the `.table`, but none of any potential nested tables.
 
-Note that if you add `<tr>`s as direct children of a table, those `<tr>` will be wrapped in a `<tbody>` by default, thus making our selectors work as intended.
+Note that if you add `<tr>`s as direct children of a table, those `<tr>` will be wrapped in a `<tbody>` by default, thus
+making our selectors work as intended.
 
 ## Anatomy
 
 ### Table head
 
-Similar to tables and dark tables, use the modifier classes `.table-light` or `.table-dark` to make `<thead>`s appear light or dark gray.
+Similar to tables and dark tables, use the modifier classes `.table-light` or `.table-dark` to make `<thead>`s appear
+light or dark gray.
 
 <div class="bd-example">
 <table class="table">
@@ -604,7 +626,8 @@ Similar to tables and dark tables, use the modifier classes `.table-light` or `.
 
 ### Captions
 
-A `<caption>` functions like a heading for a table. It helps users with screen readers to find a table and understand what it's about and decide if they want to read it.
+A `<caption>` functions like a heading for a table. It helps users with screen readers to find a table and understand
+what it's about and decide if they want to read it.
 
 <div class="bd-example">
   <table class="table">
@@ -663,12 +686,16 @@ You can also put the `<caption>` on the top of the table with `.caption-top`.
 
 ## Responsive tables
 
-Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports by wrapping a `.table` with `.table-responsive`. Or, pick a maximum breakpoint with which to have a responsive table up to by using `.table-responsive{-sm|-md|-lg|-xl|-xxl}`.
+Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports by
+wrapping a `.table` with `.table-responsive`. Or, pick a maximum breakpoint with which to have a responsive table up to
+by using `.table-responsive{-sm|-md|-lg|-xl|-xxl}`.
 
 {{< callout warning >}}
+
 ##### Vertical clipping/truncation
 
-Responsive tables make use of `overflow-y: hidden`, which clips off any content that goes beyond the bottom or top edges of the table. In particular, this can clip off dropdown menus and other third-party widgets.
+Responsive tables make use of `overflow-y: hidden`, which clips off any content that goes beyond the bottom or top edges
+of the table. In particular, this can clip off dropdown menus and other third-party widgets.
 {{< /callout >}}
 
 ### Always responsive
@@ -744,7 +771,8 @@ Across every breakpoint, use `.table-responsive` for horizontally scrolling tabl
 
 ### Breakpoint specific
 
-Use `.table-responsive{-sm|-md|-lg|-xl|-xxl}` as needed to create responsive tables up to a particular breakpoint. From that breakpoint and up, the table will behave normally and not scroll horizontally.
+Use `.table-responsive{-sm|-md|-lg|-xl|-xxl}` as needed to create responsive tables up to a particular breakpoint. From
+that breakpoint and up, the table will behave normally and not scroll horizontally.
 
 **These tables may appear broken until their responsive styles apply at specific viewport widths.**
 
@@ -835,5 +863,6 @@ Use `.table-responsive{-sm|-md|-lg|-xl|-xxl}` as needed to create responsive tab
 
 ### Customizing
 
-- The factor variables (`$table-striped-bg-factor`, `$table-active-bg-factor` & `$table-hover-bg-factor`) are used to determine the contrast in table variants.
+- The factor variables (`$table-striped-bg-factor`, `$table-active-bg-factor` & `$table-hover-bg-factor`) are used to
+  determine the contrast in table variants.
 - Apart from the light & dark table variants, theme colors are lightened by the `$table-bg-scale` variable.

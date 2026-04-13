@@ -34,7 +34,7 @@
     })
 
   function setActiveItem() {
-    const { hash } = window.location
+    const {hash} = window.location
 
     if (hash === '') {
       return

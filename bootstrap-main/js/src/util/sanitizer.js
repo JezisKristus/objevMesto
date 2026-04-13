@@ -82,6 +82,7 @@ export const DefaultAllowlist = {
   u: [],
   ul: []
 }
+
 // js-docs-end allow-list
 
 export function sanitizeHtml(unsafeHtml, allowList, sanitizeFunction) {

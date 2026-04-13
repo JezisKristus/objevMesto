@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('./sanitizer.js'), require('./index.js'), require('../dom/selector-engine.js'), require('./config.js')) :
-  typeof define === 'function' && define.amd ? define(['./sanitizer', './index', '../dom/selector-engine', './config'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.TemplateFactory = factory(global.Sanitizer, global.Index, global.SelectorEngine, global.Config));
-})(this, (function (sanitizer_js, index_js, SelectorEngine, Config) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['./sanitizer', './index', '../dom/selector-engine', './config'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.TemplateFactory = factory(global.Sanitizer, global.Index, global.SelectorEngine, global.Config));
+})(this, (function (sanitizer_js, index_js, SelectorEngine, Config) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -59,9 +60,11 @@
     static get Default() {
       return Default;
     }
+
     static get DefaultType() {
       return DefaultType;
     }
+
     static get NAME() {
       return NAME;
     }
@@ -70,9 +73,11 @@
     getContent() {
       return Object.values(this._config.content).map(config => this._resolvePossibleFunction(config)).filter(Boolean);
     }
+
     hasContent() {
       return this.getContent().length > 0;
     }
+
     changeContent(content) {
       this._checkContent(content);
       this._config.content = {
@@ -81,6 +86,7 @@
       };
       return this;
     }
+
     toHtml() {
       const templateWrapper = document.createElement('div');
       templateWrapper.innerHTML = this._maybeSanitize(this._config.template);
@@ -100,6 +106,7 @@
       super._typeCheckConfig(config);
       this._checkContent(config.content);
     }
+
     _checkContent(arg) {
       for (const [selector, content] of Object.entries(arg)) {
         super._typeCheckConfig({
@@ -108,6 +115,7 @@
         }, DefaultContentType);
       }
     }
+
     _setContent(template, content, selector) {
       const templateElement = SelectorEngine.findOne(selector, template);
       if (!templateElement) {
@@ -128,12 +136,15 @@
       }
       templateElement.textContent = content;
     }
+
     _maybeSanitize(arg) {
       return this._config.sanitize ? sanitizer_js.sanitizeHtml(arg, this._config.allowList, this._config.sanitizeFn) : arg;
     }
+
     _resolvePossibleFunction(arg) {
       return index_js.execute(arg, [this]);
     }
+
     _putElementInTemplate(element, templateElement) {
       if (this._config.html) {
         templateElement.innerHTML = '';

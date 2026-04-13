@@ -26,7 +26,8 @@ Use the mixin in SCSS:
 }
 ```
 
-The following example shows how the clearfix can be used. Without the clearfix the wrapping div would not span around the buttons which would cause a broken layout.
+The following example shows how the clearfix can be used. Without the clearfix the wrapping div would not span around
+the buttons which would cause a broken layout.
 
 {{< example >}}
 <div class="bg-info clearfix">

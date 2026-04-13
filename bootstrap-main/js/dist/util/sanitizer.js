@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.Sanitizer = {}));
-})(this, (function (exports) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.Sanitizer = {}));
+})(this, (function (exports) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -77,6 +78,7 @@
     u: [],
     ul: []
   };
+
   function sanitizeHtml(unsafeHtml, allowList, sanitizeFunction) {
     if (!unsafeHtml.length) {
       return unsafeHtml;
@@ -107,7 +109,7 @@
   exports.DefaultAllowlist = DefaultAllowlist;
   exports.sanitizeHtml = sanitizeHtml;
 
-  Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+  Object.defineProperty(exports, Symbol.toStringTag, {value: 'Module'});
 
 }));
 //# sourceMappingURL=sanitizer.js.map

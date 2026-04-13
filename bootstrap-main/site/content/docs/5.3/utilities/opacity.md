@@ -6,7 +6,8 @@ group: utilities
 added: "5.1"
 ---
 
-The `opacity` property sets the opacity level for an element. The opacity level describes the transparency level, where `1` is not transparent at all, `.5` is 50% visible, and `0` is completely transparent.
+The `opacity` property sets the opacity level for an element. The opacity level describes the transparency level, where
+`1` is not transparent at all, `.5` is 50% visible, and `0` is completely transparent.
 
 Set the `opacity` of an element using `.opacity-{value}` utilities.
 
@@ -26,6 +27,7 @@ Set the `opacity` of an element using `.opacity-{value}` utilities.
 
 ### Utilities API
 
-Opacity utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
+Opacity utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{<
+docsref "/utilities/api#using-the-api" >}})
 
 {{< scss-docs name="utils-opacity" file="scss/_utilities.scss" >}}
