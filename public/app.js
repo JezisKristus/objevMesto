@@ -38,7 +38,7 @@ function starsHTML(avg, count) {
     return html;
 }
 
-function placeholderImg(w, h) {
+function placeholderImg(w, h) { // vygenerováno
     return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="${w}" height="${h}" fill="#ddd"/>
         <line x1="0" y1="0" x2="${w}" y2="${h}" stroke="#aaa" stroke-width="1.5"/>
@@ -104,22 +104,13 @@ async function renderCities() {
     grid.className = 'city-grid';
 
     const fragment = document.createDocumentFragment();
+    const template = document.getElementById('cityCardTemplate');
     cachedCities.forEach(city => {
-        const card = document.createElement('div');
-        card.className = 'city-card';
+        const card = document.importNode(template.content, true).firstElementChild;
         card.id = `cityCard-${city.id}`;
         card.onclick = () => selectCity(city.id, escHtml(city.name));
-
-        const imgDiv = document.createElement('div');
-        imgDiv.className = 'city-card-img';
-        imgDiv.innerHTML = placeholderImg(200, 120);
-        card.appendChild(imgDiv);
-
-        const nameDiv = document.createElement('div');
-        nameDiv.className = 'city-card-name';
-        nameDiv.textContent = escHtml(city.name);
-        card.appendChild(nameDiv);
-
+        card.querySelector('.city-card-img').innerHTML = placeholderImg(200, 120);
+        card.querySelector('.city-card-name').textContent = escHtml(city.name);
         fragment.appendChild(card);
     });
     grid.appendChild(fragment);
@@ -186,32 +177,15 @@ function renderCitySection(section, cityId, cityName, places) {
         grid.className = 'places-grid';
 
         const fragment = document.createDocumentFragment();
+        const template = document.getElementById('placeCardTemplate');
         places.forEach(p => {
-            const card = document.createElement('div');
-            card.className = 'place-card';
+            const card = document.importNode(template.content, true).firstElementChild;
             card.id = `placeCard-${p.id}`;
             card.onclick = () => openPlaceDetail(p.id);
-
-            const imgDiv = document.createElement('div');
-            imgDiv.className = 'place-card-img';
-            imgDiv.innerHTML = placeholderImg(155, 90);
-            card.appendChild(imgDiv);
-
-            const body = document.createElement('div');
-            body.className = 'place-card-body';
-
-            const nameDiv = document.createElement('div');
-            nameDiv.className = 'place-card-name';
-            nameDiv.title = escHtml(p.name);
-            nameDiv.textContent = escHtml(p.name);
-            body.appendChild(nameDiv);
-
-            const typeDiv = document.createElement('div');
-            typeDiv.className = 'place-card-type';
-            typeDiv.textContent = escHtml(p.type);
-            body.appendChild(typeDiv);
-
-            card.appendChild(body);
+            card.querySelector('.place-card-img').innerHTML = placeholderImg(155, 90);
+            card.querySelector('.place-card-name').textContent = escHtml(p.name);
+            card.querySelector('.place-card-name').title = escHtml(p.name);
+            card.querySelector('.place-card-type').textContent = escHtml(p.type);
             fragment.appendChild(card);
         });
         grid.appendChild(fragment);
@@ -245,94 +219,41 @@ async function openPlaceDetail(placeId) {
 }
 
 function renderDetailPanel(place, comments) {
-    const avg   = place.stats.avgRating;
-    const count = place.stats.ratingCount;
+    const template = document.getElementById('detailTemplate');
+    const clone = document.importNode(template.content, true);
 
-    let commentsHTML = '';
+    clone.querySelector('.detail-place-name').textContent = escHtml(place.name);
+    clone.querySelector('.detail-actions .icon-btn').onclick = openEditPlaceModal;
+    clone.querySelector('.detail-actions .icon-btn.delete').onclick = () => deletePlace(place.id);
+
+    clone.querySelector('.detail-place-img').innerHTML = placeholderImg(380, 160);
+    clone.querySelector('.detail-address span').textContent = escHtml(place.address);
+    clone.querySelector('.detail-desc').textContent = escHtml(place.description);
+
+    const avg = place.stats.avgRating;
+    const count = place.stats.ratingCount;
+    clone.querySelector('.rating-summary').innerHTML = starsHTML(avg, count);
+
+    const starButtons = clone.querySelectorAll('.star-btn');
+    starButtons.forEach((btn, index) => {
+        const stars = index + 1;
+        btn.onclick = () => submitRating(place.id, stars);
+    });
+
+    const commentsList = clone.querySelector('#commentsList');
     if (comments.length === 0) {
-        commentsHTML = '<div class="empty-state" style="padding:0.8rem 0;">Zatím žádné komentáře.</div>';
+        commentsList.innerHTML = '<div class="empty-state" style="padding:0.8rem 0;">Zatím žádné komentáře.</div>';
     } else {
         comments.forEach(c => {
-            const date = new Date(c.created_at).toLocaleString('cs-CZ', {
-                day: '2-digit', month: '2-digit', year: 'numeric',
-                hour: '2-digit', minute: '2-digit'
-            });
-            commentsHTML += `
-                <div class="comment-item" id="comment-${c.id}">
-                    <div class="comment-meta">
-                        <span class="comment-author">
-                            <i class="bi bi-person" style="font-size: 13px;"></i>
-                            ${escHtml(c.author_name)}
-                        </span>
-                        <span class="comment-date">${date}</span>
-                        <button class="btn-delete-comment" onclick="deleteComment(${c.id})" title="Smazat komentář">
-                            <i class="bi bi-trash" style="font-size: 13px;"></i>
-                        </button>
-                    </div>
-                    <div class="comment-text">${escHtml(c.text)}</div>
-                </div>`;
+            const commentDiv = createCommentItem(c);
+            commentsList.appendChild(commentDiv);
         });
     }
+    const commentForm = clone.querySelector('#commentForm');
+    commentForm.onsubmit = (e) => submitComment(e, place.id);
 
-    detailPanel.innerHTML = `
-        <div class="detail-header">
-            <h3 class="detail-place-name">${escHtml(place.name)}</h3>
-            <div class="detail-actions">
-                <button class="icon-btn" onclick="openEditPlaceModal()" title="Upravit místo">
-                    <i class="bi bi-pencil" style="font-size: 14px;"></i>
-                </button>
-                <button class="icon-btn delete" onclick="deletePlace(${place.id})" title="Smazat místo">
-                    <i class="bi bi-trash" style="font-size: 14px;"></i>
-                </button>
-            </div>
-        </div>
-
-        <div class="detail-place-img">${placeholderImg(380, 160)}</div>
-
-        <div class="detail-address">
-            <i class="bi bi-geo-alt" style="font-size: 12px; margin-right:3px; opacity:0.6"></i>
-            ${escHtml(place.address)}
-        </div>
-
-        <div class="detail-desc">${escHtml(place.description)}</div>
-
-        <hr class="detail-divider">
-
-        <div class="rating-summary">
-            ${starsHTML(avg, count)}
-        </div>
-
-        <div class="star-picker">
-            <span class="star-picker-label">Přidat hodnocení:</span>
-            ${[1,2,3,4,5].map(n =>
-        `<button class="star-btn" onclick="submitRating(${place.id}, ${n})">${n}★</button>`
-    ).join('')}
-        </div>
-
-        <div class="comments-section">
-            <h6>Komentáře</h6>
-            <div id="commentsList">${commentsHTML}</div>
-        </div>
-
-        <div class="new-comment-form">
-            <h6>Nový komentář</h6>
-            <form id="commentForm" onsubmit="submitComment(event, ${place.id})" novalidate>
-                <div class="mb-3">
-                    <label class="form-label" for="commentName">Jméno</label>
-                    <input type="text" class="form-control" id="commentName"
-                           placeholder="Vaše jméno" required minlength="2" maxlength="255">
-                    <div class="invalid-feedback">Vyplňte jméno (min. 2 znaky).</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="commentText">Text komentáře</label>
-                    <textarea class="form-control" id="commentText" rows="3"
-                              placeholder="Napište komentář..." required></textarea>
-                    <div class="invalid-feedback">Vyplňte text komentáře.</div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-sm">Odeslat</button>
-            </form>
-        </div>`;
-
+    detailPanel.innerHTML = '';
+    detailPanel.appendChild(clone);
     detailPanel.dataset.place = JSON.stringify(place);
 }
 
@@ -399,7 +320,6 @@ async function savePlaceFromForm() {
         placeForm.classList.remove('was-validated');
 
         if (!id && newPlace) {
-            // Add new place incrementally
             const section = document.getElementById('citySection');
             if (section) {
                 const grid = section.querySelector('.places-grid');
@@ -420,31 +340,14 @@ async function savePlaceFromForm() {
 }
 
 function createPlaceCard(p) {
-    const card = document.createElement('div');
-    card.className = 'place-card';
+    const template = document.getElementById('placeCardTemplate');
+    const card = document.importNode(template.content, true).firstElementChild;
     card.id = `placeCard-${p.id}`;
     card.onclick = () => openPlaceDetail(p.id);
-
-    const imgDiv = document.createElement('div');
-    imgDiv.className = 'place-card-img';
-    imgDiv.innerHTML = placeholderImg(155, 90);
-    card.appendChild(imgDiv);
-
-    const body = document.createElement('div');
-    body.className = 'place-card-body';
-
-    const nameDiv = document.createElement('div');
-    nameDiv.className = 'place-card-name';
-    nameDiv.title = escHtml(p.name);
-    nameDiv.textContent = escHtml(p.name);
-    body.appendChild(nameDiv);
-
-    const typeDiv = document.createElement('div');
-    typeDiv.className = 'place-card-type';
-    typeDiv.textContent = escHtml(p.type);
-    body.appendChild(typeDiv);
-
-    card.appendChild(body);
+    card.querySelector('.place-card-img').innerHTML = placeholderImg(155, 90);
+    card.querySelector('.place-card-name').textContent = escHtml(p.name);
+    card.querySelector('.place-card-name').title = escHtml(p.name);
+    card.querySelector('.place-card-type').textContent = escHtml(p.type);
     return card;
 }
 
@@ -540,26 +443,8 @@ async function refreshComments(placeId) {
 
         list.innerHTML = '';
         comments.forEach(c => {
-            const date = new Date(c.created_at).toLocaleString('cs-CZ', {
-                day: '2-digit', month: '2-digit', year: 'numeric',
-                hour: '2-digit', minute: '2-digit'
-            });
-            const div = document.createElement('div');
-            div.className = 'comment-item';
-            div.id = `comment-${c.id}`;
-            div.innerHTML = `
-                <div class="comment-meta">
-                    <span class="comment-author">
-                        <i class="bi bi-person" style="font-size: 13px;"></i>
-                        ${escHtml(c.author_name)}
-                    </span>
-                    <span class="comment-date">${date}</span>
-                    <button class="btn-delete-comment" onclick="deleteComment(${c.id})" title="Smazat komentář">
-                        <i class="bi bi-trash" style="font-size: 13px;"></i>
-                    </button>
-                </div>
-                <div class="comment-text">${escHtml(c.text)}</div>`;
-            list.appendChild(div);
+            const commentDiv = createCommentItem(c);
+            list.appendChild(commentDiv);
         });
     } catch { /* ignore */ }
 }
@@ -598,4 +483,19 @@ function escHtml(str) {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
+}
+
+function createCommentItem(c) {
+    const template = document.getElementById('commentTemplate');
+    const div = document.importNode(template.content, true).firstElementChild;
+    div.id = `comment-${c.id}`;
+    const date = new Date(c.created_at).toLocaleString('cs-CZ', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+    });
+    div.querySelector('.comment-author span').textContent = escHtml(c.author_name);
+    div.querySelector('.comment-date').textContent = date;
+    div.querySelector('.btn-delete-comment').onclick = () => deleteComment(c.id);
+    div.querySelector('.comment-text').textContent = escHtml(c.text);
+    return div;
 }
