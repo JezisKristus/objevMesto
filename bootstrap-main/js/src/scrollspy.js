@@ -8,7 +8,7 @@
 import BaseComponent from './base-component.js'
 import EventHandler from './dom/event-handler.js'
 import SelectorEngine from './dom/selector-engine.js'
-import { defineJQueryPlugin, getElement, isDisabled, isVisible } from './util/index.js'
+import {defineJQueryPlugin, getElement, isDisabled, isVisible} from './util/index.js'
 
 /**
  * Constants
@@ -137,7 +137,7 @@ class ScrollSpy extends BaseComponent {
         const root = this._rootElement || window
         const height = observableSection.offsetTop - this._element.offsetTop
         if (root.scrollTo) {
-          root.scrollTo({ top: height, behavior: 'smooth' })
+          root.scrollTo({top: height, behavior: 'smooth'})
           return
         }
 
@@ -228,7 +228,7 @@ class ScrollSpy extends BaseComponent {
     target.classList.add(CLASS_NAME_ACTIVE)
     this._activateParents(target)
 
-    EventHandler.trigger(this._element, EVENT_ACTIVATE, { relatedTarget: target })
+    EventHandler.trigger(this._element, EVENT_ACTIVATE, {relatedTarget: target})
   }
 
   _activateParents(target) {

@@ -119,7 +119,7 @@ class Collapse extends BaseComponent {
     if (this._config.parent) {
       activeChildren = this._getFirstLevelChildren(SELECTOR_ACTIVES)
         .filter(element => element !== this._element)
-        .map(element => Collapse.getOrCreateInstance(element, { toggle: false }))
+        .map(element => Collapse.getOrCreateInstance(element, {toggle: false}))
     }
 
     if (activeChildren.length && activeChildren[0]._isTransitioning) {
@@ -284,7 +284,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (
   }
 
   for (const element of SelectorEngine.getMultipleElementsFromSelector(this)) {
-    Collapse.getOrCreateInstance(element, { toggle: false }).toggle()
+    Collapse.getOrCreateInstance(element, {toggle: false}).toggle()
   }
 })
 

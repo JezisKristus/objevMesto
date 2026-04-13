@@ -5,12 +5,13 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@popperjs/core'), require('./util/index.js'), require('./dom/event-handler.js'), require('./dom/manipulator.js'), require('./dom/selector-engine.js'), require('./base-component.js')) :
-  typeof define === 'function' && define.amd ? define(['@popperjs/core', './util/index', './dom/event-handler', './dom/manipulator', './dom/selector-engine', './base-component'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Dropdown = factory(global["@popperjs/core"], global.Index, global.EventHandler, global.Manipulator, global.SelectorEngine, global.BaseComponent));
-})(this, (function (Popper, index_js, EventHandler, Manipulator, SelectorEngine, BaseComponent) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['@popperjs/core', './util/index', './dom/event-handler', './dom/manipulator', './dom/selector-engine', './base-component'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Dropdown = factory(global["@popperjs/core"], global.Index, global.EventHandler, global.Manipulator, global.SelectorEngine, global.BaseComponent));
+})(this, (function (Popper, index_js, EventHandler, Manipulator, SelectorEngine, BaseComponent) {
+  'use strict';
 
   function _interopNamespaceDefault(e) {
-    const n = Object.create(null, { [Symbol.toStringTag]: { value: 'Module' } });
+    const n = Object.create(null, {[Symbol.toStringTag]: {value: 'Module'}});
     if (e) {
       for (const k in e) {
         if (k !== 'default') {
@@ -111,9 +112,11 @@
     static get Default() {
       return Default;
     }
+
     static get DefaultType() {
       return DefaultType;
     }
+
     static get NAME() {
       return NAME;
     }
@@ -122,6 +125,7 @@
     toggle() {
       return this._isShown() ? this.hide() : this.show();
     }
+
     show() {
       if (index_js.isDisabled(this._element) || this._isShown()) {
         return;
@@ -150,6 +154,7 @@
       this._element.classList.add(CLASS_NAME_SHOW);
       EventHandler.trigger(this._element, EVENT_SHOWN, relatedTarget);
     }
+
     hide() {
       if (index_js.isDisabled(this._element) || !this._isShown()) {
         return;
@@ -159,12 +164,14 @@
       };
       this._completeHide(relatedTarget);
     }
+
     dispose() {
       if (this._popper) {
         this._popper.destroy();
       }
       super.dispose();
     }
+
     update() {
       this._inNavbar = this._detectNavbar();
       if (this._popper) {
@@ -195,6 +202,7 @@
       Manipulator.removeDataAttribute(this._menu, 'popper');
       EventHandler.trigger(this._element, EVENT_HIDDEN, relatedTarget);
     }
+
     _getConfig(config) {
       config = super._getConfig(config);
       if (typeof config.reference === 'object' && !index_js.isElement(config.reference) && typeof config.reference.getBoundingClientRect !== 'function') {
@@ -203,6 +211,7 @@
       }
       return config;
     }
+
     _createPopper() {
       if (typeof Popper__namespace === 'undefined') {
         throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
@@ -218,9 +227,11 @@
       const popperConfig = this._getPopperConfig();
       this._popper = Popper__namespace.createPopper(referenceElement, this._menu, popperConfig);
     }
+
     _isShown() {
       return this._menu.classList.contains(CLASS_NAME_SHOW);
     }
+
     _getPlacement() {
       const parentDropdown = this._parent;
       if (parentDropdown.classList.contains(CLASS_NAME_DROPEND)) {
@@ -243,9 +254,11 @@
       }
       return isEnd ? PLACEMENT_BOTTOMEND : PLACEMENT_BOTTOM;
     }
+
     _detectNavbar() {
       return this._element.closest(SELECTOR_NAVBAR) !== null;
     }
+
     _getOffset() {
       const {
         offset
@@ -258,6 +271,7 @@
       }
       return offset;
     }
+
     _getPopperConfig() {
       const defaultBsPopperConfig = {
         placement: this._getPlacement(),
@@ -287,10 +301,11 @@
         ...index_js.execute(this._config.popperConfig, [defaultBsPopperConfig])
       };
     }
+
     _selectMenuItem({
-      key,
-      target
-    }) {
+                      key,
+                      target
+                    }) {
       const items = SelectorEngine.find(SELECTOR_VISIBLE_ITEMS, this._menu).filter(element => index_js.isVisible(element));
       if (!items.length) {
         return;
@@ -314,6 +329,7 @@
         data[config]();
       });
     }
+
     static clearMenus(event) {
       if (event.button === RIGHT_MOUSE_BUTTON || event.type === 'keyup' && event.key !== TAB_KEY) {
         return;
@@ -343,6 +359,7 @@
         context._completeHide(relatedTarget);
       }
     }
+
     static dataApiKeydownHandler(event) {
       // If not an UP | DOWN | ESCAPE key => not a dropdown command
       // If input/textarea && if key is other than ESCAPE => not a dropdown command

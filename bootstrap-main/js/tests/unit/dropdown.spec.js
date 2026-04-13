@@ -1,7 +1,7 @@
 import EventHandler from '../../src/dom/event-handler.js'
 import Dropdown from '../../src/dropdown.js'
-import { noop } from '../../src/util/index.js'
-import { clearFixture, createEvent, getFixture, jQueryMock } from '../helpers/fixture.js'
+import {noop} from '../../src/util/index.js'
+import {clearFixture, createEvent, getFixture, jQueryMock} from '../helpers/fixture.js'
 
 describe('Dropdown', () => {
   let fixtureEl
@@ -162,7 +162,7 @@ describe('Dropdown', () => {
       ].join('')
 
       const btnDropdown = fixtureEl.querySelector('[data-bs-toggle="dropdown"]')
-      const getPopperConfig = jasmine.createSpy('getPopperConfig').and.returnValue({ placement: 'left' })
+      const getPopperConfig = jasmine.createSpy('getPopperConfig').and.returnValue({placement: 'left'})
       const dropdown = new Dropdown(btnDropdown, {
         popperConfig: getPopperConfig
       })
@@ -515,7 +515,7 @@ describe('Dropdown', () => {
 
         const btnDropdown = fixtureEl.querySelector('[data-bs-toggle="dropdown"]')
         const dropdown = new Dropdown(btnDropdown, {
-          reference: { 0: fixtureEl, jquery: 'jQuery' }
+          reference: {0: fixtureEl, jquery: 'jQuery'}
         })
 
         btnDropdown.addEventListener('shown.bs.dropdown', () => {
@@ -2015,9 +2015,9 @@ describe('Dropdown', () => {
           resolve()
         })
 
-        const keydownEscape = createEvent('keydown', { bubbles: true })
+        const keydownEscape = createEvent('keydown', {bubbles: true})
         keydownEscape.key = 'Escape'
-        const keyupEscape = createEvent('keyup', { bubbles: true })
+        const keyupEscape = createEvent('keyup', {bubbles: true})
         keyupEscape.key = 'Escape'
 
         toggle.focus()
@@ -2050,9 +2050,9 @@ describe('Dropdown', () => {
           resolve()
         })
 
-        const keydownEscape = createEvent('keydown', { bubbles: true })
+        const keydownEscape = createEvent('keydown', {bubbles: true})
         keydownEscape.key = 'Escape'
-        const keyupEscape = createEvent('keyup', { bubbles: true })
+        const keyupEscape = createEvent('keyup', {bubbles: true})
         keyupEscape.key = 'Escape'
 
         toggle.click()
@@ -2075,7 +2075,7 @@ describe('Dropdown', () => {
         const toggle = fixtureEl.querySelector('[data-bs-toggle="dropdown"]')
 
         toggle.addEventListener('shown.bs.dropdown', () => {
-          const keydownEvent = createEvent('keydown', { bubbles: true })
+          const keydownEvent = createEvent('keydown', {bubbles: true})
           keydownEvent.key = 'ArrowDown'
           toggle.dispatchEvent(keydownEvent)
           keydownEvent.key = 'Escape'

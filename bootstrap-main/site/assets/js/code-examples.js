@@ -44,7 +44,7 @@
    */
   function snippetButtonTooltip(selector, title) {
     document.querySelectorAll(selector).forEach(btn => {
-      bootstrap.Tooltip.getOrCreateInstance(btn, { title })
+      bootstrap.Tooltip.getOrCreateInstance(btn, {title})
     })
   }
 
@@ -63,10 +63,10 @@
     const originalXhref = iconFirstChild.getAttributeNS(namespace, 'href')
     const originalTitle = event.trigger.title
 
-    tooltipBtn.setContent({ '.tooltip-inner': 'Copied!' })
+    tooltipBtn.setContent({'.tooltip-inner': 'Copied!'})
     event.trigger.addEventListener('hidden.bs.tooltip', () => {
-      tooltipBtn.setContent({ '.tooltip-inner': btnTitle })
-    }, { once: true })
+      tooltipBtn.setContent({'.tooltip-inner': btnTitle})
+    }, {once: true})
     event.clearSelection()
     iconFirstChild.setAttributeNS(namespace, 'href', originalXhref.replace('clipboard', 'check2'))
 
@@ -81,9 +81,9 @@
     const fallbackMsg = `Press ${modifierKey}C to copy`
     const tooltipBtn = bootstrap.Tooltip.getInstance(event.trigger)
 
-    tooltipBtn.setContent({ '.tooltip-inner': fallbackMsg })
+    tooltipBtn.setContent({'.tooltip-inner': fallbackMsg})
     event.trigger.addEventListener('hidden.bs.tooltip', () => {
-      tooltipBtn.setContent({ '.tooltip-inner': btnTitle })
-    }, { once: true })
+      tooltipBtn.setContent({'.tooltip-inner': btnTitle})
+    }, {once: true})
   })
 })()

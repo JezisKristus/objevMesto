@@ -8,11 +8,15 @@ toc: true
 
 ## How it works
 
-Change the value of the [`display` property](https://developer.mozilla.org/en-US/docs/Web/CSS/display) with our responsive display utility classes. We purposely support only a subset of all possible values for `display`. Classes can be combined for various effects as you need.
+Change the value of the [`display` property](https://developer.mozilla.org/en-US/docs/Web/CSS/display) with our
+responsive display utility classes. We purposely support only a subset of all possible values for `display`. Classes can
+be combined for various effects as you need.
 
 ## Notation
 
-Display utility classes that apply to all [breakpoints]({{< docsref "/layout/breakpoints" >}}), from `xs` to `xxl`, have no breakpoint abbreviation in them. This is because those classes are applied from `min-width: 0;` and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation.
+Display utility classes that apply to all [breakpoints]({{< docsref "/layout/breakpoints" >}}), from `xs` to `xxl`, have
+no breakpoint abbreviation in them. This is because those classes are applied from `min-width: 0;` and up, and thus are
+not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation.
 
 As such, the classes are named using the format:
 
@@ -35,7 +39,8 @@ Where *value* is one of:
 
 The display values can be altered by changing the `display` values defined in `$utilities` and recompiling the SCSS.
 
-The media queries affect screen widths with the given breakpoint *or larger*. For example, `.d-lg-none` sets `display: none;` on `lg`, `xl`, and `xxl` screens.
+The media queries affect screen widths with the given breakpoint *or larger*. For example, `.d-lg-none` sets
+`display: none;` on `lg`, `xl`, and `xxl` screens.
 
 ## Examples
 
@@ -51,11 +56,15 @@ The media queries affect screen widths with the given breakpoint *or larger*. Fo
 
 ## Hiding elements
 
-For faster mobile-friendly development, use responsive display classes for showing and hiding elements by device. Avoid creating entirely different versions of the same site, instead hide elements responsively for each screen size.
+For faster mobile-friendly development, use responsive display classes for showing and hiding elements by device. Avoid
+creating entirely different versions of the same site, instead hide elements responsively for each screen size.
 
-To hide elements simply use the `.d-none` class or one of the `.d-{sm,md,lg,xl,xxl}-none` classes for any responsive screen variation.
+To hide elements simply use the `.d-none` class or one of the `.d-{sm,md,lg,xl,xxl}-none` classes for any responsive
+screen variation.
 
-To show an element only on a given interval of screen sizes you can combine one `.d-*-none` class with a `.d-*-*` class, for example `.d-none .d-md-block .d-xl-none .d-xxl-none` will hide the element for all screen sizes except on medium and large devices.
+To show an element only on a given interval of screen sizes you can combine one `.d-*-none` class with a `.d-*-*` class,
+for example `.d-none .d-md-block .d-xl-none .d-xxl-none` will hide the element for all screen sizes except on medium and
+large devices.
 
 {{< bs-table >}}
 | Screen size | Class |
@@ -83,7 +92,8 @@ To show an element only on a given interval of screen sizes you can combine one 
 
 ## Display in print
 
-Change the `display` value of elements when printing with our print display utility classes. Includes support for the same `display` values as our responsive `.d-*` utilities.
+Change the `display` value of elements when printing with our print display utility classes. Includes support for the
+same `display` values as our responsive `.d-*` utilities.
 
 - `.d-print-none`
 - `.d-print-inline`
@@ -109,6 +119,7 @@ The print and display classes can be combined.
 
 ### Utilities API
 
-Display utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
+Display utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{<
+docsref "/utilities/api#using-the-api" >}})
 
 {{< scss-docs name="utils-display" file="scss/_utilities.scss" >}}

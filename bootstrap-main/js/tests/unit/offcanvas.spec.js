@@ -1,8 +1,8 @@
 import EventHandler from '../../src/dom/event-handler.js'
 import Offcanvas from '../../src/offcanvas.js'
-import { isVisible } from '../../src/util/index.js'
+import {isVisible} from '../../src/util/index.js'
 import ScrollBarHelper from '../../src/util/scrollbar.js'
-import { clearBodyAndDocument, clearFixture, createEvent, getFixture, jQueryMock } from '../helpers/fixture.js'
+import {clearBodyAndDocument, clearFixture, createEvent, getFixture, jQueryMock} from '../helpers/fixture.js'
 
 describe('Offcanvas', () => {
   let fixtureEl
@@ -78,7 +78,7 @@ describe('Offcanvas', () => {
       fixtureEl.innerHTML = '<div class="offcanvas"></div>'
 
       const offCanvasEl = fixtureEl.querySelector('.offcanvas')
-      const offCanvas = new Offcanvas(offCanvasEl, { backdrop: 'static' })
+      const offCanvas = new Offcanvas(offCanvasEl, {backdrop: 'static'})
       const keyDownEsc = createEvent('keydown')
       keyDownEsc.key = 'Escape'
 
@@ -109,7 +109,7 @@ describe('Offcanvas', () => {
         fixtureEl.innerHTML = '<div class="offcanvas"></div>'
 
         const offCanvasEl = fixtureEl.querySelector('.offcanvas')
-        const offCanvas = new Offcanvas(offCanvasEl, { keyboard: false })
+        const offCanvas = new Offcanvas(offCanvasEl, {keyboard: false})
         const keyDownEsc = createEvent('keydown')
         keyDownEsc.key = 'Escape'
 
@@ -135,9 +135,9 @@ describe('Offcanvas', () => {
         fixtureEl.innerHTML = '<div class="offcanvas"></div>'
 
         const offCanvasEl = fixtureEl.querySelector('div')
-        const offCanvas = new Offcanvas(offCanvasEl, { backdrop: 'static' })
+        const offCanvas = new Offcanvas(offCanvasEl, {backdrop: 'static'})
 
-        const clickEvent = new Event('mousedown', { bubbles: true, cancelable: true })
+        const clickEvent = new Event('mousedown', {bubbles: true, cancelable: true})
         const spyClick = spyOn(offCanvas._backdrop._config, 'clickCallback').and.callThrough()
         const spyHide = spyOn(offCanvas._backdrop, 'hide').and.callThrough()
         const hidePreventedSpy = jasmine.createSpy('hidePrevented')
@@ -227,7 +227,7 @@ describe('Offcanvas', () => {
         const spyHide = spyOn(ScrollBarHelper.prototype, 'hide').and.callThrough()
         const spyReset = spyOn(ScrollBarHelper.prototype, 'reset').and.callThrough()
         const offCanvasEl = fixtureEl.querySelector('.offcanvas')
-        const offCanvas = new Offcanvas(offCanvasEl, { scroll: true })
+        const offCanvas = new Offcanvas(offCanvasEl, {scroll: true})
 
         offCanvasEl.addEventListener('shown.bs.offcanvas', () => {
           expect(spyHide).not.toHaveBeenCalled()
@@ -248,7 +248,7 @@ describe('Offcanvas', () => {
         const spyHide = spyOn(ScrollBarHelper.prototype, 'hide').and.callThrough()
         const spyReset = spyOn(ScrollBarHelper.prototype, 'reset').and.callThrough()
         const offCanvasEl = fixtureEl.querySelector('.offcanvas')
-        const offCanvas = new Offcanvas(offCanvasEl, { scroll: false })
+        const offCanvas = new Offcanvas(offCanvasEl, {scroll: false})
 
         offCanvasEl.addEventListener('shown.bs.offcanvas', () => {
           expect(spyHide).toHaveBeenCalled()
@@ -267,9 +267,9 @@ describe('Offcanvas', () => {
         fixtureEl.innerHTML = '<div class="offcanvas"></div>'
 
         const offCanvasEl = fixtureEl.querySelector('div')
-        const offCanvas = new Offcanvas(offCanvasEl, { backdrop: true })
+        const offCanvas = new Offcanvas(offCanvasEl, {backdrop: true})
 
-        const clickEvent = new Event('mousedown', { bubbles: true, cancelable: true })
+        const clickEvent = new Event('mousedown', {bubbles: true, cancelable: true})
         const spy = spyOn(offCanvas._backdrop._config, 'clickCallback').and.callThrough()
 
         offCanvasEl.addEventListener('shown.bs.offcanvas', () => {
@@ -828,7 +828,7 @@ describe('Offcanvas', () => {
       jQueryMock.fn.offcanvas = Offcanvas.jQueryInterface
       jQueryMock.elements = [div]
 
-      jQueryMock.fn.offcanvas.call(jQueryMock, { scroll: true })
+      jQueryMock.fn.offcanvas.call(jQueryMock, {scroll: true})
 
       const offcanvas = Offcanvas.getInstance(div)
       expect(offcanvas).not.toBeNull()

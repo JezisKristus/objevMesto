@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('./util/index.js'), require('./dom/event-handler.js'), require('./dom/manipulator.js'), require('./dom/selector-engine.js'), require('./util/swipe.js'), require('./base-component.js')) :
-  typeof define === 'function' && define.amd ? define(['./util/index', './dom/event-handler', './dom/manipulator', './dom/selector-engine', './util/swipe', './base-component'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Carousel = factory(global.Index, global.EventHandler, global.Manipulator, global.SelectorEngine, global.Swipe, global.BaseComponent));
-})(this, (function (index_js, EventHandler, Manipulator, SelectorEngine, Swipe, BaseComponent) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['./util/index', './dom/event-handler', './dom/manipulator', './dom/selector-engine', './util/swipe', './base-component'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Carousel = factory(global.Index, global.EventHandler, global.Manipulator, global.SelectorEngine, global.Swipe, global.BaseComponent));
+})(this, (function (index_js, EventHandler, Manipulator, SelectorEngine, Swipe, BaseComponent) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -99,9 +100,11 @@
     static get Default() {
       return Default;
     }
+
     static get DefaultType() {
       return DefaultType;
     }
+
     static get NAME() {
       return NAME;
     }
@@ -110,6 +113,7 @@
     next() {
       this._slide(ORDER_NEXT);
     }
+
     nextWhenVisible() {
       // FIXME TODO use `document.visibilityState`
       // Don't call next when the page isn't visible
@@ -118,20 +122,24 @@
         this.next();
       }
     }
+
     prev() {
       this._slide(ORDER_PREV);
     }
+
     pause() {
       if (this._isSliding) {
         index_js.triggerTransitionEnd(this._element);
       }
       this._clearInterval();
     }
+
     cycle() {
       this._clearInterval();
       this._updateInterval();
       this._interval = setInterval(() => this.nextWhenVisible(), this._config.interval);
     }
+
     _maybeEnableCycle() {
       if (!this._config.ride) {
         return;
@@ -142,6 +150,7 @@
       }
       this.cycle();
     }
+
     to(index) {
       const items = this._getItems();
       if (index > items.length - 1 || index < 0) {
@@ -158,6 +167,7 @@
       const order = index > activeIndex ? ORDER_NEXT : ORDER_PREV;
       this._slide(order, items[index]);
     }
+
     dispose() {
       if (this._swipeHelper) {
         this._swipeHelper.dispose();
@@ -170,6 +180,7 @@
       config.defaultInterval = config.interval;
       return config;
     }
+
     _addEventListeners() {
       if (this._config.keyboard) {
         EventHandler.on(this._element, EVENT_KEYDOWN, event => this._keydown(event));
@@ -182,6 +193,7 @@
         this._addTouchEventListeners();
       }
     }
+
     _addTouchEventListeners() {
       for (const img of SelectorEngine.find(SELECTOR_ITEM_IMG, this._element)) {
         EventHandler.on(img, EVENT_DRAG_START, event => event.preventDefault());
@@ -212,6 +224,7 @@
       };
       this._swipeHelper = new Swipe(this._element, swipeConfig);
     }
+
     _keydown(event) {
       if (/input|textarea/i.test(event.target.tagName)) {
         return;
@@ -222,9 +235,11 @@
         this._slide(this._directionToOrder(direction));
       }
     }
+
     _getItemIndex(element) {
       return this._getItems().indexOf(element);
     }
+
     _setActiveIndicatorElement(index) {
       if (!this._indicatorsElement) {
         return;
@@ -238,6 +253,7 @@
         newActiveIndicator.setAttribute('aria-current', 'true');
       }
     }
+
     _updateInterval() {
       const element = this._activeElement || this._getActive();
       if (!element) {
@@ -246,6 +262,7 @@
       const elementInterval = Number.parseInt(element.getAttribute('data-bs-interval'), 10);
       this._config.interval = elementInterval || this._config.defaultInterval;
     }
+
     _slide(order, element = null) {
       if (this._isSliding) {
         return;
@@ -297,27 +314,33 @@
         this.cycle();
       }
     }
+
     _isAnimated() {
       return this._element.classList.contains(CLASS_NAME_SLIDE);
     }
+
     _getActive() {
       return SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element);
     }
+
     _getItems() {
       return SelectorEngine.find(SELECTOR_ITEM, this._element);
     }
+
     _clearInterval() {
       if (this._interval) {
         clearInterval(this._interval);
         this._interval = null;
       }
     }
+
     _directionToOrder(direction) {
       if (index_js.isRTL()) {
         return direction === DIRECTION_LEFT ? ORDER_PREV : ORDER_NEXT;
       }
       return direction === DIRECTION_LEFT ? ORDER_NEXT : ORDER_PREV;
     }
+
     _orderToDirection(order) {
       if (index_js.isRTL()) {
         return order === ORDER_PREV ? DIRECTION_LEFT : DIRECTION_RIGHT;

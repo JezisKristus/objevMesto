@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('./index.js'), require('../dom/manipulator.js')) :
-  typeof define === 'function' && define.amd ? define(['./index', '../dom/manipulator'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Config = factory(global.Index, global.Manipulator));
-})(this, (function (index_js, Manipulator) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['./index', '../dom/manipulator'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Config = factory(global.Index, global.Manipulator));
+})(this, (function (index_js, Manipulator) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -25,21 +26,26 @@
     static get Default() {
       return {};
     }
+
     static get DefaultType() {
       return {};
     }
+
     static get NAME() {
       throw new Error('You have to implement the static method "NAME", for each component!');
     }
+
     _getConfig(config) {
       config = this._mergeConfigObj(config);
       config = this._configAfterMerge(config);
       this._typeCheckConfig(config);
       return config;
     }
+
     _configAfterMerge(config) {
       return config;
     }
+
     _mergeConfigObj(config, element) {
       const jsonConfig = index_js.isElement(element) ? Manipulator.getDataAttribute(element, 'config') : {}; // try to parse
 
@@ -50,6 +56,7 @@
         ...(typeof config === 'object' ? config : {})
       };
     }
+
     _typeCheckConfig(config, configTypes = this.constructor.DefaultType) {
       for (const [property, expectedTypes] of Object.entries(configTypes)) {
         const value = config[property];

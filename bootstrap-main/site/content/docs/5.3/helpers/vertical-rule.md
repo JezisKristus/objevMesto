@@ -9,7 +9,8 @@ added: "5.1"
 
 ## How it works
 
-Vertical rules are inspired by the `<hr>` element, allowing you to create vertical dividers in common layouts. They're styled just like `<hr>` elements:
+Vertical rules are inspired by the `<hr>` element, allowing you to create vertical dividers in common layouts. They're
+styled just like `<hr>` elements:
 
 - They're `1px` wide
 - They have `min-height` of `1em`

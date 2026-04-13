@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('./util/index.js'), require('./dom/event-handler.js'), require('./dom/selector-engine.js'), require('./base-component.js')) :
-  typeof define === 'function' && define.amd ? define(['./util/index', './dom/event-handler', './dom/selector-engine', './base-component'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Tab = factory(global.Index, global.EventHandler, global.SelectorEngine, global.BaseComponent));
-})(this, (function (index_js, EventHandler, SelectorEngine, BaseComponent) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['./util/index', './dom/event-handler', './dom/selector-engine', './base-component'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Tab = factory(global.Index, global.EventHandler, global.SelectorEngine, global.BaseComponent));
+})(this, (function (index_js, EventHandler, SelectorEngine, BaseComponent) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -117,6 +118,7 @@
       };
       this._queueCallback(complete, element, element.classList.contains(CLASS_NAME_FADE));
     }
+
     _deactivate(element, relatedElem) {
       if (!element) {
         return;
@@ -139,6 +141,7 @@
       };
       this._queueCallback(complete, element, element.classList.contains(CLASS_NAME_FADE));
     }
+
     _keydown(event) {
       if (![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY].includes(event.key)) {
         return;
@@ -154,19 +157,23 @@
         Tab.getOrCreateInstance(nextActiveElement).show();
       }
     }
+
     _getChildren() {
       // collection of inner elements
       return SelectorEngine.find(SELECTOR_INNER_ELEM, this._parent);
     }
+
     _getActiveElem() {
       return this._getChildren().find(child => this._elemIsActive(child)) || null;
     }
+
     _setInitialAttributes(parent, children) {
       this._setAttributeIfNotExists(parent, 'role', 'tablist');
       for (const child of children) {
         this._setInitialAttributesOnChild(child);
       }
     }
+
     _setInitialAttributesOnChild(child) {
       child = this._getInnerElement(child);
       const isActive = this._elemIsActive(child);
@@ -183,6 +190,7 @@
       // set attributes to the related panel too
       this._setInitialAttributesOnTargetPanel(child);
     }
+
     _setInitialAttributesOnTargetPanel(child) {
       const target = SelectorEngine.getElementFromSelector(child);
       if (!target) {
@@ -193,6 +201,7 @@
         this._setAttributeIfNotExists(target, 'aria-labelledby', `${child.id}`);
       }
     }
+
     _toggleDropDown(element, open) {
       const outerElem = this._getOuterElement(element);
       if (!outerElem.classList.contains(CLASS_DROPDOWN)) {
@@ -208,11 +217,13 @@
       toggle(SELECTOR_DROPDOWN_MENU, CLASS_NAME_SHOW);
       outerElem.setAttribute('aria-expanded', open);
     }
+
     _setAttributeIfNotExists(element, attribute, value) {
       if (!element.hasAttribute(attribute)) {
         element.setAttribute(attribute, value);
       }
     }
+
     _elemIsActive(elem) {
       return elem.classList.contains(CLASS_NAME_ACTIVE);
     }

@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('../dom/event-handler.js'), require('./index.js'), require('./config.js')) :
-  typeof define === 'function' && define.amd ? define(['../dom/event-handler', './index', './config'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Backdrop = factory(global.EventHandler, global.Index, global.Config));
-})(this, (function (EventHandler, index_js, Config) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['../dom/event-handler', './index', './config'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Backdrop = factory(global.EventHandler, global.Index, global.Config));
+})(this, (function (EventHandler, index_js, Config) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -57,9 +58,11 @@
     static get Default() {
       return Default;
     }
+
     static get DefaultType() {
       return DefaultType;
     }
+
     static get NAME() {
       return NAME;
     }
@@ -80,6 +83,7 @@
         index_js.execute(callback);
       });
     }
+
     hide(callback) {
       if (!this._config.isVisible) {
         index_js.execute(callback);
@@ -91,6 +95,7 @@
         index_js.execute(callback);
       });
     }
+
     dispose() {
       if (!this._isAppended) {
         return;
@@ -112,11 +117,13 @@
       }
       return this._element;
     }
+
     _configAfterMerge(config) {
       // use getElement() with the default "body" to get a fresh Element on each instantiation
       config.rootElement = index_js.getElement(config.rootElement);
       return config;
     }
+
     _append() {
       if (this._isAppended) {
         return;
@@ -128,6 +135,7 @@
       });
       this._isAppended = true;
     }
+
     _emulateAnimation(callback) {
       index_js.executeAfterTransition(callback, this._getElement(), this._config.isAnimated);
     }

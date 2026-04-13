@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('./config.js'), require('../dom/event-handler.js'), require('./index.js')) :
-  typeof define === 'function' && define.amd ? define(['./config', '../dom/event-handler', './index'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Swipe = factory(global.Config, global.EventHandler, global.Index));
-})(this, (function (Config, EventHandler, index_js) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['./config', '../dom/event-handler', './index'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Swipe = factory(global.Config, global.EventHandler, global.Index));
+})(this, (function (Config, EventHandler, index_js) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -63,9 +64,11 @@
     static get Default() {
       return Default;
     }
+
     static get DefaultType() {
       return DefaultType;
     }
+
     static get NAME() {
       return NAME;
     }
@@ -85,6 +88,7 @@
         this._deltaX = event.clientX;
       }
     }
+
     _end(event) {
       if (this._eventIsPointerPenTouch(event)) {
         this._deltaX = event.clientX - this._deltaX;
@@ -92,9 +96,11 @@
       this._handleSwipe();
       index_js.execute(this._config.endCallback);
     }
+
     _move(event) {
       this._deltaX = event.touches && event.touches.length > 1 ? 0 : event.touches[0].clientX - this._deltaX;
     }
+
     _handleSwipe() {
       const absDeltaX = Math.abs(this._deltaX);
       if (absDeltaX <= SWIPE_THRESHOLD) {
@@ -107,6 +113,7 @@
       }
       index_js.execute(direction > 0 ? this._config.rightCallback : this._config.leftCallback);
     }
+
     _initEvents() {
       if (this._supportPointerEvents) {
         EventHandler.on(this._element, EVENT_POINTERDOWN, event => this._start(event));
@@ -118,6 +125,7 @@
         EventHandler.on(this._element, EVENT_TOUCHEND, event => this._end(event));
       }
     }
+
     _eventIsPointerPenTouch(event) {
       return this._supportPointerEvents && (event.pointerType === POINTER_TYPE_PEN || event.pointerType === POINTER_TYPE_TOUCH);
     }

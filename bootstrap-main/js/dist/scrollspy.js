@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('./util/index.js'), require('./dom/event-handler.js'), require('./dom/selector-engine.js'), require('./base-component.js')) :
-  typeof define === 'function' && define.amd ? define(['./util/index', './dom/event-handler', './dom/selector-engine', './base-component'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Scrollspy = factory(global.Index, global.EventHandler, global.SelectorEngine, global.BaseComponent));
-})(this, (function (index_js, EventHandler, SelectorEngine, BaseComponent) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['./util/index', './dom/event-handler', './dom/selector-engine', './base-component'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Scrollspy = factory(global.Index, global.EventHandler, global.SelectorEngine, global.BaseComponent));
+})(this, (function (index_js, EventHandler, SelectorEngine, BaseComponent) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -80,9 +81,11 @@
     static get Default() {
       return Default;
     }
+
     static get DefaultType() {
       return DefaultType;
     }
+
     static get NAME() {
       return NAME;
     }
@@ -100,6 +103,7 @@
         this._observer.observe(section);
       }
     }
+
     dispose() {
       this._observer.disconnect();
       super.dispose();
@@ -117,6 +121,7 @@
       }
       return config;
     }
+
     _maybeEnableSmoothScroll() {
       if (!this._config.smoothScroll) {
         return;
@@ -143,6 +148,7 @@
         }
       });
     }
+
     _getNewObserver() {
       const options = {
         root: this._rootElement,
@@ -185,6 +191,7 @@
         }
       }
     }
+
     _initializeTargetsAndObservables() {
       this._targetLinks = new Map();
       this._observableSections = new Map();
@@ -203,6 +210,7 @@
         }
       }
     }
+
     _process(target) {
       if (this._activeTarget === target) {
         return;
@@ -215,6 +223,7 @@
         relatedTarget: target
       });
     }
+
     _activateParents(target) {
       // Activate dropdown parents
       if (target.classList.contains(CLASS_NAME_DROPDOWN_ITEM)) {
@@ -229,6 +238,7 @@
         }
       }
     }
+
     _clearActiveClass(parent) {
       parent.classList.remove(CLASS_NAME_ACTIVE);
       const activeNodes = SelectorEngine.find(`${SELECTOR_TARGET_LINKS}.${CLASS_NAME_ACTIVE}`, parent);

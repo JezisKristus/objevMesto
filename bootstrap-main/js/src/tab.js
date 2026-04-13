@@ -8,7 +8,7 @@
 import BaseComponent from './base-component.js'
 import EventHandler from './dom/event-handler.js'
 import SelectorEngine from './dom/selector-engine.js'
-import { defineJQueryPlugin, getNextActiveElement, isDisabled } from './util/index.js'
+import {defineJQueryPlugin, getNextActiveElement, isDisabled} from './util/index.js'
 
 /**
  * Constants
@@ -85,10 +85,10 @@ class Tab extends BaseComponent {
     const active = this._getActiveElem()
 
     const hideEvent = active ?
-      EventHandler.trigger(active, EVENT_HIDE, { relatedTarget: innerElem }) :
+      EventHandler.trigger(active, EVENT_HIDE, {relatedTarget: innerElem}) :
       null
 
-    const showEvent = EventHandler.trigger(innerElem, EVENT_SHOW, { relatedTarget: active })
+    const showEvent = EventHandler.trigger(innerElem, EVENT_SHOW, {relatedTarget: active})
 
     if (showEvent.defaultPrevented || (hideEvent && hideEvent.defaultPrevented)) {
       return
@@ -144,7 +144,7 @@ class Tab extends BaseComponent {
       element.setAttribute('aria-selected', false)
       element.setAttribute('tabindex', '-1')
       this._toggleDropDown(element, false)
-      EventHandler.trigger(element, EVENT_HIDDEN, { relatedTarget: relatedElem })
+      EventHandler.trigger(element, EVENT_HIDDEN, {relatedTarget: relatedElem})
     }
 
     this._queueCallback(complete, element, element.classList.contains(CLASS_NAME_FADE))
@@ -161,7 +161,7 @@ class Tab extends BaseComponent {
     const nextActiveElement = getNextActiveElement(this._getChildren().filter(element => !isDisabled(element)), event.target, isNext, true)
 
     if (nextActiveElement) {
-      nextActiveElement.focus({ preventScroll: true })
+      nextActiveElement.focus({preventScroll: true})
       Tab.getOrCreateInstance(nextActiveElement).show()
     }
   }

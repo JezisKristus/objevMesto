@@ -8,7 +8,8 @@ toc: true
 
 ## Example
 
-Form controls are styled with a mix of Sass and CSS variables, allowing them to adapt to color modes and support any customization method.
+Form controls are styled with a mix of Sass and CSS variables, allowing them to adapt to color modes and support any
+customization method.
 
 {{< example >}}
 <div class="mb-3">
@@ -36,10 +37,13 @@ Set heights using classes like `.form-control-lg` and `.form-control-sm`.
 Block-level or inline-level form text can be created using `.form-text`.
 
 {{< callout warning >}}
-Form text should be explicitly associated with the form control it relates to using the `aria-labelledby` (for mandatory information such as data format) or `aria-describedby` (for complementary information) attribute. This will ensure that assistive technologies—such as screen readers—will announce this form text when the user focuses or enters the control.
+Form text should be explicitly associated with the form control it relates to using the `aria-labelledby` (for mandatory
+information such as data format) or `aria-describedby` (for complementary information) attribute. This will ensure that
+assistive technologies—such as screen readers—will announce this form text when the user focuses or enters the control.
 {{< /callout >}}
 
-Form text below inputs can be styled with `.form-text`. If a block-level element will be used, a top margin is added for easy spacing from the inputs above.
+Form text below inputs can be styled with `.form-text`. If a block-level element will be used, a top margin is added for
+easy spacing from the inputs above.
 
 {{< example >}}
 <label for="inputPassword5" class="form-label">Password</label>
@@ -49,7 +53,8 @@ Form text below inputs can be styled with `.form-text`. If a block-level element
 </div>
 {{< /example >}}
 
-Inline text can use any typical inline HTML element (be it a `<span>`, `<small>`, or something else) with nothing more than the `.form-text` class.
+Inline text can use any typical inline HTML element (be it a `<span>`, `<small>`, or something else) with nothing more
+than the `.form-text` class.
 
 {{< example >}}
 <div class="row g-3 align-items-center">
@@ -69,7 +74,8 @@ Inline text can use any typical inline HTML element (be it a `<span>`, `<small>`
 
 ## Disabled
 
-Add the `disabled` boolean attribute on an input to give it a grayed out appearance, remove pointer events, and prevent focusing.
+Add the `disabled` boolean attribute on an input to give it a grayed out appearance, remove pointer events, and prevent
+focusing.
 
 {{< example >}}
 <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled>
@@ -78,7 +84,8 @@ Add the `disabled` boolean attribute on an input to give it a grayed out appeara
 
 ## Readonly
 
-Add the `readonly` boolean attribute on an input to prevent modification of the input's value. `readonly` inputs can still be focused and selected, while `disabled` inputs cannot.
+Add the `readonly` boolean attribute on an input to prevent modification of the input's value. `readonly` inputs can
+still be focused and selected, while `disabled` inputs cannot.
 
 {{< example >}}
 <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
@@ -86,7 +93,8 @@ Add the `readonly` boolean attribute on an input to prevent modification of the 
 
 ## Readonly plain text
 
-If you want to have `<input readonly>` elements in your form styled as plain text, replace `.form-control` with `.form-control-plaintext` to remove the default form field styling and preserve the correct `margin` and `padding`.
+If you want to have `<input readonly>` elements in your form styled as plain text, replace `.form-control` with
+`.form-control-plaintext` to remove the default form field styling and preserve the correct `margin` and `padding`.
 
 {{< example >}}
   <div class="mb-3 row">
@@ -146,7 +154,8 @@ If you want to have `<input readonly>` elements in your form styled as plain tex
 
 ## Color
 
-Set the `type="color"` and add `.form-control-color` to the `<input>`. We use the modifier class to set fixed `height`s and override some inconsistencies between browsers.
+Set the `type="color"` and add `.form-control-color` to the `<input>`. We use the modifier class to set fixed `height`s
+and override some inconsistencies between browsers.
 
 {{< example >}}
 <label for="exampleColorInput" class="form-label">Color picker</label>
@@ -155,7 +164,9 @@ Set the `type="color"` and add `.form-control-color` to the `<input>`. We use th
 
 ## Datalists
 
-Datalists allow you to create a group of `<option>`s that can be accessed (and autocompleted) from within an `<input>`. These are similar to `<select>` elements, but come with more menu styling limitations and differences. While most browsers and operating systems include some support for `<datalist>` elements, their styling is inconsistent at best.
+Datalists allow you to create a group of `<option>`s that can be accessed (and autocompleted) from within an `<input>`.
+These are similar to `<select>` elements, but come with more menu styling limitations and differences. While most
+browsers and operating systems include some support for `<datalist>` elements, their styling is inconsistent at best.
 
 Learn more about [support for datalist elements](https://caniuse.com/datalist).
 

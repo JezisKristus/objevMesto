@@ -8,7 +8,8 @@ toc: true
 
 ## Text alignment
 
-Easily realign text to components with text alignment classes. For start, end, and center alignment, responsive classes are available that use the same viewport width breakpoints as the grid system.
+Easily realign text to components with text alignment classes. For start, end, and center alignment, responsive classes
+are available that use the same viewport width breakpoints as the grid system.
 
 {{< example >}}
 <p class="text-start">Start aligned text on all viewport sizes.</p>
@@ -22,7 +23,8 @@ Easily realign text to components with text alignment classes. For start, end, a
 {{< /example >}}
 
 {{< callout info >}}
-Note that we don't provide utility classes for justified text. While, aesthetically, justified text might look more appealing, it does make word-spacing more random and therefore harder to read.
+Note that we don't provide utility classes for justified text. While, aesthetically, justified text might look more
+appealing, it does make word-spacing more random and therefore harder to read.
 {{< /callout >}}
 
 ## Text wrapping and overflow
@@ -45,14 +47,17 @@ Prevent text from wrapping with a `.text-nowrap` class.
 
 ## Word break
 
-Prevent long strings of text from breaking your components' layout by using `.text-break` to set `word-wrap: break-word` and `word-break: break-word`. We use `word-wrap` instead of the more common `overflow-wrap` for wider browser support, and add the deprecated `word-break: break-word` to avoid issues with flex containers.
+Prevent long strings of text from breaking your components' layout by using `.text-break` to set `word-wrap: break-word`
+and `word-break: break-word`. We use `word-wrap` instead of the more common `overflow-wrap` for wider browser support,
+and add the deprecated `word-break: break-word` to avoid issues with flex containers.
 
 {{< example >}}
 <p class="text-break">mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm</p>
 {{< /example >}}
 
 {{< callout warning >}}
-Note that [breaking words isn't possible in Arabic](https://rtlstyling.com/posts/rtl-styling#3.-line-break), which is the most used RTL language. Therefore `.text-break` is removed from our RTL compiled CSS.
+Note that [breaking words isn't possible in Arabic](https://rtlstyling.com/posts/rtl-styling#3.-line-break), which is
+the most used RTL language. Therefore `.text-break` is removed from our RTL compiled CSS.
 {{< /callout >}}
 
 ## Text transform
@@ -65,11 +70,14 @@ Transform text in components with text capitalization classes.
 <p class="text-capitalize">CapiTaliZed text.</p>
 {{< /example >}}
 
-Note how `.text-capitalize` only changes the first letter of each word, leaving the case of any other letters unaffected.
+Note how `.text-capitalize` only changes the first letter of each word, leaving the case of any other letters
+unaffected.
 
 ## Font size
 
-Quickly change the `font-size` of text. While our heading classes (e.g., `.h1`–`.h6`) apply `font-size`, `font-weight`, and `line-height`, these utilities _only_ apply `font-size`. Sizing for these utilities matches HTML's heading elements, so as the number increases, their size decreases.
+Quickly change the `font-size` of text. While our heading classes (e.g., `.h1`–`.h6`) apply `font-size`, `font-weight`,
+and `line-height`, these utilities _only_ apply `font-size`. Sizing for these utilities matches HTML's heading elements,
+so as the number increases, their size decreases.
 
 {{< example >}}
 <p class="fs-1">.fs-1 text</p>
@@ -84,7 +92,8 @@ Customize your available `font-size`s by modifying the `$font-sizes` Sass map.
 
 ## Font weight and italics
 
-Quickly change the `font-weight` or `font-style` of text with these utilities. `font-style` utilities are abbreviated as `.fst-*` and `font-weight` utilities are abbreviated as `.fw-*`.
+Quickly change the `font-weight` or `font-style` of text with these utilities. `font-style` utilities are abbreviated as
+`.fst-*` and `font-weight` utilities are abbreviated as `.fw-*`.
 
 {{< example >}}
 <p class="fw-bold">Bold text.</p>
@@ -155,6 +164,7 @@ Font-size utilities are generated from this map, in combination with our utiliti
 
 ## Utilities API
 
-Font and text utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
+Font and text utilities are declared in our utilities API in
+`scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
 
 {{< scss-docs name="utils-text" file="scss/_utilities.scss" >}}

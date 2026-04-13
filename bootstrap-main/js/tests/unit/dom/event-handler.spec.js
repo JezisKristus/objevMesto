@@ -1,6 +1,6 @@
 import EventHandler from '../../../src/dom/event-handler.js'
-import { noop } from '../../../src/util/index.js'
-import { clearFixture, getFixture } from '../../helpers/fixture.js'
+import {noop} from '../../../src/util/index.js'
+import {clearFixture, getFixture} from '../../helpers/fixture.js'
 
 describe('EventHandler', () => {
   let fixtureEl
@@ -472,7 +472,7 @@ describe('EventHandler', () => {
         })
 
         expect(() => {
-          EventHandler.trigger(div1, 'click', { originalTarget: null, currentTarget: div2 })
+          EventHandler.trigger(div1, 'click', {originalTarget: null, currentTarget: div2})
         }).not.toThrowError(TypeError)
       })
     })

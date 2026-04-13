@@ -8,15 +8,21 @@ toc: true
 
 ## How they work
 
-- **Gutters are the gaps between column content, created by horizontal `padding`.** We set `padding-right` and `padding-left` on each column, and use negative `margin` to offset that at the start and end of each row to align content.
+- **Gutters are the gaps between column content, created by horizontal `padding`.** We set `padding-right` and
+  `padding-left` on each column, and use negative `margin` to offset that at the start and end of each row to align
+  content.
 
-- **Gutters start at `1.5rem` (`24px`) wide.** This allows us to match our grid to the [padding and margin spacers]({{< docsref "/utilities/spacing" >}}) scale.
+- **Gutters start at `1.5rem` (`24px`) wide.** This allows us to match our grid to the [padding and margin spacers]({{<
+  docsref "/utilities/spacing" >}}) scale.
 
-- **Gutters can be responsively adjusted.** Use breakpoint-specific gutter classes to modify horizontal gutters, vertical gutters, and all gutters.
+- **Gutters can be responsively adjusted.** Use breakpoint-specific gutter classes to modify horizontal gutters,
+  vertical gutters, and all gutters.
 
 ## Horizontal gutters
 
-`.gx-*` classes can be used to control the horizontal gutter widths. The `.container` or `.container-fluid` parent may need to be adjusted if larger gutters are used too to avoid unwanted overflow, using a matching padding utility. For example, in the following example we've increased the padding with `.px-4`:
+`.gx-*` classes can be used to control the horizontal gutter widths. The `.container` or `.container-fluid` parent may
+need to be adjusted if larger gutters are used too to avoid unwanted overflow, using a matching padding utility. For
+example, in the following example we've increased the padding with `.px-4`:
 
 {{< example class="bd-example-cols" >}}
 <div class="container px-4 text-center">
@@ -48,7 +54,9 @@ An alternative solution is to add a wrapper around the `.row` with the `.overflo
 
 ## Vertical gutters
 
-`.gy-*` classes can be used to control the vertical gutter widths within a row when columns wrap to new lines. Like the horizontal gutters, the vertical gutters can cause some overflow below the `.row` at the end of a page. If this occurs, you add a wrapper around `.row` with the `.overflow-hidden` class:
+`.gy-*` classes can be used to control the vertical gutter widths within a row when columns wrap to new lines. Like the
+horizontal gutters, the vertical gutters can cause some overflow below the `.row` at the end of a page. If this occurs,
+you add a wrapper around `.row` with the `.overflow-hidden` class:
 
 {{< example class="bd-example-cols" >}}
 <div class="container overflow-hidden text-center">
@@ -71,7 +79,8 @@ An alternative solution is to add a wrapper around the `.row` with the `.overflo
 
 ## Horizontal & vertical gutters
 
-Use `.g-*` classes to control the horizontal and vertical grid gutters. In the example below, we use a smaller gutter width, so there isn't a need for the `.overflow-hidden` wrapper class.
+Use `.g-*` classes to control the horizontal and vertical grid gutters. In the example below, we use a smaller gutter
+width, so there isn't a need for the `.overflow-hidden` wrapper class.
 
 {{< example class="bd-example-cols" >}}
 <div class="container text-center">
@@ -94,7 +103,8 @@ Use `.g-*` classes to control the horizontal and vertical grid gutters. In the e
 
 ## Row columns gutters
 
-Gutter classes can also be added to [row columns]({{< docsref "/layout/grid#row-columns" >}}). In the following example, we use responsive row columns and responsive gutter classes.
+Gutter classes can also be added to [row columns]({{< docsref "/layout/grid#row-columns" >}}). In the following example,
+we use responsive row columns and responsive gutter classes.
 
 {{< example class="bd-example-cols" >}}
 <div class="container text-center">
@@ -135,11 +145,14 @@ Gutter classes can also be added to [row columns]({{< docsref "/layout/grid#row-
 
 ## No gutters
 
-The gutters between columns in our predefined grid classes can be removed with `.g-0`. This removes the negative `margin`s from `.row` and the horizontal `padding` from all immediate children columns.
+The gutters between columns in our predefined grid classes can be removed with `.g-0`. This removes the negative
+`margin`s from `.row` and the horizontal `padding` from all immediate children columns.
 
-**Need an edge-to-edge design?** Drop the parent `.container` or `.container-fluid` and add `.mx-0` to the `.row` to prevent overflow.
+**Need an edge-to-edge design?** Drop the parent `.container` or `.container-fluid` and add `.mx-0` to the `.row` to
+prevent overflow.
 
-In practice, here's how it looks. Note you can continue to use this with all other predefined grid classes (including column widths, responsive tiers, reorders, and more).
+In practice, here's how it looks. Note you can continue to use this with all other predefined grid classes (including
+column widths, responsive tiers, reorders, and more).
 
 {{< example class="bd-example-row" >}}
 <div class="row g-0 text-center">

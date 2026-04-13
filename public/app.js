@@ -1,16 +1,20 @@
-const API = '/api';
+import * as bootstrap from "../bootstrap-main/js/index.esm.js";
 
-let activeCityId   = null;
+const API = '/api'; //? Je to potřeba? Nechci prostě odebrat /api? Kdybych to dělal musim i u serveru ale
+
+let activeCityId = null;
 let activeCityName = null;
-let activePlaceId  = null;
+let activePlaceId = null;
 
-let mainPanel, detailPanel, placeForm, placeModal;
+let mainPanel, detailPanel, placeForm;
+let citiesCache = null;
+
+const toastMsg = document.getElementById('toastMsg');
 
 function showToast(msg) {
-    const el = document.getElementById('toastMsg');
-    el.textContent = msg;
-    el.classList.add('show');
-    setTimeout(() => el.classList.remove('show'), 2400);
+    toastMsg.textContent = msg;
+    toastMsg.classList.add('show');
+    setTimeout(() => toastMsg.classList.remove('show'), 2400);
 }
 
 function loading(container) {
@@ -23,7 +27,7 @@ function loading(container) {
 
 function starsHTML(avg, count) {
     if (!count || count === 0) return '<span class="rating-count">Bez hodnocení</span>';
-    const full  = Math.round(avg);
+    const full = Math.round(avg);
     let html = '<span class="stars-display">';
     for (let i = 1; i <= 5; i++) html += i <= full ? '★' : '☆';
     html += '</span>';
@@ -41,9 +45,9 @@ function placeholderImg(w, h) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    mainPanel   = document.getElementById('mainPanel');
+    mainPanel = document.getElementById('mainPanel');
     detailPanel = document.getElementById('detailPanel');
-    placeForm   = document.getElementById('placeForm');
+    placeForm = document.getElementById('placeForm');
 
     document.getElementById('homeLink').addEventListener('click', (e) => {
         e.preventDefault();
@@ -64,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function resetDetail() {
-    activePlaceId  = null;
+    activePlaceId = null;
     detailPanel.classList.remove('open');
     detailPanel.innerHTML = '';
     document.querySelectorAll('.place-card.active').forEach(c => c.classList.remove('active'));
@@ -72,47 +76,66 @@ function resetDetail() {
 
 
 async function renderCities() {
-    activeCityId   = null;
+    activeCityId = null;
     activeCityName = null;
     resetDetail();
 
     loading(mainPanel);
 
     try {
-        const res    = await fetch(`${API}/cities`);
-        const cities = await res.json();
-
-        let html = `<div class="section-title">Vyberte město</div>
-                    <div class="city-grid">`;
-
-        cities.forEach(city => {
-            html += `
-                <div class="city-card" id="cityCard-${city.id}"
-                     onclick="selectCity(${city.id}, '${escHtml(city.name)}')">
-                    <div class="city-card-img">${placeholderImg(200, 120)}</div>
-                    <div class="city-card-name">${escHtml(city.name)}</div>
-                </div>`;
-        });
-
-        html += '</div>';
-        mainPanel.innerHTML = html;
+        if (citiesCache) {
+            renderCityCards(citiesCache);
+        } else {
+            const res = await fetch(`${API}/cities`);
+            citiesCache = await res.json();
+            renderCityCards(citiesCache);
+        }
     } catch {
         mainPanel.innerHTML = '<div class="empty-state">Chyba při načítání měst.</div>';
     }
 }
 
+function renderCityCards(cities) {
+    const title = document.createElement('div');
+    title.className = 'section-title';
+    title.textContent = 'Vyberte město';
+
+    const grid = document.createElement('div');
+    grid.className = 'city-grid';
+
+    cities.forEach(city => {
+        const card = document.createElement('div');
+        card.className = 'city-card';
+        card.id = `cityCard-${city.id}`;
+
+        const img = document.createElement('div');
+        img.className = 'city-card-img';
+        img.innerHTML = placeholderImg(200, 120);
+
+        const name = document.createElement('div');
+        name.className = 'city-card-name';
+        name.textContent = escHtml(city.name);
+
+        card.appendChild(img);
+        card.appendChild(name);
+        grid.appendChild(card);
+    });
+
+    mainPanel.innerHTML = '';
+    mainPanel.appendChild(title);
+    mainPanel.appendChild(grid);
+}
+
 
 async function selectCity(cityId, cityName) {
-    activeCityId   = cityId;
+    activeCityId = cityId;
     activeCityName = cityName;
     resetDetail();
 
-    // Highlight city card
     document.querySelectorAll('.city-card').forEach(c => c.classList.remove('active'));
     const card = document.getElementById(`cityCard-${cityId}`);
     if (card) card.classList.add('active');
 
-    // Remove existing city section if present
     const existing = document.getElementById('citySection');
     if (existing) existing.remove();
 
@@ -122,10 +145,10 @@ async function selectCity(cityId, cityName) {
     section.innerHTML = `<div class="loading-msg"><div class="spinner"></div></div>`;
     mainPanel.appendChild(section);
 
-    section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    section.scrollIntoView({behavior: 'smooth', block: 'nearest'});
 
     try {
-        const res    = await fetch(`${API}/cities/${cityId}/places`);
+        const res = await fetch(`${API}/cities/${cityId}/places`);
         const places = await res.json();
 
         renderCitySection(section, cityId, cityName, places);
@@ -135,31 +158,63 @@ async function selectCity(cityId, cityName) {
 }
 
 function renderCitySection(section, cityId, cityName, places) {
-    let placesHTML = '';
-    if (places.length === 0) {
-        placesHTML = '<div class="empty-state">Zatím zde nejsou žádná místa.</div>';
-    } else {
-        placesHTML = '<div class="places-grid">';
-        places.forEach(p => {
-            placesHTML += `
-                <div class="place-card" id="placeCard-${p.id}"
-                     onclick="openPlaceDetail(${p.id})">
-                    <div class="place-card-img">${placeholderImg(155, 90)}</div>
-                    <div class="place-card-body">
-                        <div class="place-card-name" title="${escHtml(p.name)}">${escHtml(p.name)}</div>
-                        <div class="place-card-type">${escHtml(p.type)}</div>
-                    </div>
-                </div>`;
-        });
-        placesHTML += '</div>';
-    }
+    const header = document.createElement('div');
+    header.className = 'city-section-header';
 
-    section.innerHTML = `
-        <div class="city-section-header">
-            <h2 class="city-section-title">${escHtml(cityName)}</h2>
-            <button class="btn btn-accent btn-sm" onclick="openAddPlaceModal(${cityId})">+ nové místo</button>
-        </div>
-        ${placesHTML}`;
+    const title = document.createElement('h2');
+    title.className = 'city-section-title';
+    title.textContent = escHtml(cityName);
+
+    const addBtn = document.createElement('button');
+    addBtn.className = 'btn btn-accent btn-sm';
+    addBtn.textContent = '+ nové místo';
+    addBtn.onclick = () => openAddPlaceModal(cityId);
+
+    header.appendChild(title);
+    header.appendChild(addBtn);
+
+    section.innerHTML = '';
+    section.appendChild(header);
+
+    if (places.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'empty-state';
+        empty.textContent = 'Zatím zde nejsou žádná místa.';
+        section.appendChild(empty);
+    } else {
+        const grid = document.createElement('div');
+        grid.className = 'places-grid';
+
+        places.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'place-card';
+            card.id = `placeCard-${p.id}`;
+
+            const img = document.createElement('div');
+            img.className = 'place-card-img';
+            img.innerHTML = placeholderImg(155, 90);
+
+            const body = document.createElement('div');
+            body.className = 'place-card-body';
+
+            const name = document.createElement('div');
+            name.className = 'place-card-name';
+            name.title = escHtml(p.name);
+            name.textContent = escHtml(p.name);
+
+            const type = document.createElement('div');
+            type.className = 'place-card-type';
+            type.textContent = escHtml(p.type);
+
+            body.appendChild(name);
+            body.appendChild(type);
+            card.appendChild(img);
+            card.appendChild(body);
+            grid.appendChild(card);
+        });
+
+        section.appendChild(grid);
+    }
 }
 
 
@@ -179,7 +234,7 @@ async function openPlaceDetail(placeId) {
             fetch(`${API}/places/${placeId}`),
             fetch(`${API}/places/${placeId}/comments`)
         ]);
-        const place    = await placeRes.json();
+        const place = await placeRes.json();
         const comments = await commentsRes.json();
 
         renderDetailPanel(place, comments);
@@ -189,7 +244,7 @@ async function openPlaceDetail(placeId) {
 }
 
 function renderDetailPanel(place, comments) {
-    const avg   = place.stats.avgRating;
+    const avg = place.stats.avgRating;
     const count = place.stats.ratingCount;
 
     let commentsHTML = '';
@@ -248,7 +303,7 @@ function renderDetailPanel(place, comments) {
 
         <div class="star-picker">
             <span class="star-picker-label">Přidat hodnocení:</span>
-            ${[1,2,3,4,5].map(n =>
+            ${[1, 2, 3, 4, 5].map(n =>
         `<button class="star-btn" onclick="submitRating(${place.id}, ${n})">${n}★</button>`
     ).join('')}
         </div>
@@ -284,8 +339,8 @@ function renderDetailPanel(place, comments) {
 function openAddPlaceModal(cityId) {
     placeForm.reset();
     placeForm.classList.remove('was-validated');
-    document.getElementById('placeId').value       = '';
-    document.getElementById('placeCityId').value   = cityId;
+    document.getElementById('placeId').value = '';
+    document.getElementById('placeCityId').value = cityId;
     document.getElementById('placeModalLabel').textContent = 'Přidat nové místo';
     document.getElementById('placeFormSubmit').textContent = 'Uložit místo';
     new bootstrap.Modal(document.getElementById('placeModal')).show();
@@ -297,42 +352,42 @@ function openEditPlaceModal() {
 
     placeForm.reset();
     placeForm.classList.remove('was-validated');
-    document.getElementById('placeId').value       = place.id;
-    document.getElementById('placeCityId').value   = place.city_id;
-    document.getElementById('placeName').value     = place.name;
-    document.getElementById('placeType').value     = place.type;
-    document.getElementById('placeAddress').value  = place.address;
-    document.getElementById('placeDesc').value     = place.description;
+    document.getElementById('placeId').value = place.id;
+    document.getElementById('placeCityId').value = place.city_id;
+    document.getElementById('placeName').value = place.name;
+    document.getElementById('placeType').value = place.type;
+    document.getElementById('placeAddress').value = place.address;
+    document.getElementById('placeDesc').value = place.description;
     document.getElementById('placeModalLabel').textContent = 'Upravit místo';
     document.getElementById('placeFormSubmit').textContent = 'Uložit změny';
     new bootstrap.Modal(document.getElementById('placeModal')).show();
 }
 
 async function savePlaceFromForm() {
-    const id     = document.getElementById('placeId').value;
+    const id = document.getElementById('placeId').value;
     const cityId = document.getElementById('placeCityId').value;
-    const data   = {
-        city_id:     cityId,
-        name:        document.getElementById('placeName').value.trim(),
-        type:        document.getElementById('placeType').value,
-        address:     document.getElementById('placeAddress').value.trim(),
+    const data = {
+        city_id: cityId,
+        name: document.getElementById('placeName').value.trim(),
+        type: document.getElementById('placeType').value,
+        address: document.getElementById('placeAddress').value.trim(),
         description: document.getElementById('placeDesc').value.trim(),
-        image_url:   null
+        image_url: null
     };
 
     try {
         if (id) {
             await fetch(`${API}/places/${id}`, {
-                method:  'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify(data)
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
             });
             showToast('Místo bylo upraveno.');
         } else {
             await fetch(`${API}/places`, {
-                method:  'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify(data)
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
             });
             showToast('Místo bylo přidáno.');
         }
@@ -340,10 +395,8 @@ async function savePlaceFromForm() {
         bootstrap.Modal.getInstance(document.getElementById('placeModal')).hide();
         placeForm.classList.remove('was-validated');
 
-        // Reload place list
         await refreshCityPlaces(cityId);
 
-        // If editing, reload detail
         if (id) await openPlaceDetail(id);
     } catch {
         showToast('Chyba při ukládání místa.');
@@ -354,21 +407,22 @@ async function refreshCityPlaces(cityId) {
     const section = document.getElementById('citySection');
     if (!section) return;
     try {
-        const res    = await fetch(`${API}/cities/${cityId}/places`);
+        const res = await fetch(`${API}/cities/${cityId}/places`);
         const places = await res.json();
-        renderCitySection(section, activeCityName, activeCityName, places);
-    } catch { /* ignore */ }
+        renderCitySection(section, cityId, activeCityName, places);
+    } catch { /* ignore */
+    }
 }
 
 
 async function deletePlace(placeId) {
     if (!confirm('Opravdu smazat toto místo? Budou smazány i všechny komentáře a hodnocení.')) return;
     try {
-        await fetch(`${API}/places/${placeId}`, { method: 'DELETE' });
+        await fetch(`${API}/places/${placeId}`, {method: 'DELETE'});
         showToast('Místo bylo smazáno.');
         resetDetail();
         if (activeCityId) {
-            const res    = await fetch(`${API}/cities/${activeCityId}/places`);
+            const res = await fetch(`${API}/cities/${activeCityId}/places`);
             const places = await res.json();
             const section = document.getElementById('citySection');
             if (section) renderCitySection(section, activeCityId, activeCityName, places);
@@ -392,9 +446,9 @@ async function submitComment(e, placeId) {
 
     try {
         await fetch(`${API}/places/${placeId}/comments`, {
-            method:  'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body:    JSON.stringify({ author_name: name, text })
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({author_name: name, text})
         });
         form.reset();
         form.classList.remove('was-validated');
@@ -409,7 +463,7 @@ async function submitComment(e, placeId) {
 async function deleteComment(commentId) {
     if (!confirm('Smazat komentář?')) return;
     try {
-        await fetch(`${API}/places/comments/${commentId}`, { method: 'DELETE' });
+        await fetch(`${API}/places/comments/${commentId}`, {method: 'DELETE'});
         document.getElementById(`comment-${commentId}`)?.remove();
         const list = document.getElementById('commentsList');
         if (list && list.querySelectorAll('.comment-item').length === 0) {
@@ -423,9 +477,9 @@ async function deleteComment(commentId) {
 
 async function refreshComments(placeId) {
     try {
-        const res      = await fetch(`${API}/places/${placeId}/comments`);
+        const res = await fetch(`${API}/places/${placeId}/comments`);
         const comments = await res.json();
-        const list     = document.getElementById('commentsList');
+        const list = document.getElementById('commentsList');
         if (!list) return;
 
         if (comments.length === 0) {
@@ -456,24 +510,23 @@ async function refreshComments(placeId) {
                 <div class="comment-text">${escHtml(c.text)}</div>`;
             list.appendChild(div);
         });
-    } catch { /* ignore */ }
+    } catch { /* ignore */
+    }
 }
 
 
 async function submitRating(placeId, stars) {
     try {
         await fetch(`${API}/places/${placeId}/ratings`, {
-            method:  'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body:    JSON.stringify({ stars })
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({stars})
         });
         showToast(`Hodnocení ${stars}★ bylo přidáno.`);
-        // Refresh the rating display only
-        const res   = await fetch(`${API}/places/${placeId}`);
+        const res = await fetch(`${API}/places/${placeId}`);
         const place = await res.json();
-        const el    = document.querySelector('.rating-summary');
+        const el = document.querySelector('.rating-summary');
         if (el) el.innerHTML = starsHTML(place.stats.avgRating, place.stats.ratingCount);
-        // Update stored data
         if (detailPanel.dataset.place) {
             const stored = JSON.parse(detailPanel.dataset.place);
             stored.stats = place.stats;

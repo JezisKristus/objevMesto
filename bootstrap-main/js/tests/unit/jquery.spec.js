@@ -12,7 +12,7 @@ import ScrollSpy from '../../src/scrollspy.js'
 import Tab from '../../src/tab.js'
 import Toast from '../../src/toast.js'
 import Tooltip from '../../src/tooltip.js'
-import { clearFixture, getFixture } from '../helpers/fixture.js'
+import {clearFixture, getFixture} from '../helpers/fixture.js'
 
 describe('jQuery', () => {
   let fixtureEl

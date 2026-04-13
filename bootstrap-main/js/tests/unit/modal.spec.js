@@ -1,7 +1,7 @@
 import EventHandler from '../../src/dom/event-handler.js'
 import Modal from '../../src/modal.js'
 import ScrollBarHelper from '../../src/util/scrollbar.js'
-import { clearBodyAndDocument, clearFixture, createEvent, getFixture, jQueryMock } from '../helpers/fixture.js'
+import {clearBodyAndDocument, clearFixture, createEvent, getFixture, jQueryMock} from '../helpers/fixture.js'
 
 describe('Modal', () => {
   let fixtureEl
@@ -1153,9 +1153,9 @@ describe('Modal', () => {
       jQueryMock.fn.modal = Modal.jQueryInterface
       jQueryMock.elements = [div]
 
-      jQueryMock.fn.modal.call(jQueryMock, { keyboard: false })
+      jQueryMock.fn.modal.call(jQueryMock, {keyboard: false})
       const spy = spyOn(Modal.prototype, 'constructor')
-      expect(spy).not.toHaveBeenCalledWith(div, { keyboard: false })
+      expect(spy).not.toHaveBeenCalledWith(div, {keyboard: false})
 
       const modal = Modal.getInstance(div)
       expect(modal).not.toBeNull()

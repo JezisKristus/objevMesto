@@ -1,6 +1,6 @@
 import * as Util from '../../../src/util/index.js'
-import { noop } from '../../../src/util/index.js'
-import { clearFixture, getFixture } from '../../helpers/fixture.js'
+import {noop} from '../../../src/util/index.js'
+import {clearFixture, getFixture} from '../../helpers/fixture.js'
 
 describe('Util', () => {
   let fixtureEl
@@ -426,7 +426,10 @@ describe('Util', () => {
   })
 
   describe('getjQuery', () => {
-    const fakejQuery = { trigger() {} }
+    const fakejQuery = {
+      trigger() {
+      }
+    }
 
     beforeEach(() => {
       Object.defineProperty(window, 'jQuery', {
@@ -487,7 +490,7 @@ describe('Util', () => {
   })
 
   describe('defineJQueryPlugin', () => {
-    const fakejQuery = { fn: {} }
+    const fakejQuery = {fn: {}}
 
     beforeEach(() => {
       Object.defineProperty(window, 'jQuery', {

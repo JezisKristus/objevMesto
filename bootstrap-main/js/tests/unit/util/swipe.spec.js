@@ -1,10 +1,10 @@
 import EventHandler from '../../../src/dom/event-handler.js'
-import { noop } from '../../../src/util/index.js'
+import {noop} from '../../../src/util/index.js'
 import Swipe from '../../../src/util/swipe.js'
-import { clearFixture, getFixture } from '../../helpers/fixture.js'
+import {clearFixture, getFixture} from '../../helpers/fixture.js'
 
 describe('Swipe', () => {
-  const { Simulator, PointerEvent } = window
+  const {Simulator, PointerEvent} = window
   const originWinPointerEvent = PointerEvent
   const supportPointerEvent = Boolean(PointerEvent)
 
@@ -30,7 +30,7 @@ describe('Swipe', () => {
 
   const mockSwipeGesture = (element, options = {}, type = 'touch') => {
     Simulator.setType(type)
-    const _options = { deltaX: 0, deltaY: 0, ...options }
+    const _options = {deltaX: 0, deltaY: 0, ...options}
 
     Simulator.gestures.swipe(element, _options)
   }
@@ -197,7 +197,7 @@ describe('Swipe', () => {
           }
         })
 
-        mockSwipeGesture(swipeEl, { deltaX: 300 }, 'pointer')
+        mockSwipeGesture(swipeEl, {deltaX: 300}, 'pointer')
       })
     })
 

@@ -8,7 +8,8 @@ toc: true
 
 ## Overflow
 
-Adjust the `overflow` property on the fly with four default values and classes. These classes are not responsive by default.
+Adjust the `overflow` property on the fly with four default values and classes. These classes are not responsive by
+default.
 
 <div class="bd-example d-md-flex">
   <div class="overflow-auto p-3 mb-3 mb-md-0 me-md-3 bg-body-tertiary" style="max-width: 260px; max-height: 100px;">
@@ -88,12 +89,14 @@ Adjust the `overflow-y` property to affect the overflow of content vertically.
 <div class="overflow-y-scroll">...</div>
 ```
 
-Using Sass variables, you may customize the overflow utilities by changing the `$overflows` variable in `_variables.scss`.
+Using Sass variables, you may customize the overflow utilities by changing the `$overflows` variable in
+`_variables.scss`.
 
 ## Sass
 
 ### Utilities API
 
-Overflow utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
+Overflow utilities are declared in our utilities API in
+`scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
 
 {{< scss-docs name="utils-overflow" file="scss/_utilities.scss" >}}

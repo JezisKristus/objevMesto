@@ -1,6 +1,6 @@
 import EventHandler from '../../src/dom/event-handler.js'
 import Popover from '../../src/popover.js'
-import { clearFixture, getFixture, jQueryMock } from '../helpers/fixture.js'
+import {clearFixture, getFixture, jQueryMock} from '../helpers/fixture.js'
 
 describe('Popover', () => {
   let fixtureEl
@@ -163,7 +163,7 @@ describe('Popover', () => {
       fixtureEl.innerHTML = '<a href="#" data-bs-content="" title="">Nice link</a>'
 
       const popoverEl = fixtureEl.querySelector('a')
-      const popover = new Popover(popoverEl, { animation: false })
+      const popover = new Popover(popoverEl, {animation: false})
       const spy = spyOn(EventHandler, 'trigger').and.callThrough()
 
       popover.show()
@@ -178,7 +178,7 @@ describe('Popover', () => {
       const popoverEl = fixtureEl.querySelector('a')
       const popover = new Popover(popoverEl)
 
-      popover.setContent({ '.tooltip-inner': 'foo' })
+      popover.setContent({'.tooltip-inner': 'foo'})
       const tip = popover._getTipElement()
 
       expect(tip).toHaveClass('popover')

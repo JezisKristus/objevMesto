@@ -9,7 +9,7 @@ import BaseComponent from './base-component.js'
 import EventHandler from './dom/event-handler.js'
 import SelectorEngine from './dom/selector-engine.js'
 import Backdrop from './util/backdrop.js'
-import { enableDismissTrigger } from './util/component-functions.js'
+import {enableDismissTrigger} from './util/component-functions.js'
 import FocusTrap from './util/focustrap.js'
 import {
   defineJQueryPlugin,
@@ -95,7 +95,7 @@ class Offcanvas extends BaseComponent {
       return
     }
 
-    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW, { relatedTarget })
+    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW, {relatedTarget})
 
     if (showEvent.defaultPrevented) {
       return
@@ -119,7 +119,7 @@ class Offcanvas extends BaseComponent {
 
       this._element.classList.add(CLASS_NAME_SHOW)
       this._element.classList.remove(CLASS_NAME_SHOWING)
-      EventHandler.trigger(this._element, EVENT_SHOWN, { relatedTarget })
+      EventHandler.trigger(this._element, EVENT_SHOWN, {relatedTarget})
     }
 
     this._queueCallback(completeCallBack, this._element, true)

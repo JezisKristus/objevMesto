@@ -5,11 +5,15 @@ description: Easily change the vertical alignment of inline, inline-block, inlin
 group: utilities
 ---
 
-Change the alignment of elements with the [`vertical-alignment`](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align) utilities. Please note that vertical-align only affects inline, inline-block, inline-table, and table cell elements.
+Change the alignment of elements with the [
+`vertical-alignment`](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align) utilities. Please note that
+vertical-align only affects inline, inline-block, inline-table, and table cell elements.
 
-Choose from `.align-baseline`, `.align-top`, `.align-middle`, `.align-bottom`, `.align-text-bottom`, and `.align-text-top` as needed.
+Choose from `.align-baseline`, `.align-top`, `.align-middle`, `.align-bottom`, `.align-text-bottom`, and
+`.align-text-top` as needed.
 
-To vertically center non-inline content (like `<div>`s and more), use our [flex box utilities]({{< docsref "/utilities/flex#align-items" >}}).
+To vertically center non-inline content (like `<div>`s and more), use our [flex box utilities]({{< docsref "
+/utilities/flex#align-items" >}}).
 
 With inline elements:
 
@@ -43,6 +47,7 @@ With table cells:
 
 ### Utilities API
 
-Vertical align utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
+Vertical align utilities are declared in our utilities API in
+`scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
 
 {{< scss-docs name="utils-vertical-align" file="scss/_utilities.scss" >}}

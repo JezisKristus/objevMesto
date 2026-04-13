@@ -1,7 +1,7 @@
 import EventHandler from '../../../src/dom/event-handler.js'
 import SelectorEngine from '../../../src/dom/selector-engine.js'
 import FocusTrap from '../../../src/util/focustrap.js'
-import { clearFixture, createEvent, getFixture } from '../../helpers/fixture.js'
+import {clearFixture, createEvent, getFixture} from '../../helpers/fixture.js'
 
 describe('FocusTrap', () => {
   let fixtureEl
@@ -22,7 +22,7 @@ describe('FocusTrap', () => {
 
       const spy = spyOn(trapElement, 'focus')
 
-      const focustrap = new FocusTrap({ trapElement })
+      const focustrap = new FocusTrap({trapElement})
       focustrap.activate()
 
       expect(spy).toHaveBeenCalled()
@@ -35,7 +35,7 @@ describe('FocusTrap', () => {
 
       const spy = spyOn(trapElement, 'focus')
 
-      const focustrap = new FocusTrap({ trapElement, autofocus: false })
+      const focustrap = new FocusTrap({trapElement, autofocus: false})
       focustrap.activate()
 
       expect(spy).not.toHaveBeenCalled()
@@ -51,7 +51,7 @@ describe('FocusTrap', () => {
         ].join('')
 
         const trapElement = fixtureEl.querySelector('div')
-        const focustrap = new FocusTrap({ trapElement })
+        const focustrap = new FocusTrap({trapElement})
         focustrap.activate()
 
         const inside = document.getElementById('inside')
@@ -67,7 +67,7 @@ describe('FocusTrap', () => {
 
         document.addEventListener('focusin', focusInListener)
 
-        const focusInEvent = createEvent('focusin', { bubbles: true })
+        const focusInEvent = createEvent('focusin', {bubbles: true})
         Object.defineProperty(focusInEvent, 'target', {
           value: document.getElementById('outside')
         })
@@ -88,7 +88,7 @@ describe('FocusTrap', () => {
         ].join('')
 
         const trapElement = fixtureEl.querySelector('div')
-        const focustrap = new FocusTrap({ trapElement })
+        const focustrap = new FocusTrap({trapElement})
         focustrap.activate()
 
         const first = document.getElementById('first')
@@ -127,7 +127,7 @@ describe('FocusTrap', () => {
         ].join('')
 
         const trapElement = fixtureEl.querySelector('div')
-        const focustrap = new FocusTrap({ trapElement })
+        const focustrap = new FocusTrap({trapElement})
         focustrap.activate()
 
         const first = document.getElementById('first')
@@ -163,7 +163,7 @@ describe('FocusTrap', () => {
         ].join('')
 
         const trapElement = fixtureEl.querySelector('div')
-        const focustrap = new FocusTrap({ trapElement })
+        const focustrap = new FocusTrap({trapElement})
         focustrap.activate()
 
         const focusInListener = () => {
@@ -176,7 +176,7 @@ describe('FocusTrap', () => {
 
         document.addEventListener('focusin', focusInListener)
 
-        const focusInEvent = createEvent('focusin', { bubbles: true })
+        const focusInEvent = createEvent('focusin', {bubbles: true})
         Object.defineProperty(focusInEvent, 'target', {
           value: document.getElementById('outside')
         })
@@ -188,7 +188,7 @@ describe('FocusTrap', () => {
 
   describe('deactivate', () => {
     it('should flag itself as no longer active', () => {
-      const focustrap = new FocusTrap({ trapElement: fixtureEl })
+      const focustrap = new FocusTrap({trapElement: fixtureEl})
       focustrap.activate()
       expect(focustrap._isActive).toBeTrue()
 
@@ -197,7 +197,7 @@ describe('FocusTrap', () => {
     })
 
     it('should remove all event listeners', () => {
-      const focustrap = new FocusTrap({ trapElement: fixtureEl })
+      const focustrap = new FocusTrap({trapElement: fixtureEl})
       focustrap.activate()
 
       const spy = spyOn(EventHandler, 'off')
@@ -207,7 +207,7 @@ describe('FocusTrap', () => {
     })
 
     it('doesn\'t try removing event listeners unless it needs to (in case it hasn\'t been activated)', () => {
-      const focustrap = new FocusTrap({ trapElement: fixtureEl })
+      const focustrap = new FocusTrap({trapElement: fixtureEl})
 
       const spy = spyOn(EventHandler, 'off')
       focustrap.deactivate()

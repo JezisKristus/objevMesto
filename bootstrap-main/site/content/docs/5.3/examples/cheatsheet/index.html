@@ -2,16 +2,17 @@
 layout: examples
 title: Cheatsheet
 extra_css:
-  - "cheatsheet.css"
+- "cheatsheet.css"
 extra_js:
-  - src: "cheatsheet.js"
+- src: "cheatsheet.js"
 body_class: "bg-body-tertiary"
 ---
 
 <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
   <div class="container-fluid d-flex align-items-center">
     <h1 class="d-flex align-items-center fs-4 text-white mb-0">
-      <img src="/docs/{{< param docs_version >}}/assets/brand/bootstrap-logo-white.svg" width="38" height="30" class="me-3" alt="Bootstrap">
+      <img src="/docs/{{< param docs_version >}}/assets/brand/bootstrap-logo-white.svg" width="38" height="30"
+           class="me-3" alt="Bootstrap">
       Cheatsheet
     </h1>
     <a href="{{< docsref "/examples/cheatsheet-rtl" >}}" class="ms-auto link-light" hreflang="ar">RTL cheatsheet</a>
@@ -22,48 +23,73 @@ body_class: "bg-body-tertiary"
   <nav class="small" id="toc">
     <ul class="list-unstyled">
       <li class="my-2">
-        <button class="btn d-inline-flex align-items-center collapsed border-0" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#contents-collapse" aria-controls="contents-collapse">Contents</button>
+        <button class="btn d-inline-flex align-items-center collapsed border-0" data-bs-toggle="collapse"
+                aria-expanded="false" data-bs-target="#contents-collapse" aria-controls="contents-collapse">Contents
+        </button>
         <ul class="list-unstyled ps-3 collapse" id="contents-collapse">
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#typography">Typography</a></li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#typography">Typography</a>
+          </li>
           <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#images">Images</a></li>
           <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#tables">Tables</a></li>
           <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#figures">Figures</a></li>
         </ul>
       </li>
       <li class="my-2">
-        <button class="btn d-inline-flex align-items-center collapsed border-0" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#forms-collapse" aria-controls="forms-collapse">Forms</button>
+        <button class="btn d-inline-flex align-items-center collapsed border-0" data-bs-toggle="collapse"
+                aria-expanded="false" data-bs-target="#forms-collapse" aria-controls="forms-collapse">Forms
+        </button>
         <ul class="list-unstyled ps-3 collapse" id="forms-collapse">
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#overview">Overview</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#disabled-forms">Disabled forms</a></li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#overview">Overview</a>
+          </li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#disabled-forms">Disabled
+            forms</a></li>
           <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#sizing">Sizing</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#input-group">Input group</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#floating-labels">Floating labels</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#validation">Validation</a></li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#input-group">Input
+            group</a></li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#floating-labels">Floating
+            labels</a></li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#validation">Validation</a>
+          </li>
         </ul>
       </li>
       <li class="my-2">
-        <button class="btn d-inline-flex align-items-center collapsed border-0" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#components-collapse" aria-controls="components-collapse">Components</button>
+        <button class="btn d-inline-flex align-items-center collapsed border-0" data-bs-toggle="collapse"
+                aria-expanded="false" data-bs-target="#components-collapse" aria-controls="components-collapse">
+          Components
+        </button>
         <ul class="list-unstyled ps-3 collapse" id="components-collapse">
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#accordion">Accordion</a></li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#accordion">Accordion</a>
+          </li>
           <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#alerts">Alerts</a></li>
           <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#badge">Badge</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#breadcrumb">Breadcrumb</a></li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#breadcrumb">Breadcrumb</a>
+          </li>
           <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#buttons">Buttons</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#button-group">Button group</a></li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#button-group">Button
+            group</a></li>
           <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#card">Card</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#carousel">Carousel</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#dropdowns">Dropdowns</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#list-group">List group</a></li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#carousel">Carousel</a>
+          </li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#dropdowns">Dropdowns</a>
+          </li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#list-group">List group</a>
+          </li>
           <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#modal">Modal</a></li>
           <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#navs">Navs</a></li>
           <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#navbar">Navbar</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#pagination">Pagination</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#popovers">Popovers</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#progress">Progress</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#scrollspy">Scrollspy</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#spinners">Spinners</a></li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#pagination">Pagination</a>
+          </li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#popovers">Popovers</a>
+          </li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#progress">Progress</a>
+          </li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#scrollspy">Scrollspy</a>
+          </li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#spinners">Spinners</a>
+          </li>
           <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#toasts">Toasts</a></li>
-          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#tooltips">Tooltips</a></li>
+          <li><a class="d-inline-flex align-items-center rounded text-decoration-none" href="#tooltips">Tooltips</a>
+          </li>
         </ul>
       </li>
     </ul>
@@ -105,10 +131,17 @@ body_class: "bg-body-tertiary"
         {{< /example >}}
 
         {{< example show_markup="false" >}}
-        <p>You can use the mark tag to <mark>highlight</mark> text.</p>
-        <p><del>This line of text is meant to be treated as deleted text.</del></p>
+        <p>You can use the mark tag to
+          <mark>highlight</mark>
+          text.
+        </p>
+        <p>
+          <del>This line of text is meant to be treated as deleted text.</del>
+        </p>
         <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
-        <p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
+        <p>
+          <ins>This line of text is meant to be treated as an addition to the document.</ins>
+        </p>
         <p><u>This line of text will render as underlined.</u></p>
         <p><small>This line of text is meant to be treated as fine print.</small></p>
         <p><strong>This line rendered as bold text.</strong></p>
@@ -164,7 +197,8 @@ body_class: "bg-body-tertiary"
         {{< /example >}}
 
         {{< example show_markup="false" >}}
-        {{< placeholder width="200" height="200" class="img-thumbnail" title="A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera" >}}
+        {{< placeholder width="200" height="200" class="img-thumbnail" title="A generic square placeholder image with a
+        white border around it, making it resemble a photograph taken with an old instant camera" >}}
         {{< /example >}}
       </div>
     </article>
@@ -423,8 +457,10 @@ body_class: "bg-body-tertiary"
               <input type="file" class="form-control" id="disabledCustomFile" disabled>
             </div>
             <div class="mb-3 form-check form-switch">
-              <input class="form-check-input" type="checkbox" role="switch" id="disabledSwitchCheckChecked" checked disabled>
-              <label class="form-check-label" for="disabledSwitchCheckChecked">Disabled checked switch checkbox input</label>
+              <input class="form-check-input" type="checkbox" role="switch" id="disabledSwitchCheckChecked" checked
+                     disabled>
+              <label class="form-check-label" for="disabledSwitchCheckChecked">Disabled checked switch checkbox
+                input</label>
             </div>
             <div class="mb-3">
               <label for="disabledRange" class="form-label">Disabled range</label>
@@ -445,7 +481,8 @@ body_class: "bg-body-tertiary"
       <div>
         {{< example show_markup="false" >}}
         <div class="mb-3">
-          <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
+          <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg"
+                 aria-label=".form-control-lg example">
         </div>
         <div class="mb-3">
           <select class="form-select form-select-lg" aria-label=".form-select-lg example">
@@ -462,7 +499,8 @@ body_class: "bg-body-tertiary"
 
         {{< example show_markup="false" >}}
         <div class="mb-3">
-          <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" aria-label=".form-control-sm example">
+          <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm"
+                 aria-label=".form-control-sm example">
         </div>
         <div class="mb-3">
           <select class="form-select form-select-sm" aria-label=".form-select-sm example">
@@ -488,10 +526,12 @@ body_class: "bg-body-tertiary"
         {{< example show_markup="false" >}}
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">@</span>
-          <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                 aria-describedby="basic-addon1">
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+                 aria-describedby="basic-addon2">
           <span class="input-group-text" id="basic-addon2">@example.com</span>
         </div>
         <label for="basic-url" class="form-label">Your vanity URL</label>
@@ -559,7 +599,8 @@ body_class: "bg-body-tertiary"
             <label for="validationServerUsername" class="form-label">Username</label>
             <div class="input-group has-validation">
               <span class="input-group-text" id="inputGroupPrepend3">@</span>
-              <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3" required>
+              <input type="text" class="form-control is-invalid" id="validationServerUsername"
+                     aria-describedby="inputGroupPrepend3" required>
               <div class="invalid-feedback">
                 Please choose a username.
               </div>
@@ -623,37 +664,52 @@ body_class: "bg-body-tertiary"
         <div class="accordion" id="accordionExample">
           <div class="accordion-item">
             <h4 class="accordion-header">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                      aria-expanded="true" aria-controls="collapseOne">
                 Accordion Item #1
               </button>
             </h4>
             <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <strong>This is the first item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <strong>This is the first item's accordion body.</strong> It is hidden by default, until the collapse
+                plugin adds the appropriate classes that we use to style each element. These classes control the overall
+                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
+                within the <code>.accordion-body</code>, though the transition does limit overflow.
               </div>
             </div>
           </div>
           <div class="accordion-item">
             <h4 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 Accordion Item #2
               </button>
             </h4>
             <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
+                plugin adds the appropriate classes that we use to style each element. These classes control the overall
+                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
+                within the <code>.accordion-body</code>, though the transition does limit overflow.
               </div>
             </div>
           </div>
           <div class="accordion-item">
             <h4 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                 Accordion Item #3
               </button>
             </h4>
             <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse
+                plugin adds the appropriate classes that we use to style each element. These classes control the overall
+                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
+                within the <code>.accordion-body</code>, though the transition does limit overflow.
               </div>
             </div>
           </div>
@@ -672,16 +728,19 @@ body_class: "bg-body-tertiary"
         {{< alerts.inline >}}
         {{- range (index $.Site.Data "theme-colors") }}
         <div class="alert alert-{{ .name }} alert-dismissible fade show" role="alert">
-          A simple {{ .name }} alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+          A simple {{ .name }} alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you
+          like.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>{{ end -}}
+        </div>
+        {{ end -}}
         {{< /alerts.inline >}}
         {{< /example >}}
 
         {{< example show_markup="false" >}}
         <div class="alert alert-success" role="alert">
           <h4 class="alert-heading">Well done!</h4>
-          <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+          <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit
+            longer so that you can see how spacing within an alert works with this kind of content.</p>
           <hr>
           <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
         </div>
@@ -709,7 +768,8 @@ body_class: "bg-body-tertiary"
         {{< example show_markup="false" >}}
         {{< badge.inline >}}
         {{- range (index $.Site.Data "theme-colors") }}
-        <span class="badge rounded-pill {{ if or (eq .name "light") (eq .name "warning") (eq .name "info") }}text-{{ end }}bg-{{ .name }}">{{ .name | title }}</span>{{- end -}}
+        <span class="badge rounded-pill {{ if or (eq .name " light") (eq .name "warning") (eq .name "info") }}text-{{
+        end }}bg-{{ .name }}">{{ .name | title }}</span>{{- end -}}
         {{< /badge.inline >}}
         {{< /example >}}
       </div>
@@ -805,7 +865,8 @@ body_class: "bg-body-tertiary"
               {{< placeholder width="100%" height="180" class="card-img-top" text="Image cap" >}}
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
             </div>
@@ -817,7 +878,8 @@ body_class: "bg-body-tertiary"
               </div>
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
               <div class="card-footer text-body-secondary">
@@ -829,7 +891,8 @@ body_class: "bg-body-tertiary"
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">An item</li>
@@ -851,7 +914,8 @@ body_class: "bg-body-tertiary"
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                      additional content. This content is a little bit longer.</p>
                     <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                   </div>
                 </div>
@@ -872,38 +936,46 @@ body_class: "bg-body-tertiary"
         {{< example show_markup="false" >}}
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              {{< placeholder width="800" height="400" class="bd-placeholder-img-lg d-block w-100" color="#555" background="#777" text="First slide" >}}
+              {{< placeholder width="800" height="400" class="bd-placeholder-img-lg d-block w-100" color="#555"
+              background="#777" text="First slide" >}}
               <div class="carousel-caption d-none d-md-block">
                 <h5>First slide label</h5>
                 <p>Some representative placeholder content for the first slide.</p>
               </div>
             </div>
             <div class="carousel-item">
-              {{< placeholder width="800" height="400" class="bd-placeholder-img-lg d-block w-100" color="#444" background="#666" text="Second slide" >}}
+              {{< placeholder width="800" height="400" class="bd-placeholder-img-lg d-block w-100" color="#444"
+              background="#666" text="Second slide" >}}
               <div class="carousel-caption d-none d-md-block">
                 <h5>Second slide label</h5>
                 <p>Some representative placeholder content for the second slide.</p>
               </div>
             </div>
             <div class="carousel-item">
-              {{< placeholder width="800" height="400" class="bd-placeholder-img-lg d-block w-100" color="#333" background="#555" text="Third slide" >}}
+              {{< placeholder width="800" height="400" class="bd-placeholder-img-lg d-block w-100" color="#333"
+              background="#555" text="Third slide" >}}
               <div class="carousel-caption d-none d-md-block">
                 <h5>Third slide label</h5>
                 <p>Some representative placeholder content for the third slide.</p>
               </div>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="prev">
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="next">
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
@@ -921,7 +993,8 @@ body_class: "bg-body-tertiary"
         {{< example show_markup="false" >}}
         <div class="btn-group w-100 align-items-center justify-content-between flex-wrap">
           <div class="dropdown">
-            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
               Dropdown button
             </button>
             <ul class="dropdown-menu">
@@ -929,12 +1002,15 @@ body_class: "bg-body-tertiary"
               <li><a class="dropdown-item" href="#">Action</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a class="dropdown-item" href="#">Separated link</a></li>
             </ul>
           </div>
           <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
               Dropdown button
             </button>
             <ul class="dropdown-menu">
@@ -942,12 +1018,15 @@ body_class: "bg-body-tertiary"
               <li><a class="dropdown-item" href="#">Action</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a class="dropdown-item" href="#">Separated link</a></li>
             </ul>
           </div>
           <div class="dropdown">
-            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
               Dropdown button
             </button>
             <ul class="dropdown-menu">
@@ -955,7 +1034,9 @@ body_class: "bg-body-tertiary"
               <li><a class="dropdown-item" href="#">Action</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a class="dropdown-item" href="#">Separated link</a></li>
             </ul>
           </div>
@@ -965,7 +1046,8 @@ body_class: "bg-body-tertiary"
         {{< example show_markup="false" >}}
         <div class="btn-group">
           <button type="button" class="btn btn-primary">Primary</button>
-          <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+          <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+                  aria-expanded="false">
             <span class="visually-hidden">Toggle Dropdown</span>
           </button>
           <ul class="dropdown-menu">
@@ -976,7 +1058,8 @@ body_class: "bg-body-tertiary"
         </div><!-- /btn-group -->
         <div class="btn-group">
           <button type="button" class="btn btn-secondary">Secondary</button>
-          <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+          <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                  data-bs-toggle="dropdown" aria-expanded="false">
             <span class="visually-hidden">Toggle Dropdown</span>
           </button>
           <ul class="dropdown-menu">
@@ -987,7 +1070,8 @@ body_class: "bg-body-tertiary"
         </div><!-- /btn-group -->
         <div class="btn-group">
           <button type="button" class="btn btn-success">Success</button>
-          <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+          <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+                  aria-expanded="false">
             <span class="visually-hidden">Toggle Dropdown</span>
           </button>
           <ul class="dropdown-menu">
@@ -998,7 +1082,8 @@ body_class: "bg-body-tertiary"
         </div><!-- /btn-group -->
         <div class="btn-group">
           <button type="button" class="btn btn-info">Info</button>
-          <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+          <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+                  aria-expanded="false">
             <span class="visually-hidden">Toggle Dropdown</span>
           </button>
           <ul class="dropdown-menu">
@@ -1009,7 +1094,8 @@ body_class: "bg-body-tertiary"
         </div><!-- /btn-group -->
         <div class="btn-group">
           <button type="button" class="btn btn-warning">Warning</button>
-          <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+          <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+                  aria-expanded="false">
             <span class="visually-hidden">Toggle Dropdown</span>
           </button>
           <ul class="dropdown-menu">
@@ -1020,7 +1106,8 @@ body_class: "bg-body-tertiary"
         </div><!-- /btn-group -->
         <div class="btn-group">
           <button type="button" class="btn btn-danger">Danger</button>
-          <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+          <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+                  aria-expanded="false">
             <span class="visually-hidden">Toggle Dropdown</span>
           </button>
           <ul class="dropdown-menu">
@@ -1034,7 +1121,8 @@ body_class: "bg-body-tertiary"
         {{< example show_markup="false" >}}
         <div class="btn-group w-100 align-items-center justify-content-between flex-wrap">
           <div class="dropend">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
               Dropend button
             </button>
             <ul class="dropdown-menu">
@@ -1042,12 +1130,15 @@ body_class: "bg-body-tertiary"
               <li><a class="dropdown-item" href="#">Action</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a class="dropdown-item" href="#">Separated link</a></li>
             </ul>
           </div>
           <div class="dropup">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
               Dropup button
             </button>
             <ul class="dropdown-menu">
@@ -1055,12 +1146,15 @@ body_class: "bg-body-tertiary"
               <li><a class="dropdown-item" href="#">Action</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a class="dropdown-item" href="#">Separated link</a></li>
             </ul>
           </div>
           <div class="dropstart">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
               Dropstart button
             </button>
             <ul class="dropdown-menu">
@@ -1068,7 +1162,9 @@ body_class: "bg-body-tertiary"
               <li><a class="dropdown-item" href="#">Action</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a class="dropdown-item" href="#">Separated link</a></li>
             </ul>
           </div>
@@ -1078,14 +1174,17 @@ body_class: "bg-body-tertiary"
         {{< example show_markup="false" >}}
         <div class="btn-group">
           <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
               End-aligned menu
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><h6 class="dropdown-header">Dropdown header</h6></li>
               <li><a class="dropdown-item" href="#">Action</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a class="dropdown-item" href="#">Separated link</a></li>
             </ul>
           </div>
@@ -1125,7 +1224,8 @@ body_class: "bg-body-tertiary"
           <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
           {{< list.inline >}}
           {{- range (index $.Site.Data "theme-colors") }}
-          <a href="#" class="list-group-item list-group-item-action list-group-item-{{ .name }}">A simple {{ .name }} list group item</a>
+          <a href="#" class="list-group-item list-group-item-action list-group-item-{{ .name }}">A simple {{ .name }}
+            list group item</a>
           {{- end -}}
           {{< /list.inline >}}
         </div>
@@ -1147,7 +1247,8 @@ body_class: "bg-body-tertiary"
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdropLive">
             Launch static backdrop modal
           </button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenteredScrollable">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                  data-bs-target="#exampleModalCenteredScrollable">
             Vertically centered scrollable modal
           </button>
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalFullscreen">
@@ -1176,20 +1277,35 @@ body_class: "bg-body-tertiary"
         {{< example show_markup="false" >}}
         <nav>
           <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home
+            </button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                    type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile
+            </button>
+            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+                    type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact
+            </button>
           </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <p>This is some placeholder content the <strong>Home tab's</strong> associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+            <p>This is some placeholder content the <strong>Home tab's</strong> associated content. Clicking another tab
+              will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the
+              content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered
+              navigation.</p>
           </div>
           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <p>This is some placeholder content the <strong>Profile tab's</strong> associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+            <p>This is some placeholder content the <strong>Profile tab's</strong> associated content. Clicking another
+              tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the
+              content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered
+              navigation.</p>
           </div>
           <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <p>This is some placeholder content the <strong>Contact tab's</strong> associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+            <p>This is some placeholder content the <strong>Contact tab's</strong> associated content. Clicking another
+              tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the
+              content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered
+              navigation.</p>
           </div>
         </div>
         {{< /example >}}
@@ -1223,10 +1339,13 @@ body_class: "bg-body-tertiary"
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">
-              <img src="/docs/{{< param docs_version >}}/assets/brand/bootstrap-logo-white.svg" width="38" height="30" class="d-inline-block align-top" alt="Bootstrap" loading="lazy"
+              <img src="/docs/{{< param docs_version >}}/assets/brand/bootstrap-logo-white.svg" width="38" height="30"
+                   class="d-inline-block align-top" alt="Bootstrap" loading="lazy"
                    style="filter: invert(1) grayscale(100%) brightness(200%);">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -1238,13 +1357,16 @@ body_class: "bg-body-tertiary"
                   <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                     aria-expanded="false">
                     Dropdown
                   </a>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Action</a></li>
                     <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                   </ul>
                 </li>
@@ -1263,9 +1385,12 @@ body_class: "bg-body-tertiary"
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary mt-5">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">
-              <img src="/docs/{{< param docs_version >}}/assets/brand/bootstrap-logo-white.svg" width="38" height="30" class="d-inline-block align-top" alt="Bootstrap" loading="lazy">
+              <img src="/docs/{{< param docs_version >}}/assets/brand/bootstrap-logo-white.svg" width="38" height="30"
+                   class="d-inline-block align-top" alt="Bootstrap" loading="lazy">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2"
+                    aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent2">
@@ -1277,13 +1402,16 @@ body_class: "bg-body-tertiary"
                   <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                     aria-expanded="false">
                     Dropdown
                   </a>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Action</a></li>
                     <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                   </ul>
                 </li>
@@ -1367,20 +1495,26 @@ body_class: "bg-body-tertiary"
 
       <div>
         {{< example show_markup="false" >}}
-        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Popover title"
+                data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover
+        </button>
         {{< /example >}}
 
         {{< example show_markup="false" >}}
-        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover"
+                data-bs-placement="top" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
           Popover on top
         </button>
-        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover"
+                data-bs-placement="right" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
           Popover on end
         </button>
-        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover"
+                data-bs-placement="bottom" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
           Popover on bottom
         </button>
-        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover"
+                data-bs-placement="left" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
           Popover on start
         </button>
         {{< /example >}}
@@ -1394,29 +1528,36 @@ body_class: "bg-body-tertiary"
 
       <div>
         {{< example show_markup="false" >}}
-        <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="0"
+             aria-valuemin="0" aria-valuemax="100">
           <div class="progress-bar">0%</div>
         </div>
-        <div class="progress mb-3" role="progressbar" aria-label="Success example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress mb-3" role="progressbar" aria-label="Success example with label" aria-valuenow="25"
+             aria-valuemin="0" aria-valuemax="100">
           <div class="progress-bar bg-success w-25">25%</div>
         </div>
-        <div class="progress mb-3" role="progressbar" aria-label="Info example with label" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress mb-3" role="progressbar" aria-label="Info example with label" aria-valuenow="50"
+             aria-valuemin="0" aria-valuemax="100">
           <div class="progress-bar text-bg-info w-50">50%</div>
         </div>
-        <div class="progress mb-3" role="progressbar" aria-label="Warning example with label" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress mb-3" role="progressbar" aria-label="Warning example with label" aria-valuenow="75"
+             aria-valuemin="0" aria-valuemax="100">
           <div class="progress-bar text-bg-warning w-75">75%</div>
         </div>
-        <div class="progress" role="progressbar" aria-label="Danger example with label" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress" role="progressbar" aria-label="Danger example with label" aria-valuenow="100"
+             aria-valuemin="0" aria-valuemax="100">
           <div class="progress-bar bg-danger w-100">100%</div>
         </div>
         {{< /example >}}
 
         {{< example show_markup="false" >}}
         <div class="progress-stacked">
-          <div class="progress" role="progressbar" aria-label="Segment one - default example" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress" role="progressbar" aria-label="Segment one - default example" style="width: 15%"
+               aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
             <div class="progress-bar"></div>
           </div>
-          <div class="progress" role="progressbar" aria-label="Segment two - animated striped success example" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress" role="progressbar" aria-label="Segment two - animated striped success example"
+               style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
             <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"></div>
           </div>
         </div>
@@ -1441,27 +1582,41 @@ body_class: "bg-body-tertiary"
                 <a class="nav-link" href="#scrollspyHeading2">Second</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                   aria-expanded="false">Dropdown</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
                   <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
-                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
                   <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
                 </ul>
               </li>
             </ul>
           </nav>
-        <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example position-relative mt-2 overflow-auto" tabindex="0">
+          <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0"
+               class="scrollspy-example position-relative mt-2 overflow-auto" tabindex="0">
             <h4 id="scrollspyHeading1">First heading</h4>
-            <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+            <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the
+              appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding
+              some more example copy here to emphasize the scrolling and highlighting.</p>
             <h4 id="scrollspyHeading2">Second heading</h4>
-            <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+            <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the
+              appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding
+              some more example copy here to emphasize the scrolling and highlighting.</p>
             <h4 id="scrollspyHeading3">Third heading</h4>
-            <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+            <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the
+              appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding
+              some more example copy here to emphasize the scrolling and highlighting.</p>
             <h4 id="scrollspyHeading4">Fourth heading</h4>
-            <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+            <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the
+              appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding
+              some more example copy here to emphasize the scrolling and highlighting.</p>
             <h4 id="scrollspyHeading5">Fifth heading</h4>
-            <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+            <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the
+              appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding
+              some more example copy here to emphasize the scrolling and highlighting.</p>
           </div>
         </div>
       </div>
@@ -1504,7 +1659,8 @@ body_class: "bg-body-tertiary"
         {{< example show_markup="false" class="bg-dark p-5 align-items-center" >}}
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
           <div class="toast-header">
-            {{< placeholder width="20" height="20" background="#007aff" class="rounded me-2" text="false" title="false" >}}
+            {{< placeholder width="20" height="20" background="#007aff" class="rounded me-2" text="false" title="false"
+            >}}
             <strong class="me-auto">Bootstrap</strong>
             <small class="text-body-secondary">11 mins ago</small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -1524,11 +1680,21 @@ body_class: "bg-body-tertiary"
 
       <div>
         {{< example show_markup="false" class="tooltip-demo" >}}
-        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">Tooltip on top</button>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on end">Tooltip on end</button>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom">Tooltip on bottom</button>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left" title="Tooltip on start">Tooltip on start</button>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-html="true" title="<em>Tooltip</em> <u>with</u> <b>HTML</b>">Tooltip with HTML</button>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Tooltip on top">Tooltip on top
+        </button>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+                title="Tooltip on end">Tooltip on end
+        </button>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="Tooltip on bottom">Tooltip on bottom
+        </button>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left"
+                title="Tooltip on start">Tooltip on start
+        </button>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-html="true"
+                title="<em>Tooltip</em> <u>with</u> <b>HTML</b>">Tooltip with HTML
+        </button>
         {{< /example >}}
       </div>
     </article>
@@ -1552,7 +1718,8 @@ body_class: "bg-body-tertiary"
     </div>
   </div>
 </div>
-<div class="modal fade" id="staticBackdropLive" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLiveLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdropLive" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLiveLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -1569,7 +1736,8 @@ body_class: "bg-body-tertiary"
     </div>
   </div>
 </div>
-<div class="modal fade" id="exampleModalCenteredScrollable" tabindex="-1" aria-labelledby="exampleModalCenteredScrollableTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenteredScrollable" tabindex="-1"
+     aria-labelledby="exampleModalCenteredScrollableTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -1577,7 +1745,9 @@ body_class: "bg-body-tertiary"
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>This is some placeholder content to show the scrolling behavior for modals. We use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal.</p>
+        <p>This is some placeholder content to show the scrolling behavior for modals. We use repeated line breaks to
+          demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes
+          longer than the predefined max-height of modal, content will be cropped and scrollable within the modal.</p>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <p>This content should appear at the bottom after you scroll.</p>
       </div>
@@ -1588,7 +1758,8 @@ body_class: "bg-body-tertiary"
     </div>
   </div>
 </div>
-<div class="modal fade" id="exampleModalFullscreen" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModalFullscreen" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel"
+     aria-hidden="true">
   <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
       <div class="modal-header">

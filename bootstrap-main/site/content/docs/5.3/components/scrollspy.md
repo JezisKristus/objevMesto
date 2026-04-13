@@ -8,21 +8,32 @@ toc: true
 
 ## How it works
 
-Scrollspy toggles the `.active` class on anchor (`<a>`) elements when the element with the `id` referenced by the anchor's `href` is scrolled into view. Scrollspy is best used in conjunction with a Bootstrap [nav component]({{< docsref "/components/navs-tabs" >}}) or [list group]({{< docsref "/components/list-group" >}}), but it will also work with any anchor elements in the current page. Here's how it works.
+Scrollspy toggles the `.active` class on anchor (`<a>`) elements when the element with the `id` referenced by the
+anchor's `href` is scrolled into view. Scrollspy is best used in conjunction with a Bootstrap [nav component]({{<
+docsref "/components/navs-tabs" >}}) or [list group]({{< docsref "/components/list-group" >}}), but it will also work
+with any anchor elements in the current page. Here's how it works.
 
-- To start, scrollspy requires two things: a navigation, list group, or a simple set of links, plus a scrollable container. The scrollable container can be the `<body>` or a custom element with a set `height` and `overflow-y: scroll`.
+- To start, scrollspy requires two things: a navigation, list group, or a simple set of links, plus a scrollable
+  container. The scrollable container can be the `<body>` or a custom element with a set `height` and
+  `overflow-y: scroll`.
 
-- On the scrollable container, add `data-bs-spy="scroll"` and `data-bs-target="#navId"` where `navId` is the unique `id` of the associated navigation. If there is no focusable element inside the element, be sure to also include a `tabindex="0"` to ensure keyboard access.
+- On the scrollable container, add `data-bs-spy="scroll"` and `data-bs-target="#navId"` where `navId` is the unique `id`
+  of the associated navigation. If there is no focusable element inside the element, be sure to also include a
+  `tabindex="0"` to ensure keyboard access.
 
-- As you scroll the "spied" container, an `.active` class is added and removed from anchor links within the associated navigation. Links must have resolvable `id` targets, otherwise they're ignored. For example, a `<a href="#home">home</a>` must correspond to something in the DOM like `<div id="home"></div>`
+- As you scroll the "spied" container, an `.active` class is added and removed from anchor links within the associated
+  navigation. Links must have resolvable `id` targets, otherwise they're ignored. For example, a
+  `<a href="#home">home</a>` must correspond to something in the DOM like `<div id="home"></div>`
 
-- Target elements that are not visible will be ignored. See the [Non-visible elements](#non-visible-elements) section below.
+- Target elements that are not visible will be ignored. See the [Non-visible elements](#non-visible-elements) section
+  below.
 
 ## Examples
 
 ### Navbar
 
-Scroll the area below the navbar and watch the active class change. Open the dropdown menu and watch the dropdown items be highlighted as well.
+Scroll the area below the navbar and watch the active class change. Open the dropdown menu and watch the dropdown items
+be highlighted as well.
 
 <div class="bd-example">
   <nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3 rounded-2">
@@ -96,7 +107,8 @@ Scroll the area below the navbar and watch the active class change. Open the dro
 
 ### Nested nav
 
-Scrollspy also works with nested `.nav`s. If a nested `.nav` is `.active`, its parents will also be `.active`. Scroll the area next to the navbar and watch the active class change.
+Scrollspy also works with nested `.nav`s. If a nested `.nav` is `.active`, its parents will also be `.active`. Scroll
+the area next to the navbar and watch the active class change.
 
 <div class="bd-example">
   <div class="row">
@@ -270,7 +282,8 @@ Scrollspy also works with `.list-group`s. Scroll the area next to the list group
 
 ### Simple anchors
 
-Scrollspy is not limited to nav components and list groups, so it will work on any `<a>` anchor elements in the current document. Scroll the area and watch the `.active` class change.
+Scrollspy is not limited to nav components and list groups, so it will work on any `<a>` anchor elements in the current
+document. Scroll the area and watch the `.active` class change.
 
 <div class="bd-example">
   <div class="row">
@@ -330,7 +343,9 @@ Scrollspy is not limited to nav components and list groups, so it will work on a
 
 ## Non-visible elements
 
-Target elements that aren’t visible will be ignored and their corresponding nav items won't receive an `.active` class. Scrollspy instances initialized in a non-visible wrapper will ignore all target elements. Use the `refresh` method to check for observable elements once the wrapper becomes visible.
+Target elements that aren’t visible will be ignored and their corresponding nav items won't receive an `.active` class.
+Scrollspy instances initialized in a non-visible wrapper will ignore all target elements. Use the `refresh` method to
+check for observable elements once the wrapper becomes visible.
 
 ```js
 document.querySelectorAll('#nav-tab>[data-bs-toggle="tab"]').forEach(el => {
@@ -346,7 +361,9 @@ document.querySelectorAll('#nav-tab>[data-bs-toggle="tab"]').forEach(el => {
 
 ### Via data attributes
 
-To easily add scrollspy behavior to your topbar navigation, add `data-bs-spy="scroll"` to the element you want to spy on (most typically this would be the `<body>`). Then add the `data-bs-target` attribute with the `id` or class name of the parent element of any Bootstrap `.nav` component.
+To easily add scrollspy behavior to your topbar navigation, add `data-bs-spy="scroll"` to the element you want to spy
+on (most typically this would be the `<body>`). Then add the `data-bs-target` attribute with the `id` or class name of
+the parent element of any Bootstrap `.nav` component.
 
 ```html
 <body data-bs-spy="scroll" data-bs-target="#navbar-example">
@@ -377,10 +394,15 @@ const scrollSpy = new bootstrap.ScrollSpy(document.body, {
 {{< bs-table "table" >}}
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `rootMargin` | string | `0px 0px -25%` | Intersection Observer [rootMargin](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin) valid units, when calculating scroll position. |
-| `smoothScroll` | boolean | `false` | Enables smooth scrolling when a user clicks on a link that refers to ScrollSpy observables. |
+| `rootMargin` | string | `0px 0px -25%` | Intersection
+Observer [rootMargin](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin) valid units,
+when calculating scroll position. |
+| `smoothScroll` | boolean | `false` | Enables smooth scrolling when a user clicks on a link that refers to ScrollSpy
+observables. |
 | `target` | string, DOM element | `null` | Specifies element to apply Scrollspy plugin. |
-| `threshold` | array | `[0.1, 0.5, 1]` | `IntersectionObserver` [threshold](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver#threshold) valid input, when calculating scroll position. |
+| `threshold` | array | `[0.1, 0.5, 1]` |
+`IntersectionObserver` [threshold](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver#threshold)
+valid input, when calculating scroll position. |
 
 {{< /bs-table >}}
 
@@ -388,7 +410,8 @@ const scrollSpy = new bootstrap.ScrollSpy(document.body, {
 **Deprecated Options**
 
 Up until v5.1.3 we were using `offset` & `method` options, which are now deprecated and replaced by `rootMargin`.
-To keep backwards compatibility, we will continue to parse a given `offset` to `rootMargin`, but this feature will be removed in **v6**.
+To keep backwards compatibility, we will continue to parse a given `offset` to `rootMargin`, but this feature will be
+removed in **v6**.
 {{< /callout >}}
 
 ### Methods
@@ -398,7 +421,8 @@ To keep backwards compatibility, we will continue to parse a given `offset` to `
 | --- | --- |
 | `dispose` | Destroys an element's scrollspy. (Removes stored data on the DOM element) |
 | `getInstance` | *Static* method to get the scrollspy instance associated with a DOM element. |
-| `getOrCreateInstance` | *Static* method to get the scrollspy instance associated with a DOM element, or to create a new one in case it wasn't initialized. |
+| `getOrCreateInstance` | *Static* method to get the scrollspy instance associated with a DOM element, or to create a
+new one in case it wasn't initialized. |
 | `refresh` | When adding or removing elements in the DOM, you'll need to call the refresh method. |
 {{< /bs-table >}}
 

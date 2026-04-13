@@ -7,25 +7,35 @@ toc: true
 added: "5.1"
 ---
 
-Bootstrap's default grid system represents the culmination of over a decade of CSS layout techniques, tried and tested by millions of people. But, it was also created without many of the modern CSS features and techniques we're seeing in browsers like the new CSS Grid.
+Bootstrap's default grid system represents the culmination of over a decade of CSS layout techniques, tried and tested
+by millions of people. But, it was also created without many of the modern CSS features and techniques we're seeing in
+browsers like the new CSS Grid.
 
 {{< callout warning >}}
-**Heads up—our CSS Grid system is experimental and opt-in as of v5.1.0!** We included it in our documentation's CSS to demonstrate it for you, but it's disabled by default. Keep reading to learn how to enable it in your projects.
+**Heads up—our CSS Grid system is experimental and opt-in as of v5.1.0!** We included it in our documentation's CSS to
+demonstrate it for you, but it's disabled by default. Keep reading to learn how to enable it in your projects.
 {{< /callout >}}
 
 ## How it works
 
-With Bootstrap 5, we've added the option to enable a separate grid system that's built on CSS Grid, but with a Bootstrap twist. You still get classes you can apply on a whim to build responsive layouts, but with a different approach under the hood.
+With Bootstrap 5, we've added the option to enable a separate grid system that's built on CSS Grid, but with a Bootstrap
+twist. You still get classes you can apply on a whim to build responsive layouts, but with a different approach under
+the hood.
 
-- **CSS Grid is opt-in.** Disable the default grid system by setting `$enable-grid-classes: false` and enable the CSS Grid by setting `$enable-cssgrid: true`. Then, recompile your Sass.
+- **CSS Grid is opt-in.** Disable the default grid system by setting `$enable-grid-classes: false` and enable the CSS
+  Grid by setting `$enable-cssgrid: true`. Then, recompile your Sass.
 
-- **Replace instances of `.row` with `.grid`.** The `.grid` class sets `display: grid` and creates a `grid-template` that you build on with your HTML.
+- **Replace instances of `.row` with `.grid`.** The `.grid` class sets `display: grid` and creates a `grid-template`
+  that you build on with your HTML.
 
-- **Replace `.col-*` classes with `.g-col-*` classes.** This is because our CSS Grid columns use the `grid-column` property instead of `width`.
+- **Replace `.col-*` classes with `.g-col-*` classes.** This is because our CSS Grid columns use the `grid-column`
+  property instead of `width`.
 
-- **Columns and gutter sizes are set via CSS variables.** Set these on the parent `.grid` and customize however you want, inline or in a stylesheet, with `--bs-columns` and `--bs-gap`.
+- **Columns and gutter sizes are set via CSS variables.** Set these on the parent `.grid` and customize however you
+  want, inline or in a stylesheet, with `--bs-columns` and `--bs-gap`.
 
-In the future, Bootstrap will likely shift to a hybrid solution as the `gap` property has achieved nearly full browser support for flexbox.
+In the future, Bootstrap will likely shift to a hybrid solution as the `gap` property has achieved nearly full browser
+support for flexbox.
 
 ## Key differences
 
@@ -33,19 +43,25 @@ Compared to the default grid system:
 
 - Flex utilities don't affect the CSS Grid columns in the same way.
 
-- Gaps replaces gutters. The `gap` property replaces the horizontal `padding` from our default grid system and functions more like `margin`.
+- Gaps replaces gutters. The `gap` property replaces the horizontal `padding` from our default grid system and functions
+  more like `margin`.
 
-- As such, unlike `.row`s, `.grid`s have no negative margins and margin utilities cannot be used to change the grid gutters. Grid gaps are applied horizontally and vertically by default. See the [customizing section](#customizing) for more details.
+- As such, unlike `.row`s, `.grid`s have no negative margins and margin utilities cannot be used to change the grid
+  gutters. Grid gaps are applied horizontally and vertically by default. See the [customizing section](#customizing) for
+  more details.
 
-- Inline and custom styles should be viewed as replacements for modifier classes (e.g., `style="--bs-columns: 3;"` vs `class="row-cols-3"`).
+- Inline and custom styles should be viewed as replacements for modifier classes (e.g., `style="--bs-columns: 3;"` vs
+  `class="row-cols-3"`).
 
-- Nesting works similarly, but may require you to reset your column counts on each instance of a nested `.grid`. See the [nesting section](#nesting) for details.
+- Nesting works similarly, but may require you to reset your column counts on each instance of a nested `.grid`. See
+  the [nesting section](#nesting) for details.
 
 ## Examples
 
 ### Three columns
 
-Three equal-width columns across all viewports and devices can be created by using the `.g-col-4` classes. Add [responsive classes](#responsive) to change the layout by viewport size.
+Three equal-width columns across all viewports and devices can be created by using the `.g-col-4` classes.
+Add [responsive classes](#responsive) to change the layout by viewport size.
 
 {{< example class="bd-example-cssgrid" >}}
 <div class="grid text-center">
@@ -57,7 +73,8 @@ Three equal-width columns across all viewports and devices can be created by usi
 
 ### Responsive
 
-Use responsive classes to adjust your layout across viewports. Here we start with two columns on the narrowest viewports, and then grow to three columns on medium viewports and above.
+Use responsive classes to adjust your layout across viewports. Here we start with two columns on the narrowest
+viewports, and then grow to three columns on medium viewports and above.
 
 {{< example class="bd-example-cssgrid" >}}
 <div class="grid text-center">
@@ -78,7 +95,8 @@ Compare that to this two column layout at all viewports.
 
 ## Wrapping
 
-Grid items automatically wrap to the next line when there's no more room horizontally. Note that the `gap` applies to horizontal and vertical gaps between grid items.
+Grid items automatically wrap to the next line when there's no more room horizontally. Note that the `gap` applies to
+horizontal and vertical gaps between grid items.
 
 {{< example class="bd-example-cssgrid" >}}
 <div class="grid text-center">
@@ -92,7 +110,11 @@ Grid items automatically wrap to the next line when there's no more room horizon
 
 ## Starts
 
-Start classes aim to replace our default grid's offset classes, but they're not entirely the same. CSS Grid creates a grid template through styles that tell browsers to "start at this column" and "end at this column." Those properties are `grid-column-start` and `grid-column-end`. Start classes are shorthand for the former. Pair them with the column classes to size and align your columns however you need. Start classes begin at `1` as `0` is an invalid value for these properties.
+Start classes aim to replace our default grid's offset classes, but they're not entirely the same. CSS Grid creates a
+grid template through styles that tell browsers to "start at this column" and "end at this column." Those properties are
+`grid-column-start` and `grid-column-end`. Start classes are shorthand for the former. Pair them with the column classes
+to size and align your columns however you need. Start classes begin at `1` as `0` is an invalid value for these
+properties.
 
 {{< example class="bd-example-cssgrid" >}}
 <div class="grid text-center">
@@ -103,7 +125,8 @@ Start classes aim to replace our default grid's offset classes, but they're not 
 
 ## Auto columns
 
-When there are no classes on the grid items (the immediate children of a `.grid`), each grid item will automatically be sized to one column.
+When there are no classes on the grid items (the immediate children of a `.grid`), each grid item will automatically be
+sized to one column.
 
 {{< example class="bd-example-cssgrid" >}}
 <div class="grid text-center">
@@ -138,7 +161,8 @@ This behavior can be mixed with grid column classes.
 
 ## Nesting
 
-Similar to our default grid system, our CSS Grid allows for easy nesting of `.grid`s. However, unlike the default, this grid inherits changes in the rows, columns, and gaps. Consider the example below:
+Similar to our default grid system, our CSS Grid allows for easy nesting of `.grid`s. However, unlike the default, this
+grid inherits changes in the rows, columns, and gaps. Consider the example below:
 
 - We override the default number of columns with a local CSS variable: `--bs-columns: 3`.
 - In the first auto-column, the column count is inherited and each column is one-third of the available width.
@@ -180,7 +204,9 @@ Customize the number of columns, the number of rows, and the width of the gaps w
 | `--bs-gap` | `1.5rem` | The size of the gap between columns (vertical and horizontal) |
 {{< /bs-table >}}
 
-These CSS variables have no default value; instead, they apply fallback values that are used _until_ a local instance is provided. For example, we use `var(--bs-rows, 1)` for our CSS Grid rows, which ignores `--bs-rows` because that hasn't been set anywhere yet. Once it is, the `.grid` instance will use that value instead of the fallback value of `1`.
+These CSS variables have no default value; instead, they apply fallback values that are used _until_ a local instance is
+provided. For example, we use `var(--bs-rows, 1)` for our CSS Grid rows, which ignores `--bs-rows` because that hasn't
+been set anywhere yet. Once it is, the `.grid` instance will use that value instead of the fallback value of `1`.
 
 ### No grid classes
 
@@ -226,7 +252,8 @@ Adding more rows and changing the placement of columns:
 
 ### Gaps
 
-Change the vertical gaps only by modifying the `row-gap`. Note that we use `gap` on `.grid`s, but `row-gap` and `column-gap` can be modified as needed.
+Change the vertical gaps only by modifying the `row-gap`. Note that we use `gap` on `.grid`s, but `row-gap` and
+`column-gap` can be modified as needed.
 
 {{< example class="bd-example-cssgrid" >}}
 <div class="grid text-center" style="row-gap: 0;">
@@ -238,7 +265,9 @@ Change the vertical gaps only by modifying the `row-gap`. Note that we use `gap`
 </div>
 {{< /example >}}
 
-Because of that, you can have different vertical and horizontal `gap`s, which can take a single value (all sides) or a pair of values (vertical and horizontal). This can be applied with an inline style for `gap`, or with our `--bs-gap` CSS variable.
+Because of that, you can have different vertical and horizontal `gap`s, which can take a single value (all sides) or a
+pair of values (vertical and horizontal). This can be applied with an inline style for `gap`, or with our `--bs-gap` CSS
+variable.
 
 {{< example class="bd-example-cssgrid" >}}
 <div class="grid text-center" style="--bs-gap: .25rem 1rem;">
@@ -252,12 +281,15 @@ Because of that, you can have different vertical and horizontal `gap`s, which ca
 
 ## Sass
 
-One limitation of the CSS Grid is that our default classes are still generated by two Sass variables, `$grid-columns` and `$grid-gutter-width`. This effectively predetermines the number of classes generated in our compiled CSS. You have two options here:
+One limitation of the CSS Grid is that our default classes are still generated by two Sass variables, `$grid-columns`
+and `$grid-gutter-width`. This effectively predetermines the number of classes generated in our compiled CSS. You have
+two options here:
 
 - Modify those default Sass variables and recompile your CSS.
 - Use inline or custom styles to augment the provided classes.
 
-For example, you can increase the column count and change the gap size, and then size your "columns" with a mix of inline styles and predefined CSS Grid column classes (e.g., `.g-col-4`).
+For example, you can increase the column count and change the gap size, and then size your "columns" with a mix of
+inline styles and predefined CSS Grid column classes (e.g., `.g-col-4`).
 
 {{< example class="bd-example-cssgrid" >}}
 <div class="grid text-center" style="--bs-columns: 18; --bs-gap: .5rem;">

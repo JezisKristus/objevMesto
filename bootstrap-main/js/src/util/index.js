@@ -50,7 +50,7 @@ const getTransitionDurationFromElement = element => {
   }
 
   // Get transition-duration of the element
-  let { transitionDuration, transitionDelay } = window.getComputedStyle(element)
+  let {transitionDuration, transitionDelay} = window.getComputedStyle(element)
 
   const floatTransitionDuration = Number.parseFloat(transitionDuration)
   const floatTransitionDelay = Number.parseFloat(transitionDelay)
@@ -162,7 +162,8 @@ const findShadowRoot = element => {
   return findShadowRoot(element.parentNode)
 }
 
-const noop = () => {}
+const noop = () => {
+}
 
 /**
  * Trick to restart an element's animation
@@ -237,7 +238,7 @@ const executeAfterTransition = (callback, transitionElement, waitForTransition =
 
   let called = false
 
-  const handler = ({ target }) => {
+  const handler = ({target}) => {
     if (target !== transitionElement) {
       return
     }

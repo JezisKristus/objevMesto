@@ -7,15 +7,18 @@ toc: true
 added: "5.1"
 ---
 
-Stacks offer a shortcut for applying a number of flexbox properties to quickly and easily create layouts in Bootstrap. All credit for the concept and implementation goes to the open source [Pylon project](https://almonk.github.io/pylon/).
+Stacks offer a shortcut for applying a number of flexbox properties to quickly and easily create layouts in Bootstrap.
+All credit for the concept and implementation goes to the open source [Pylon project](https://almonk.github.io/pylon/).
 
 {{< callout warning >}}
-Heads up! Support for gap utilities with flexbox was recently added to Safari, so consider verifying your intended browser support. Grid layout should have no issues. [Read more](https://caniuse.com/flexbox-gap).
+Heads up! Support for gap utilities with flexbox was recently added to Safari, so consider verifying your intended
+browser support. Grid layout should have no issues. [Read more](https://caniuse.com/flexbox-gap).
 {{< /callout >}}
 
 ## Vertical
 
-Use `.vstack` to create vertical layouts. Stacked items are full-width by default. Use `.gap-*` utilities to add space between items.
+Use `.vstack` to create vertical layouts. Stacked items are full-width by default. Use `.gap-*` utilities to add space
+between items.
 
 {{< example class="bd-example-flex" >}}
 <div class="vstack gap-3">
@@ -27,7 +30,8 @@ Use `.vstack` to create vertical layouts. Stacked items are full-width by defaul
 
 ## Horizontal
 
-Use `.hstack` for horizontal layouts. Stacked items are vertically centered by default and only take up their necessary width. Use `.gap-*` utilities to add space between items.
+Use `.hstack` for horizontal layouts. Stacked items are vertically centered by default and only take up their necessary
+width. Use `.gap-*` utilities to add space between items.
 
 {{< example class="bd-example-flex" >}}
 <div class="hstack gap-3">

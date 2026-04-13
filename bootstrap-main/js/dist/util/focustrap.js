@@ -5,9 +5,10 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('../dom/event-handler.js'), require('../dom/selector-engine.js'), require('./config.js')) :
-  typeof define === 'function' && define.amd ? define(['../dom/event-handler', '../dom/selector-engine', './config'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Focustrap = factory(global.EventHandler, global.SelectorEngine, global.Config));
-})(this, (function (EventHandler, SelectorEngine, Config) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['../dom/event-handler', '../dom/selector-engine', './config'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Focustrap = factory(global.EventHandler, global.SelectorEngine, global.Config));
+})(this, (function (EventHandler, SelectorEngine, Config) {
+  'use strict';
 
   /**
    * --------------------------------------------------------------------------
@@ -54,9 +55,11 @@
     static get Default() {
       return Default;
     }
+
     static get DefaultType() {
       return DefaultType;
     }
+
     static get NAME() {
       return NAME;
     }
@@ -74,6 +77,7 @@
       EventHandler.on(document, EVENT_KEYDOWN_TAB, event => this._handleKeydown(event));
       this._isActive = true;
     }
+
     deactivate() {
       if (!this._isActive) {
         return;
@@ -99,6 +103,7 @@
         elements[0].focus();
       }
     }
+
     _handleKeydown(event) {
       if (event.key !== TAB_KEY) {
         return;

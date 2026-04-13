@@ -1,4 +1,4 @@
-import { DefaultAllowlist, sanitizeHtml } from '../../../src/util/sanitizer.js'
+import {DefaultAllowlist, sanitizeHtml} from '../../../src/util/sanitizer.js'
 
 describe('Sanitizer', () => {
   describe('sanitizeHtml', () => {

@@ -37,7 +37,8 @@ Or remove borders:
 ## Color
 
 {{< callout info >}}
-Border utilities like `.border-*` that generated from our original `$theme-colors` Sass map don't yet respond to color modes, however, any `.border-*-subtle` utility will. This will be resolved in v6.
+Border utilities like `.border-*` that generated from our original `$theme-colors` Sass map don't yet respond to color
+modes, however, any `.border-*-subtle` utility will. This will be resolved in v6.
 {{< /callout >}}
 
 Change the border color using utilities built on our theme colors.
@@ -74,7 +75,8 @@ Or modify the default `border-color` of a component:
 
 {{< added-in "5.2.0" >}}
 
-Bootstrap `border-{color}` utilities are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes.
+Bootstrap `border-{color}` utilities are generated with Sass using CSS variables. This allows for real-time color
+changes without compilation and dynamic alpha transparency changes.
 
 ### How it works
 
@@ -87,7 +89,11 @@ Consider our default `.border-success` utility.
 }
 ```
 
-We use an RGB version of our `--bs-success` (with the value of `25, 135, 84`) CSS variable and attached a second CSS variable, `--bs-border-opacity`, for the alpha transparency (with a default value `1` thanks to a local CSS variable). That means anytime you use `.border-success` now, your computed `color` value is `rgba(25, 135, 84, 1)`. The local CSS variable inside each `.border-*` class avoids inheritance issues so nested instances of the utilities don't automatically have a modified alpha transparency.
+We use an RGB version of our `--bs-success` (with the value of `25, 135, 84`) CSS variable and attached a second CSS
+variable, `--bs-border-opacity`, for the alpha transparency (with a default value `1` thanks to a local CSS variable).
+That means anytime you use `.border-success` now, your computed `color` value is `rgba(25, 135, 84, 1)`. The local CSS
+variable inside each `.border-*` class avoids inheritance issues so nested instances of the utilities don't
+automatically have a modified alpha transparency.
 
 ### Example
 
@@ -134,7 +140,8 @@ Add classes to an element to easily round its corners.
 
 ### Sizes
 
-Use the scaling classes for larger or smaller rounded corners. Sizes range from `0` to `5`, and can be configured by modifying the utilities API.
+Use the scaling classes for larger or smaller rounded corners. Sizes range from `0` to `5`, and can be configured by
+modifying the utilities API.
 
 {{< example class="bd-example-rounded-utils" >}}
 {{< placeholder width="75" height="75" class="rounded-0" title="Example non-rounded image" >}}
@@ -150,7 +157,8 @@ Use the scaling classes for larger or smaller rounded corners. Sizes range from 
 {{< placeholder width="75" height="75" class="rounded-start-2" title="Example default left rounded image" >}}
 {{< placeholder width="75" height="75" class="rounded-end-circle" title="Example right completely round image" >}}
 {{< placeholder width="75" height="75" class="rounded-start-pill" title="Example left rounded pill image" >}}
-{{< placeholder width="75" height="75" class="rounded-5 rounded-top-0" title="Example extra large bottom rounded image" >}}
+{{< placeholder width="75" height="75" class="rounded-5 rounded-top-0" title="Example extra large bottom rounded
+image" >}}
 {{< /example >}}
 
 ## CSS
@@ -187,7 +195,8 @@ Color mode adaptive border colors are also available as a Sass map:
 
 ### Utilities API
 
-Border utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
+Border utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{<
+docsref "/utilities/api#using-the-api" >}})
 
 {{< scss-docs name="utils-borders" file="scss/_utilities.scss" >}}
 

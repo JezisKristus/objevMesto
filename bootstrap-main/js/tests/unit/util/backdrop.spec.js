@@ -1,6 +1,6 @@
 import Backdrop from '../../../src/util/backdrop.js'
-import { getTransitionDurationFromElement } from '../../../src/util/index.js'
-import { clearFixture, getFixture } from '../../helpers/fixture.js'
+import {getTransitionDurationFromElement} from '../../../src/util/index.js'
+import {clearFixture, getFixture} from '../../helpers/fixture.js'
 
 const CLASS_BACKDROP = '.modal-backdrop'
 const CLASS_NAME_FADE = 'fade'
@@ -184,7 +184,7 @@ describe('Backdrop', () => {
         }
 
         instance.show(() => {
-          const clickEvent = new Event('mousedown', { bubbles: true, cancelable: true })
+          const clickEvent = new Event('mousedown', {bubbles: true, cancelable: true})
           document.querySelector(CLASS_BACKDROP).dispatchEvent(clickEvent)
           endTest()
         })

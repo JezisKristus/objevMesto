@@ -1,6 +1,6 @@
 import BaseComponent from '../../../src/base-component.js'
-import { enableDismissTrigger } from '../../../src/util/component-functions.js'
-import { clearFixture, createEvent, getFixture } from '../../helpers/fixture.js'
+import {enableDismissTrigger} from '../../../src/util/component-functions.js'
+import {clearFixture, createEvent, getFixture} from '../../helpers/fixture.js'
 
 class DummyClass2 extends BaseComponent {
   static get NAME() {

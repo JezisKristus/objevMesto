@@ -7,8 +7,8 @@
 
 import SelectorEngine from '../dom/selector-engine.js'
 import Config from './config.js'
-import { DefaultAllowlist, sanitizeHtml } from './sanitizer.js'
-import { execute, getElement, isElement } from './index.js'
+import {DefaultAllowlist, sanitizeHtml} from './sanitizer.js'
+import {execute, getElement, isElement} from './index.js'
 
 /**
  * Constants
@@ -77,7 +77,7 @@ class TemplateFactory extends Config {
 
   changeContent(content) {
     this._checkContent(content)
-    this._config.content = { ...this._config.content, ...content }
+    this._config.content = {...this._config.content, ...content}
     return this
   }
 
@@ -107,7 +107,7 @@ class TemplateFactory extends Config {
 
   _checkContent(arg) {
     for (const [selector, content] of Object.entries(arg)) {
-      super._typeCheckConfig({ selector, entry: content }, DefaultContentType)
+      super._typeCheckConfig({selector, entry: content}, DefaultContentType)
     }
   }
 

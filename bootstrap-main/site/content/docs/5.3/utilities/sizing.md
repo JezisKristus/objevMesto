@@ -8,7 +8,8 @@ toc: true
 
 ## Relative to the parent
 
-Width and height utilities are generated from the utility API in `_utilities.scss`. Includes support for `25%`, `50%`, `75%`, `100%`, and `auto` by default. Modify those values as you need to generate different utilities here.
+Width and height utilities are generated from the utility API in `_utilities.scss`. Includes support for `25%`, `50%`,
+`75%`, `100%`, and `auto` by default. Modify those values as you need to generate different utilities here.
 
 {{< example class="bd-example-flex" >}}
 <div class="w-25 p-3">Width 25%</div>
@@ -57,6 +58,7 @@ You can also use utilities to set the width and height relative to the viewport.
 
 ### Utilities API
 
-Sizing utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{< docsref "/utilities/api#using-the-api" >}})
+Sizing utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]({{<
+docsref "/utilities/api#using-the-api" >}})
 
 {{< scss-docs name="utils-sizing" file="scss/_utilities.scss" >}}

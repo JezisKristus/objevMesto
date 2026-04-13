@@ -62,7 +62,11 @@ bootstrap/
     └── bootstrap.min.js.map
 ```
 
-This is the most basic form of Bootstrap: compiled files for quick drop-in usage in nearly any web project. We provide compiled CSS and JS (`bootstrap.*`), as well as compiled and minified CSS and JS (`bootstrap.min.*`). [Source maps](https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps) (`bootstrap.*.map`) are available for use with certain browsers' developer tools. Bundled JS files (`bootstrap.bundle.js` and minified `bootstrap.bundle.min.js`) include [Popper](https://popper.js.org/).
+This is the most basic form of Bootstrap: compiled files for quick drop-in usage in nearly any web project. We provide
+compiled CSS and JS (`bootstrap.*`), as well as compiled and minified CSS and JS (
+`bootstrap.min.*`). [Source maps](https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps) (
+`bootstrap.*.map`) are available for use with certain browsers' developer tools. Bundled JS files (`bootstrap.bundle.js`
+and minified `bootstrap.bundle.min.js`) include [Popper](https://popper.js.org/).
 
 ### CSS files
 
@@ -71,10 +75,15 @@ Bootstrap includes a handful of options for including some or all of our compile
 {{< bs-table "table" >}}
 | CSS files | Layout | Content | Components | Utilities |
 | --- | --- | --- | --- | --- |
-| `bootstrap.css`<br> `bootstrap.min.css`<br> `bootstrap.rtl.css`<br> `bootstrap.rtl.min.css` | Included | Included | Included | Included |
-| `bootstrap-grid.css`<br> `bootstrap-grid.rtl.css`<br> `bootstrap-grid.min.css`<br> `bootstrap-grid.rtl.min.css` | [Only grid system]({{< docsref "/layout/grid" >}}) | — | — | [Only flex utilities]({{< docsref "/utilities/flex" >}}) |
-| `bootstrap-utilities.css`<br> `bootstrap-utilities.rtl.css`<br> `bootstrap-utilities.min.css`<br> `bootstrap-utilities.rtl.min.css` | — | — | — | Included |
-| `bootstrap-reboot.css`<br> `bootstrap-reboot.rtl.css`<br> `bootstrap-reboot.min.css`<br> `bootstrap-reboot.rtl.min.css` | — | [Only Reboot]({{< docsref "/content/reboot" >}}) | — | — |
+| `bootstrap.css`<br> `bootstrap.min.css`<br> `bootstrap.rtl.css`<br> `bootstrap.rtl.min.css` | Included | Included |
+Included | Included |
+| `bootstrap-grid.css`<br> `bootstrap-grid.rtl.css`<br> `bootstrap-grid.min.css`<br>
+`bootstrap-grid.rtl.min.css` | [Only grid system]({{< docsref "/layout/grid" >}}) | — | — | [Only flex utilities]({{<
+docsref "/utilities/flex" >}}) |
+| `bootstrap-utilities.css`<br> `bootstrap-utilities.rtl.css`<br> `bootstrap-utilities.min.css`<br>
+`bootstrap-utilities.rtl.min.css` | — | — | — | Included |
+| `bootstrap-reboot.css`<br> `bootstrap-reboot.rtl.css`<br> `bootstrap-reboot.min.css`<br>
+`bootstrap-reboot.rtl.min.css` | — | [Only Reboot]({{< docsref "/content/reboot" >}}) | — | — |
 {{< /bs-table >}}
 
 ### JS files
@@ -90,7 +99,8 @@ Similarly, we have options for including some or all of our compiled JavaScript.
 
 ## Bootstrap source code
 
-The Bootstrap source code download includes the compiled CSS and JavaScript assets, along with source Sass, JavaScript, and documentation. More specifically, it includes the following and more:
+The Bootstrap source code download includes the compiled CSS and JavaScript assets, along with source Sass, JavaScript,
+and documentation. More specifically, it includes the following and more:
 
 ```text
 bootstrap/
@@ -106,6 +116,8 @@ bootstrap/
 └── scss/
 ```
 
-The `scss/` and `js/` are the source code for our CSS and JavaScript. The `dist/` folder includes everything listed in the compiled download section above. The `site/content/docs/` folder includes the source code for our hosted documentation, including our live examples of Bootstrap usage.
+The `scss/` and `js/` are the source code for our CSS and JavaScript. The `dist/` folder includes everything listed in
+the compiled download section above. The `site/content/docs/` folder includes the source code for our hosted
+documentation, including our live examples of Bootstrap usage.
 
 Beyond that, any other included file provides support for packages, license information, and development.

@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import {Router} from 'express';
 import * as cityController from '../controllers/cityController.js';
 
 const router = Router();

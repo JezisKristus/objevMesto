@@ -279,7 +279,7 @@ class Dropdown extends BaseComponent {
   }
 
   _getOffset() {
-    const { offset } = this._config
+    const {offset} = this._config
 
     if (typeof offset === 'string') {
       return offset.split(',').map(value => Number.parseInt(value, 10))
@@ -301,12 +301,12 @@ class Dropdown extends BaseComponent {
           boundary: this._config.boundary
         }
       },
-      {
-        name: 'offset',
-        options: {
-          offset: this._getOffset()
-        }
-      }]
+        {
+          name: 'offset',
+          options: {
+            offset: this._getOffset()
+          }
+        }]
     }
 
     // Disable Popper if we have a static display or Dropdown is in Navbar
@@ -324,7 +324,7 @@ class Dropdown extends BaseComponent {
     }
   }
 
-  _selectMenuItem({ key, target }) {
+  _selectMenuItem({key, target}) {
     const items = SelectorEngine.find(SELECTOR_VISIBLE_ITEMS, this._menu).filter(element => isVisible(element))
 
     if (!items.length) {
@@ -381,7 +381,7 @@ class Dropdown extends BaseComponent {
         continue
       }
 
-      const relatedTarget = { relatedTarget: context._element }
+      const relatedTarget = {relatedTarget: context._element}
 
       if (event.type === 'click') {
         relatedTarget.clickEvent = event

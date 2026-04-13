@@ -5,12 +5,13 @@
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@popperjs/core'), require('./util/index.js'), require('./util/sanitizer.js'), require('./dom/event-handler.js'), require('./dom/manipulator.js'), require('./base-component.js'), require('./util/template-factory.js')) :
-  typeof define === 'function' && define.amd ? define(['@popperjs/core', './util/index', './util/sanitizer', './dom/event-handler', './dom/manipulator', './base-component', './util/template-factory'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Tooltip = factory(global["@popperjs/core"], global.Index, global.Sanitizer, global.EventHandler, global.Manipulator, global.BaseComponent, global.TemplateFactory));
-})(this, (function (Popper, index_js, sanitizer_js, EventHandler, Manipulator, BaseComponent, TemplateFactory) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['@popperjs/core', './util/index', './util/sanitizer', './dom/event-handler', './dom/manipulator', './base-component', './util/template-factory'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Tooltip = factory(global["@popperjs/core"], global.Index, global.Sanitizer, global.EventHandler, global.Manipulator, global.BaseComponent, global.TemplateFactory));
+})(this, (function (Popper, index_js, sanitizer_js, EventHandler, Manipulator, BaseComponent, TemplateFactory) {
+  'use strict';
 
   function _interopNamespaceDefault(e) {
-    const n = Object.create(null, { [Symbol.toStringTag]: { value: 'Module' } });
+    const n = Object.create(null, {[Symbol.toStringTag]: {value: 'Module'}});
     if (e) {
       for (const k in e) {
         if (k !== 'default') {
@@ -139,9 +140,11 @@
     static get Default() {
       return Default;
     }
+
     static get DefaultType() {
       return DefaultType;
     }
+
     static get NAME() {
       return NAME;
     }
@@ -150,12 +153,15 @@
     enable() {
       this._isEnabled = true;
     }
+
     disable() {
       this._isEnabled = false;
     }
+
     toggleEnabled() {
       this._isEnabled = !this._isEnabled;
     }
+
     toggle() {
       if (!this._isEnabled) {
         return;
@@ -167,6 +173,7 @@
       }
       this._enter();
     }
+
     dispose() {
       clearTimeout(this._timeout);
       EventHandler.off(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
@@ -176,6 +183,7 @@
       this._disposePopper();
       super.dispose();
     }
+
     show() {
       if (this._element.style.display === 'none') {
         throw new Error('Please use show on visible elements');
@@ -222,6 +230,7 @@
       };
       this._queueCallback(complete, this.tip, this._isAnimated());
     }
+
     hide() {
       if (!this._isShown()) {
         return;
@@ -257,6 +266,7 @@
       };
       this._queueCallback(complete, this.tip, this._isAnimated());
     }
+
     update() {
       if (this._popper) {
         this._popper.update();
@@ -267,12 +277,14 @@
     _isWithContent() {
       return Boolean(this._getTitle());
     }
+
     _getTipElement() {
       if (!this.tip) {
         this.tip = this._createTipElement(this._newContent || this._getContentForTemplate());
       }
       return this.tip;
     }
+
     _createTipElement(content) {
       const tip = this._getTemplateFactory(content).toHtml();
 
@@ -290,6 +302,7 @@
       }
       return tip;
     }
+
     setContent(content) {
       this._newContent = content;
       if (this._isShown()) {
@@ -297,6 +310,7 @@
         this.show();
       }
     }
+
     _getTemplateFactory(content) {
       if (this._templateFactory) {
         this._templateFactory.changeContent(content);
@@ -311,11 +325,13 @@
       }
       return this._templateFactory;
     }
+
     _getContentForTemplate() {
       return {
         [SELECTOR_TOOLTIP_INNER]: this._getTitle()
       };
     }
+
     _getTitle() {
       return this._resolvePossibleFunction(this._config.title) || this._element.getAttribute('data-bs-original-title');
     }
@@ -324,17 +340,21 @@
     _initializeOnDelegatedTarget(event) {
       return this.constructor.getOrCreateInstance(event.delegateTarget, this._getDelegateConfig());
     }
+
     _isAnimated() {
       return this._config.animation || this.tip && this.tip.classList.contains(CLASS_NAME_FADE);
     }
+
     _isShown() {
       return this.tip && this.tip.classList.contains(CLASS_NAME_SHOW);
     }
+
     _createPopper(tip) {
       const placement = index_js.execute(this._config.placement, [this, tip, this._element]);
       const attachment = AttachmentMap[placement.toUpperCase()];
       return Popper__namespace.createPopper(this._element, tip, this._getPopperConfig(attachment));
     }
+
     _getOffset() {
       const {
         offset
@@ -347,9 +367,11 @@
       }
       return offset;
     }
+
     _resolvePossibleFunction(arg) {
       return index_js.execute(arg, [this._element]);
     }
+
     _getPopperConfig(attachment) {
       const defaultBsPopperConfig = {
         placement: attachment,
@@ -389,6 +411,7 @@
         ...index_js.execute(this._config.popperConfig, [defaultBsPopperConfig])
       };
     }
+
     _setListeners() {
       const triggers = this._config.trigger.split(' ');
       for (const trigger of triggers) {
@@ -419,6 +442,7 @@
       };
       EventHandler.on(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
     }
+
     _fixTitle() {
       const title = this._element.getAttribute('title');
       if (!title) {
@@ -430,6 +454,7 @@
       this._element.setAttribute('data-bs-original-title', title); // DO NOT USE IT. Is only for backwards compatibility
       this._element.removeAttribute('title');
     }
+
     _enter() {
       if (this._isShown() || this._isHovered) {
         this._isHovered = true;
@@ -442,6 +467,7 @@
         }
       }, this._config.delay.show);
     }
+
     _leave() {
       if (this._isWithActiveTrigger()) {
         return;
@@ -453,13 +479,16 @@
         }
       }, this._config.delay.hide);
     }
+
     _setTimeout(handler, timeout) {
       clearTimeout(this._timeout);
       this._timeout = setTimeout(handler, timeout);
     }
+
     _isWithActiveTrigger() {
       return Object.values(this._activeTrigger).includes(true);
     }
+
     _getConfig(config) {
       const dataAttributes = Manipulator.getDataAttributes(this._element);
       for (const dataAttribute of Object.keys(dataAttributes)) {
@@ -476,6 +505,7 @@
       this._typeCheckConfig(config);
       return config;
     }
+
     _configAfterMerge(config) {
       config.container = config.container === false ? document.body : index_js.getElement(config.container);
       if (typeof config.delay === 'number') {
@@ -492,6 +522,7 @@
       }
       return config;
     }
+
     _getDelegateConfig() {
       const config = {};
       for (const [key, value] of Object.entries(this._config)) {
@@ -507,6 +538,7 @@
       // `Object.fromEntries(keysWithDifferentValues)`
       return config;
     }
+
     _disposePopper() {
       if (this._popper) {
         this._popper.destroy();

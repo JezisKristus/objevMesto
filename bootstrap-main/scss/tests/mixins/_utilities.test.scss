@@ -19,10 +19,10 @@ $enable-important-utilities: false;
 @include describe(generate-utility) {
   @include it("generates a utility class for each value") {
     @include test-generate-utility(
-      (
-        property: "padding",
-        values: (small: .5rem, large: 2rem)
-      )
+        (
+          property: "padding",
+          values: (small: .5rem, large: 2rem)
+        )
     ) {
       .padding-small {
         padding: .5rem;
@@ -39,10 +39,10 @@ $enable-important-utilities: false;
       $enable-important-utilities: true !global;
 
       @include test-generate-utility(
-        (
-          property: "padding",
-          values: (small: .5rem, large: 2rem)
-        )
+          (
+            property: "padding",
+            values: (small: .5rem, large: 2rem)
+          )
       ) {
         .padding-small {
           padding: .5rem !important;
@@ -61,10 +61,10 @@ $enable-important-utilities: false;
     @include describe("values") {
       @include it("supports null keys") {
         @include test-generate-utility(
-          (
-            property: "padding",
-            values: (null: 1rem, small: .5rem, large: 2rem)
-          ),
+            (
+              property: "padding",
+              values: (null: 1rem, small: .5rem, large: 2rem)
+            ),
         ) {
           .padding {
             padding: 1rem;
@@ -82,10 +82,10 @@ $enable-important-utilities: false;
 
       @include it("ignores null values") {
         @include test-generate-utility(
-          (
-            property: "padding",
-            values: (small: null, large: 2rem)
-          )
+            (
+              property: "padding",
+              values: (small: null, large: 2rem)
+            )
         ) {
           .padding-large {
             padding: 2rem;
@@ -95,10 +95,10 @@ $enable-important-utilities: false;
 
       @include it("supports lists") {
         @include test-generate-utility(
-          (
-            property: "padding",
-            values: 1rem 2rem
-          )
+            (
+              property: "padding",
+              values: 1rem 2rem
+            )
         ) {
           .padding-1rem {
             padding: 1rem;
@@ -112,10 +112,10 @@ $enable-important-utilities: false;
 
       @include it("supports single values") {
         @include test-generate-utility(
-          (
-            property: padding,
-            values: 1rem
-          )
+            (
+              property: padding,
+              values: 1rem
+            )
         ) {
           .padding-1rem {
             padding: 1rem;
@@ -127,11 +127,11 @@ $enable-important-utilities: false;
     @include describe("class & property") {
       @include it("adds each property to the declaration") {
         @include test-generate-utility(
-          (
-            class: padding-x,
-            property: padding-inline-start padding-inline-end,
-            values: 1rem
-          )
+            (
+              class: padding-x,
+              property: padding-inline-start padding-inline-end,
+              values: 1rem
+            )
         ) {
           .padding-x-1rem {
             padding-inline-start: 1rem;
@@ -142,10 +142,10 @@ $enable-important-utilities: false;
 
       @include it("uses the first property as class name") {
         @include test-generate-utility(
-          (
-            property: padding-inline-start padding-inline-end,
-            values: 1rem
-          )
+            (
+              property: padding-inline-start padding-inline-end,
+              values: 1rem
+            )
         ) {
           .padding-inline-start-1rem {
             padding-inline-start: 1rem;
@@ -156,14 +156,14 @@ $enable-important-utilities: false;
 
       @include it("supports a null class to create classes straight from the values") {
         @include test-generate-utility(
-          (
-            property: visibility,
-            class: null,
-            values: (
-              visible: visible,
-              invisible: hidden,
+            (
+              property: visibility,
+              class: null,
+              values: (
+                visible: visible,
+                invisible: hidden,
+              )
             )
-          )
         ) {
           .visible {
             visibility: visible;
@@ -179,11 +179,11 @@ $enable-important-utilities: false;
     @include describe("state") {
       @include it("Generates selectors for each states") {
         @include test-generate-utility(
-          (
-            property: padding,
-            values: 1rem,
-            state: hover focus,
-          )
+            (
+              property: padding,
+              values: 1rem,
+              state: hover focus,
+            )
         ) {
           .padding-1rem {
             padding: 1rem;
@@ -200,15 +200,15 @@ $enable-important-utilities: false;
       }
     }
 
-    @include describe("css-var"){
+    @include describe("css-var") {
       @include it("sets a CSS variable instead of the property") {
         @include test-generate-utility(
-          (
-            property: padding,
-            css-variable-name: padding,
-            css-var: true,
-            values: 1rem 2rem
-          )
+            (
+              property: padding,
+              css-variable-name: padding,
+              css-var: true,
+              values: 1rem 2rem
+            )
         ) {
           .padding-1rem {
             --bs-padding: 1rem;
@@ -222,12 +222,12 @@ $enable-important-utilities: false;
 
       @include it("defaults to class") {
         @include test-generate-utility(
-          (
-            property: padding,
-            class: padding,
-            css-var: true,
-            values: 1rem 2rem
-          )
+            (
+              property: padding,
+              class: padding,
+              css-var: true,
+              values: 1rem 2rem
+            )
         ) {
           .padding-1rem {
             --bs-padding: 1rem;
@@ -243,17 +243,17 @@ $enable-important-utilities: false;
     @include describe("local-vars") {
       @include it("generates the listed variables") {
         @include test-generate-utility(
-          (
-            property: color,
-            class: desaturated-color,
-            local-vars: (
-              color-opacity: 1,
-              color-saturation: .25
-            ),
-            values: (
-              blue: hsla(192deg, var(--bs-color-saturation), 0, var(--bs-color-opacity))
+            (
+              property: color,
+              class: desaturated-color,
+              local-vars: (
+                color-opacity: 1,
+                color-saturation: .25
+              ),
+              values: (
+                blue: hsla(192deg, var(--bs-color-saturation), 0, var(--bs-color-opacity))
+              )
             )
-          )
         ) {
           .desaturated-color-blue {
             --bs-color-opacity: 1;
@@ -269,13 +269,13 @@ $enable-important-utilities: false;
     @include describe("css-var & state") {
       @include it("Generates a rule with for each state with a CSS variable") {
         @include test-generate-utility(
-          (
-            property: padding,
-            css-var: true,
-            css-variable-name: padding,
-            values: 1rem,
-            state: hover focus,
-          )
+            (
+              property: padding,
+              css-var: true,
+              css-variable-name: padding,
+              values: 1rem,
+              state: hover focus,
+            )
         ) {
           .padding-1rem {
             --bs-padding: 1rem;
@@ -295,11 +295,11 @@ $enable-important-utilities: false;
     @include describe("rtl") {
       @include it("sets up RTLCSS for removal when false") {
         @include test-generate-utility(
-          (
-            property: padding,
-            values: 1rem,
-            rtl: false
-          )
+            (
+              property: padding,
+              values: 1rem,
+              rtl: false
+            )
         ) {
           /* rtl:begin:remove */
 
@@ -316,11 +316,11 @@ $enable-important-utilities: false;
     @include describe("rfs") {
       @include it("sets the fluid value when not inside media query") {
         @include test-generate-utility(
-          (
-            property: padding,
-            values: 1rem,
-            rfs: true
-          )
+            (
+              property: padding,
+              values: 1rem,
+              rfs: true
+            )
         ) {
           .padding-1rem {
             padding: rfs-fluid-value(1rem);
@@ -330,11 +330,11 @@ $enable-important-utilities: false;
 
       @include it("sets the value when inside the media query") {
         @include test-generate-utility(
-          (
-            property: padding,
-            values: 1rem,
-            rfs: true
-          ),
+            (
+              property: padding,
+              values: 1rem,
+              rfs: true
+            ),
           $is-rfs-media-query: true
         ) {
           .padding-1rem {
@@ -348,10 +348,10 @@ $enable-important-utilities: false;
   @include describe("$infix") {
     @include it("inserts the given infix") {
       @include test-generate-utility(
-        (
-          property: "padding",
-          values: (null: 1rem, small: .5rem, large: 2rem)
-        ),
+          (
+            property: "padding",
+            values: (null: 1rem, small: .5rem, large: 2rem)
+          ),
         $infix: -sm
       ) {
         .padding-sm {
@@ -370,15 +370,15 @@ $enable-important-utilities: false;
 
     @include it("strips leading - if class is null") {
       @include test-generate-utility(
-        (
-          property: visibility,
-          class: null,
-          values: (
-            visible: visible,
-            invisible: hidden,
-          )
-        ),
-        -sm
+          (
+            property: visibility,
+            class: null,
+            values: (
+              visible: visible,
+              invisible: hidden,
+            )
+          ),
+          -sm
       ) {
         .sm-visible {
           visibility: visible;
