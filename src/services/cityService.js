@@ -1,4 +1,4 @@
-import { pool } from '../db.js';
+import {pool} from '../db.js';
 
 export const getAllCities = async () => {
     const [rows] = await pool.query('SELECT * FROM cities ORDER BY name ');
@@ -6,7 +6,7 @@ export const getAllCities = async () => {
 };
 
 export const createCity = async (cityData) => {
-    const { name, description } = cityData;
+    const {name, description} = cityData;
     const [result] = await pool.query(
         'INSERT INTO cities (name, description) VALUES (?, ?)',
 
@@ -16,7 +16,7 @@ export const createCity = async (cityData) => {
 };
 
 export const updateCity = async (id, cityData) => {
-    const { name, description } = cityData;
+    const {name, description} = cityData;
     await pool.query(
         'UPDATE cities SET name = ?, description = ? WHERE id = ?',
         [name, description || null, id]

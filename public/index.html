@@ -30,7 +30,7 @@
     <div class="detail-panel" id="detailPanel">
     </div>
 </div>
- <!--* Našel jsem že dělat to pomocí template je lepší než innerHTML který se mi strašně nelíbilo -->
+<!--* Našel jsem že dělat to pomocí template je lepší než innerHTML který se mi strašně nelíbilo -->
 <template id="detailTemplate">
     <div class="detail-header">
         <h3 class="detail-place-name"></h3>
@@ -68,12 +68,14 @@
         <form id="commentForm" novalidate>
             <div class="mb-3">
                 <label class="form-label" for="commentName">Jméno</label>
-                <input type="text" class="form-control" id="commentName" placeholder="Vaše jméno" required minlength="2" maxlength="255">
+                <input type="text" class="form-control" id="commentName" placeholder="Vaše jméno" required minlength="2"
+                       maxlength="255">
                 <div class="invalid-feedback">Vyplňte jméno (min. 2 znaky).</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="commentText">Text komentáře</label>
-                <textarea class="form-control" id="commentText" rows="3" placeholder="Napište komentář..." required></textarea>
+                <textarea class="form-control" id="commentText" rows="3" placeholder="Napište komentář..."
+                          required></textarea>
                 <div class="invalid-feedback">Vyplňte text komentáře.</div>
             </div>
             <button type="submit" class="btn btn-primary btn-sm">Odeslat</button>
@@ -128,7 +130,8 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="placeName">Název</label>
-                        <input type="text" class="form-control" id="placeName" required minlength="2" maxlength="255" placeholder="Název místa">
+                        <input type="text" class="form-control" id="placeName" required minlength="2" maxlength="255"
+                               placeholder="Název místa">
                         <div class="invalid-feedback">Vyplňte název místa (min. 2 znaky).</div>
                     </div>
 
@@ -146,13 +149,15 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="placeAddress">Adresa</label>
-                        <input type="text" class="form-control" id="placeAddress" required maxlength="255" placeholder="Ulice, město">
+                        <input type="text" class="form-control" id="placeAddress" required maxlength="255"
+                               placeholder="Ulice, město">
                         <div class="invalid-feedback">Vyplňte adresu.</div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="placeDesc">Popis</label>
-                        <textarea class="form-control" id="placeDesc" rows="3" required placeholder="Stručný popis místa..."></textarea>
+                        <textarea class="form-control" id="placeDesc" rows="3" required
+                                  placeholder="Stručný popis místa..."></textarea>
                         <div class="invalid-feedback">Vyplňte popis.</div>
                     </div>
                 </div>

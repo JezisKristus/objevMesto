@@ -1,11 +1,11 @@
 const API = '/api';
 
 let cachedCities = null;
-let activeCityId   = null;
+let activeCityId = null;
 let activeCityName = null;
-let activePlaceId  = null;
+let activePlaceId = null;
 
-let mainPanel, detailPanel, placeForm, placeModal, cityForm, cityModal;
+let mainPanel, detailPanel, placeForm, cityForm;
 
 function showToast(msg) {
     const el = document.getElementById('toastMsg');
@@ -29,7 +29,7 @@ function loading(container) {
 
 function starsHTML(avg, count) {
     if (!count || count === 0) return '<span class="rating-count">Bez hodnocení</span>';
-    const full  = Math.round(avg);
+    const full = Math.round(avg);
     let html = '<span class="stars-display">';
     for (let i = 1; i <= 5; i++) html += i <= full ? '★' : '☆';
     html += '</span>';
@@ -47,10 +47,10 @@ function placeholderImg(w, h) { // vygenerováno
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    mainPanel   = document.getElementById('mainPanel');
+    mainPanel = document.getElementById('mainPanel');
     detailPanel = document.getElementById('detailPanel');
-    placeForm   = document.getElementById('placeForm');
-    cityForm    = document.getElementById('cityForm');
+    placeForm = document.getElementById('placeForm');
+    cityForm = document.getElementById('cityForm');
 
     document.getElementById('homeLink').addEventListener('click', (e) => {
         e.preventDefault();
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function resetDetail() {
-    activePlaceId  = null;
+    activePlaceId = null;
     detailPanel.classList.remove('open');
     detailPanel.innerHTML = '';
     document.querySelectorAll('.place-card.active').forEach(c => c.classList.remove('active'));
@@ -79,7 +79,7 @@ function resetDetail() {
 
 
 async function renderCities() {
-    activeCityId   = null;
+    activeCityId = null;
     activeCityName = null;
     resetDetail();
 
@@ -119,7 +119,7 @@ async function renderCities() {
 
 
 async function selectCity(cityId, cityName) {
-    activeCityId   = cityId;
+    activeCityId = cityId;
     activeCityName = cityName;
     resetDetail();
 
@@ -136,10 +136,10 @@ async function selectCity(cityId, cityName) {
     section.innerHTML = `<div class="loading-msg"><div class="spinner"></div></div>`;
     mainPanel.appendChild(section);
 
-    section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    section.scrollIntoView({behavior: 'smooth', block: 'nearest'});
 
     try {
-        const res    = await fetch(`${API}/cities/${cityId}/places`);
+        const res = await fetch(`${API}/cities/${cityId}/places`);
         const places = await res.json();
 
         renderCitySection(section, cityId, cityName, places);
@@ -209,7 +209,7 @@ async function openPlaceDetail(placeId) {
             fetch(`${API}/places/${placeId}`),
             fetch(`${API}/places/${placeId}/comments`)
         ]);
-        const place    = await placeRes.json();
+        const place = await placeRes.json();
         const comments = await commentsRes.json();
 
         renderDetailPanel(place, comments);
@@ -261,8 +261,8 @@ function renderDetailPanel(place, comments) {
 function openAddPlaceModal(cityId) {
     placeForm.reset();
     placeForm.classList.remove('was-validated');
-    document.getElementById('placeId').value       = '';
-    document.getElementById('placeCityId').value   = cityId;
+    document.getElementById('placeId').value = '';
+    document.getElementById('placeCityId').value = cityId;
     document.getElementById('placeModalLabel').textContent = 'Přidat nové místo';
     document.getElementById('placeFormSubmit').textContent = 'Uložit místo';
     new bootstrap.Modal(document.getElementById('placeModal')).show();
@@ -274,103 +274,88 @@ function openEditPlaceModal() {
 
     placeForm.reset();
     placeForm.classList.remove('was-validated');
-    document.getElementById('placeId').value       = place.id;
-    document.getElementById('placeCityId').value   = place.city_id;
-    document.getElementById('placeName').value     = place.name;
-    document.getElementById('placeType').value     = place.type;
-    document.getElementById('placeAddress').value  = place.address;
-    document.getElementById('placeDesc').value     = place.description;
+    document.getElementById('placeId').value = place.id;
+    document.getElementById('placeCityId').value = place.city_id;
+    document.getElementById('placeName').value = place.name;
+    document.getElementById('placeType').value = place.type;
+    document.getElementById('placeAddress').value = place.address;
+    document.getElementById('placeDesc').value = place.description;
     document.getElementById('placeModalLabel').textContent = 'Upravit místo';
     document.getElementById('placeFormSubmit').textContent = 'Uložit změny';
     new bootstrap.Modal(document.getElementById('placeModal')).show();
 }
 
+//? Používám stejnou metodu i formulář pro edit i přidání, je to složitější ale přijde mi to lepší
 async function savePlaceFromForm() {
-    const id     = document.getElementById('placeId').value;
-    const cityId = document.getElementById('placeCityId').value;
-    const data   = {
-        city_id:     cityId,
-        name:        document.getElementById('placeName').value.trim(),
-        type:        document.getElementById('placeType').value,
-        address:     document.getElementById('placeAddress').value.trim(),
+    const id = document.getElementById('placeId').value;
+    const data = {
+        city_id: document.getElementById('placeCityId').value,
+        name: document.getElementById('placeName').value.trim(),
+        type: document.getElementById('placeType').value.trim(),
+        address: document.getElementById('placeAddress').value.trim(),
         description: document.getElementById('placeDesc').value.trim(),
-        image_url:   null
+        image_url: null
     };
 
+    const method = id ? 'PUT' : 'POST';
+    const url = id ? `${API}/places/${id}` : `${API}/places`;
+
     try {
-        let newPlace;
-        if (id) {
-            await fetch(`${API}/places/${id}`, {
-                method:  'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify(data)
-            });
-            showToast('Místo bylo upraveno.');
-        } else {
-            const res = await fetch(`${API}/places`, {
-                method:  'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify(data)
-            });
-            newPlace = await res.json(); 
-            showToast('Místo bylo přidáno.');
+        //? Kvůli double ukldání potencionálně
+        const submitBtn = document.getElementById('placeFormSubmit');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Ukládám...';
+
+        const res = await fetch(url, {
+            method,
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+
+        if (!res.ok) {
+            throw new Error(`Chyba: ${res.status} ${res.statusText}`);
         }
 
+        showToast(id ? 'Místo bylo upraveno.' : 'Místo bylo přidáno.');
         bootstrap.Modal.getInstance(document.getElementById('placeModal')).hide();
         placeForm.classList.remove('was-validated');
 
-        if (!id && newPlace) {
-            const section = document.getElementById('citySection');
-            if (section) {
-                const grid = section.querySelector('.places-grid');
-                if (grid) {
-                    const empty = grid.querySelector('.empty-state');
-                    if (empty) empty.remove();
-                    const card = createPlaceCard(newPlace);
-                    grid.appendChild(card);
-                }
-            }
-        } else {
-            // For edits, reload detail if open
+        //? Ne uplně optimální ale stabilní
+        if (activeCityId) {
+            await refreshCityPlaces(activeCityId);
             if (id) await openPlaceDetail(id);
         }
-    } catch {
-        showToast('Chyba při ukládání místa.');
+
+    } catch (error) {
+        showToast(error.message || 'Chyba při ukládání místa.');
+    } finally {
+        // Zpátky tlačítko
+        const submitBtn = document.getElementById('placeFormSubmit');
+        submitBtn.disabled = false;
+        submitBtn.textContent = id ? 'Uložit změny' : 'Uložit místo';
     }
 }
-
-function createPlaceCard(p) {
-    const template = document.getElementById('placeCardTemplate');
-    const card = document.importNode(template.content, true).firstElementChild;
-    card.id = `placeCard-${p.id}`;
-    card.onclick = () => openPlaceDetail(p.id);
-    card.querySelector('.place-card-img').innerHTML = placeholderImg(155, 90);
-    card.querySelector('.place-card-name').textContent = escHtml(p.name);
-    card.querySelector('.place-card-name').title = escHtml(p.name);
-    card.querySelector('.place-card-type').textContent = escHtml(p.type);
-    return card;
-}
-
 
 async function refreshCityPlaces(cityId) {
     const section = document.getElementById('citySection');
     if (!section) return;
     try {
-        const res    = await fetch(`${API}/cities/${cityId}/places`);
+        const res = await fetch(`${API}/cities/${cityId}/places`);
         const places = await res.json();
-        renderCitySection(section, activeCityName, activeCityName, places);
-    } catch { /* ignore */ }
+        renderCitySection(section, cityId, activeCityName, places);
+    } catch { /* ignore */
+    }
 }
 
 
 async function deletePlace(placeId) {
     if (!confirm('Opravdu smazat toto místo? Budou smazány i všechny komentáře a hodnocení.')) return;
     try {
-        await fetch(`${API}/places/${placeId}`, { method: 'DELETE' });
+        await fetch(`${API}/places/${placeId}`, {method: 'DELETE'});
         showToast('Místo bylo smazáno.');
         resetDetail();
         if (activeCityId) {
-            const res    = await fetch(`${API}/cities/${activeCityId}/places`);
+            const res = await fetch(`${API}/cities/${activeCityId}/places`);
             const places = await res.json();
             const section = document.getElementById('citySection');
             if (section) renderCitySection(section, activeCityId, activeCityName, places);
@@ -393,22 +378,15 @@ async function submitComment(e, placeId) {
     const text = document.getElementById('commentText').value.trim();
 
     try {
-        const res = await fetch(`${API}/places/${placeId}/comments`, {
-            method:  'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body:    JSON.stringify({ author_name: name, text })
+        await fetch(`${API}/places/${placeId}/comments`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({author_name: name, text})
         });
-        const newComment = await res.json();
         form.reset();
         form.classList.remove('was-validated');
         showToast('Komentář byl přidán.');
-        const list = document.getElementById('commentsList');
-        if (list) {
-            const empty = list.querySelector('.empty-state');
-            if (empty) empty.remove();
-            const commentDiv = createCommentItem(newComment);
-            list.appendChild(commentDiv);
-        }
+        await refreshComments(placeId);
     } catch {
         showToast('Chyba při přidávání komentáře.');
     }
@@ -417,7 +395,7 @@ async function submitComment(e, placeId) {
 async function deleteComment(commentId) {
     if (!confirm('Smazat komentář?')) return;
     try {
-        await fetch(`${API}/places/comments/${commentId}`, { method: 'DELETE' });
+        await fetch(`${API}/places/comments/${commentId}`, {method: 'DELETE'});
         document.getElementById(`comment-${commentId}`)?.remove();
         const list = document.getElementById('commentsList');
         if (list && list.querySelectorAll('.comment-item').length === 0) {
@@ -431,9 +409,9 @@ async function deleteComment(commentId) {
 
 async function refreshComments(placeId) {
     try {
-        const res      = await fetch(`${API}/places/${placeId}/comments`);
+        const res = await fetch(`${API}/places/${placeId}/comments`);
         const comments = await res.json();
-        const list     = document.getElementById('commentsList');
+        const list = document.getElementById('commentsList');
         if (!list) return;
 
         if (comments.length === 0) {
@@ -446,22 +424,23 @@ async function refreshComments(placeId) {
             const commentDiv = createCommentItem(c);
             list.appendChild(commentDiv);
         });
-    } catch { /* ignore */ }
+    } catch { /* ignore */
+    }
 }
 
 
 async function submitRating(placeId, stars) {
     try {
         await fetch(`${API}/places/${placeId}/ratings`, {
-            method:  'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body:    JSON.stringify({ stars })
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({stars})
         });
         showToast(`Hodnocení ${stars}★ bylo přidáno.`);
         // Refresh the rating display only
-        const res   = await fetch(`${API}/places/${placeId}`);
+        const res = await fetch(`${API}/places/${placeId}`);
         const place = await res.json();
-        const el    = document.querySelector('.rating-summary');
+        const el = document.querySelector('.rating-summary');
         if (el) el.innerHTML = starsHTML(place.stats.avgRating, place.stats.ratingCount);
         // Update stored data
         if (detailPanel.dataset.place) {
