@@ -1,4 +1,4 @@
-const API = '/api';
+const API = '/api'; // asi by to tady nemuselo bejt, jestli budu měnit smazat i na back endu
 
 let cachedCities = null;
 let activeCityId = null;
@@ -7,7 +7,7 @@ let activePlaceId = null;
 
 let mainPanel, detailPanel, placeForm, cityForm;
 
-function showToast(msg) {
+function showToast(msg) { // informační okénko 
     const el = document.getElementById('toastMsg');
     el.textContent = msg;
     el.classList.add('show');
@@ -103,14 +103,15 @@ async function renderCities() {
     const grid = document.createElement('div');
     grid.className = 'city-grid';
 
+    //? Fragment je lepší když přidávám víc věcí najednou aby se to nemuselo přepočítávat pokaždý
     const fragment = document.createDocumentFragment();
     const template = document.getElementById('cityCardTemplate');
     cachedCities.forEach(city => {
         const card = document.importNode(template.content, true).firstElementChild;
         card.id = `cityCard-${city.id}`;
-        card.onclick = () => selectCity(city.id, escHtml(city.name));
+        card.onclick = () => selectCity(city.id, city.name);
         card.querySelector('.city-card-img').innerHTML = placeholderImg(200, 120);
-        card.querySelector('.city-card-name').textContent = escHtml(city.name);
+        card.querySelector('.city-card-name').textContent = city.name;
         fragment.appendChild(card);
     });
     grid.appendChild(fragment);
@@ -135,9 +136,7 @@ async function selectCity(cityId, cityName) {
     section.className = 'city-section';
     section.innerHTML = `<div class="loading-msg"><div class="spinner"></div></div>`;
     mainPanel.appendChild(section);
-
-    section.scrollIntoView({behavior: 'smooth', block: 'nearest'});
-
+    
     try {
         const res = await fetch(`${API}/cities/${cityId}/places`);
         const places = await res.json();
@@ -156,7 +155,7 @@ function renderCitySection(section, cityId, cityName, places) {
 
     const title = document.createElement('h2');
     title.className = 'city-section-title';
-    title.textContent = escHtml(cityName);
+    title.textContent = cityName;
     header.appendChild(title);
 
     const addBtn = document.createElement('button');
@@ -176,16 +175,16 @@ function renderCitySection(section, cityId, cityName, places) {
         const grid = document.createElement('div');
         grid.className = 'places-grid';
 
-        const fragment = document.createDocumentFragment();
+        const fragment = document.createDocumentFragment(); // Vysvětlenej u měst
         const template = document.getElementById('placeCardTemplate');
         places.forEach(p => {
             const card = document.importNode(template.content, true).firstElementChild;
             card.id = `placeCard-${p.id}`;
             card.onclick = () => openPlaceDetail(p.id);
             card.querySelector('.place-card-img').innerHTML = placeholderImg(155, 90);
-            card.querySelector('.place-card-name').textContent = escHtml(p.name);
-            card.querySelector('.place-card-name').title = escHtml(p.name);
-            card.querySelector('.place-card-type').textContent = escHtml(p.type);
+            card.querySelector('.place-card-name').textContent = p.name;
+            card.querySelector('.place-card-name').title = p.name;
+            card.querySelector('.place-card-type').textContent = p.type;
             fragment.appendChild(card);
         });
         grid.appendChild(fragment);
@@ -207,7 +206,7 @@ async function openPlaceDetail(placeId) {
     try {
         const [placeRes, commentsRes] = await Promise.all([
             fetch(`${API}/places/${placeId}`),
-            fetch(`${API}/places/${placeId}/comments`)
+            fetch(`${API}/places/${placeId}/comments`) //? Jsou separátně kdyby jich bylo hodně or smt
         ]);
         const place = await placeRes.json();
         const comments = await commentsRes.json();
@@ -222,13 +221,13 @@ function renderDetailPanel(place, comments) {
     const template = document.getElementById('detailTemplate');
     const clone = document.importNode(template.content, true);
 
-    clone.querySelector('.detail-place-name').textContent = escHtml(place.name);
+    clone.querySelector('.detail-place-name').textContent = place.name;
     clone.querySelector('.detail-actions .icon-btn').onclick = openEditPlaceModal;
     clone.querySelector('.detail-actions .icon-btn.delete').onclick = () => deletePlace(place.id);
 
     clone.querySelector('.detail-place-img').innerHTML = placeholderImg(380, 160);
-    clone.querySelector('.detail-address span').textContent = escHtml(place.address);
-    clone.querySelector('.detail-desc').textContent = escHtml(place.description);
+    clone.querySelector('.detail-address span').textContent = place.address;
+    clone.querySelector('.detail-desc').textContent = place.description;
 
     const avg = place.stats.avgRating;
     const count = place.stats.ratingCount;
@@ -428,7 +427,7 @@ async function refreshComments(placeId) {
     }
 }
 
-
+//* Celkově práce s hodnocením je neoptimální ale neměl jsem čas se tomu tolik věnovat
 async function submitRating(placeId, stars) {
     try {
         await fetch(`${API}/places/${placeId}/ratings`, {
@@ -437,12 +436,10 @@ async function submitRating(placeId, stars) {
             body: JSON.stringify({stars})
         });
         showToast(`Hodnocení ${stars}★ bylo přidáno.`);
-        // Refresh the rating display only
         const res = await fetch(`${API}/places/${placeId}`);
         const place = await res.json();
         const el = document.querySelector('.rating-summary');
         if (el) el.innerHTML = starsHTML(place.stats.avgRating, place.stats.ratingCount);
-        // Update stored data
         if (detailPanel.dataset.place) {
             const stored = JSON.parse(detailPanel.dataset.place);
             stored.stats = place.stats;
@@ -453,17 +450,6 @@ async function submitRating(placeId, stars) {
     }
 }
 
-
-function escHtml(str) {
-    if (!str) return '';
-    return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-}
-
 function createCommentItem(c) {
     const template = document.getElementById('commentTemplate');
     const div = document.importNode(template.content, true).firstElementChild;
@@ -472,9 +458,9 @@ function createCommentItem(c) {
         day: '2-digit', month: '2-digit', year: 'numeric',
         hour: '2-digit', minute: '2-digit'
     });
-    div.querySelector('.comment-author span').textContent = escHtml(c.author_name);
+    div.querySelector('.comment-author span').textContent = c.author_name;
     div.querySelector('.comment-date').textContent = date;
     div.querySelector('.btn-delete-comment').onclick = () => deleteComment(c.id);
-    div.querySelector('.comment-text').textContent = escHtml(c.text);
+    div.querySelector('.comment-text').textContent = c.text;
     return div;
 }
