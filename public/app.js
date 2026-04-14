@@ -10,7 +10,7 @@ let mainPanel, detailPanel, placeForm;
 function showToast(msg) {
     const toastEl = document.getElementById('toastMsg');
     toastEl.querySelector('.toast-body').textContent = msg;
-    new bootstrap.Toast(toastEl, { delay: 2500 }).show();
+    new bootstrap.Toast(toastEl, {delay: 2500}).show();
 }
 
 function starsHTML(avg, count) {
@@ -158,7 +158,7 @@ function renderCitySection(section, cityId, cityName, places) {
         const card = document.importNode(template.content, true).firstElementChild;
         card.id = `placeCard-${p.id}`;
         const col = document.createElement('div');
-        col.className = 'col-lg-3 col-md-4 col-sm-6';
+        col.className = 'col-lg-2 col-md-4 col-sm-6';
         card.onclick = () => openPlaceDetail(p.id);
         card.querySelector('.place-card__name').textContent = p.name;
         card.querySelector('.place-card__name').title = p.name;
@@ -273,7 +273,7 @@ async function savePlaceFromForm() {
     try {
         const res = await fetch(url, {
             method,
-            headers: { 'Content-Type': 'application/json' },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
         });
         if (!res.ok) throw new Error(`Chyba: ${res.status}`);
@@ -301,13 +301,14 @@ async function refreshCityPlaces(cityId) {
         const res = await fetch(`${API}/cities/${cityId}/places`);
         const places = await res.json();
         renderCitySection(section, cityId, activeCityName, places);
-    } catch { /* ignore */ }
+    } catch { /* ignore */
+    }
 }
 
 async function deletePlace(placeId) {
     if (!confirm('Opravdu smazat toto místo? Budou smazány i všechny komentáře a hodnocení.')) return;
     try {
-        await fetch(`${API}/places/${placeId}`, { method: 'DELETE' });
+        await fetch(`${API}/places/${placeId}`, {method: 'DELETE'});
         showToast('Místo bylo smazáno.');
         resetDetail();
         if (activeCityId) await refreshCityPlaces(activeCityId);
@@ -328,8 +329,8 @@ async function submitComment(e, placeId) {
     try {
         await fetch(`${API}/places/${placeId}/comments`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ author_name: name, text })
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({author_name: name, text})
         });
         form.reset();
         form.classList.remove('was-validated');
@@ -343,7 +344,7 @@ async function submitComment(e, placeId) {
 async function deleteComment(commentId) {
     if (!confirm('Smazat komentář?')) return;
     try {
-        await fetch(`${API}/places/comments/${commentId}`, { method: 'DELETE' });
+        await fetch(`${API}/places/comments/${commentId}`, {method: 'DELETE'});
         document.getElementById(`comment-${commentId}`)?.remove();
         const list = document.getElementById('commentsList');
         if (list && list.querySelectorAll('.comment-item').length === 0) {
@@ -367,15 +368,16 @@ async function refreshComments(placeId) {
             return;
         }
         comments.forEach(c => list.appendChild(createCommentItem(c)));
-    } catch { /* ignore */ }
+    } catch { /* ignore */
+    }
 }
 
 async function submitRating(placeId, stars) {
     try {
         await fetch(`${API}/places/${placeId}/ratings`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ stars })
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({stars})
         });
         showToast(`Hodnocení ${stars}★ bylo přidáno.`);
         const res = await fetch(`${API}/places/${placeId}`);

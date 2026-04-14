@@ -38,13 +38,14 @@ body {
     min-height: calc(100vh - var(--nav-h));
     max-height: calc(100vh - var(--nav-h));
     overflow-y: auto;
-    position: sticky;
+    position: fixed;
+    right: calc(var(--detail-w) * -1);
+    z-index: 100;
     top: var(--nav-h);
-    display: none;
 }
 
 .detail-col.open {
-    display: block;
+    right: 0;
 }
 
 .loading-state {

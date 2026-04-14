@@ -25,6 +25,7 @@
         </div>
     </div>
     <aside class="detail-col bg-white p-4 border-start" id="detailPanel"></aside>
+    <!--! Chybí mi tady nějakej overlay or smt aby se to dalo zavírat -->
 </div>
 
 <!-- Templejty, imo lepší tady než v .js -->
@@ -45,7 +46,8 @@
             <div class="placeholder-img"></div>
         </div>
         <div class="card-body py-2 px-2">
-            <h6 class="card-title place-card__name mb-1" style="font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h6>
+            <h6 class="card-title place-card__name mb-1"
+                style="font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h6>
             <small class="text-muted place-card__type" style="font-size: 0.72rem;"></small>
         </div>
     </div>
@@ -57,8 +59,10 @@
             <div class="detail-header__top d-flex justify-content-between align-items-start gap-2 mb-2">
                 <h2 class="detail-title m-0" style="font-size: 1.3rem;"></h2>
                 <div class="detail-actions d-flex gap-1">
-                    <button class="btn btn-sm btn-outline-secondary btn-edit" title="Upravit místo"><i class="bi bi-pencil"></i></button>
-                    <button class="btn btn-sm btn-outline-danger btn-delete" title="Smazat místo"><i class="bi bi-trash"></i></button>
+                    <button class="btn btn-sm btn-outline-secondary btn-edit" title="Upravit místo"><i
+                            class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-outline-danger btn-delete" title="Smazat místo"><i
+                            class="bi bi-trash"></i></button>
                 </div>
             </div>
             <div><span class="badge bg-info detail-type-badge"></span></div>
@@ -67,7 +71,8 @@
             <div class="placeholder-img"></div>
         </div>
         <div class="detail-meta mb-2">
-            <small class="text-muted detail-address"><i class="bi bi-geo-alt"></i> <span class="address-text"></span></small>
+            <small class="text-muted detail-address"><i class="bi bi-geo-alt"></i> <span
+                    class="address-text"></span></small>
         </div>
         <p class="detail-desc mb-3" style="font-size: 0.875rem; line-height: 1.6;"></p>
         <hr class="my-3">
@@ -114,7 +119,8 @@
             <small class="comment-author"><i class="bi bi-person"></i> <span class="author-name fw-bold"></span></small>
             <div class="comment-item__right d-flex align-items-center gap-2">
                 <small class="text-muted comment-date"></small>
-                <button class="btn btn-sm btn-outline-danger btn-delete-comment" title="Smazat"><i class="bi bi-trash"></i></button>
+                <button class="btn btn-sm btn-outline-danger btn-delete-comment" title="Smazat"><i
+                        class="bi bi-trash"></i></button>
             </div>
         </div>
         <p class="comment-text mb-0" style="font-size: 0.84rem; line-height: 1.5;"></p>
@@ -176,7 +182,8 @@
     <div id="toastMsg" class="toast bg-dark text-white" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
             <div class="toast-body"></div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
         </div>
     </div>
 </div>
